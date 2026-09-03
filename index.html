@@ -292,5 +292,88 @@ document.getElementById("caBtn").onclick=()=>setLanguage("ca");
 document.getElementById("esBtn").onclick=()=>setLanguage("es");
 setLanguage(localStorage.getItem("ciclikLang")||"ca");
 </script>  
+  <script>
+const fixLang = (lang) => {
+  const es = lang === "es";
+
+  const profile = JSON.parse(localStorage.getItem("ciclikDemo") || "null");
+
+  document.querySelector(".hero h1").innerHTML =
+    es ? "Todo puede<br>volver a<br>circular." : "Tot pot<br>tornar a<br>circular.";
+
+  document.querySelector(".walletIntro h2").textContent =
+    es ? "Mi Cíclik" : "El meu Cíclik";
+
+  document.querySelector(".walletIntro p").textContent =
+    es ? "Tu monedero, dentro del círculo." : "El teu moneder, dins del cercle.";
+
+  document.querySelector(".walletIntro .outline").textContent =
+    es ? "CREAR PERFIL" : "CREAR PERFIL";
+
+  if (!profile) {
+    document.getElementById("profileName").textContent =
+      es ? "Tu perfil" : "El teu perfil";
+  }
+
+  document.querySelector(".name p").textContent =
+    es ? "Miembro de la comunidad Cíclik" : "Membre de la comunitat Cíclik";
+
+  document.querySelector(".name .edit").textContent =
+    es ? "EDITAR PERFIL" : "EDITAR PERFIL";
+
+  document.querySelector(".balance small").textContent =
+    es ? "TU MONEDERO" : "EL TEU MONEDER";
+
+  const actions = document.querySelectorAll(".actions button");
+  const actionTexts = es
+    ? ["☆ Gana","⌕ Descubre","⇄ Intercambia","➤ Envía"]
+    : ["☆ Guanya","⌕ Descobreix","⇄ Intercanvia","➤ Envia"];
+
+  actions.forEach((b,i)=>b.textContent=actionTexts[i]);
+
+  const activityHead = document.querySelectorAll(".activityHead span");
+  activityHead[0].textContent = es ? "Actividad reciente" : "Activitat recent";
+  activityHead[1].textContent = es ? "VER TODO →" : "VEURE TOT →";
+
+  const items = document.querySelectorAll(".activityItem");
+
+  if(es){
+    items[0].innerHTML='Has participado en el taller<br><b>Costura creativa</b><br><span class="delta">+ 20 Cícliks</span>';
+    items[1].innerHTML='Has intercambiado<br><b>Libros por plantas</b><br><span class="delta">− 15 Cícliks</span>';
+    items[2].innerHTML='Has ofrecido<br><b>Clases de inglés</b><br><span class="delta">+ 10 Cícliks</span>';
+  }else{
+    items[0].innerHTML='Has participat al taller<br><b>Costura creativa</b><br><span class="delta">+ 20 Cícliks</span>';
+    items[1].innerHTML='Has intercanviat<br><b>Llibres per plantes</b><br><span class="delta">− 15 Cícliks</span>';
+    items[2].innerHTML='Has ofert<br><b>Classes d\'anglès</b><br><span class="delta">+ 10 Cícliks</span>';
+  }
+
+  document.querySelector("#comunitat h2").textContent =
+    es ? "Forma parte del círculo." : "Forma part del cercle.";
+
+  document.querySelector("#comunitat .joinGrid > div > p").textContent =
+    es
+    ? "Crea tu perfil y prepara tu monedero Cíclik. Esta versión ya deja preparada la interfaz; el siguiente paso será conectar registro, inicio de sesión y saldo real para que cada miembro tenga su propia cuenta."
+    : "Crea el teu perfil i prepara el teu moneder Cíclik. Aquesta versió ja deixa preparada la interfície; el següent pas serà connectar registre, inici de sessió i saldo real perquè cada membre tingui el seu compte propi.";
+
+  document.querySelector("#tallers h2").textContent =
+    es ? "Talleres y experiencias" : "Tallers i experiències";
+
+  document.querySelector("#tallers .smalllink").textContent =
+    es ? "PRÓXIMAMENTE" : "PROPERAMENT";
+
+  document.querySelector("#tallers .lead").textContent =
+    es
+    ? "Cocina, costura, artesanía, conocimientos y experiencias compartidas. Cíclik pone en circulación mucho más que objetos."
+    : "Cuina, costura, artesania, coneixements i experiències compartides. Cíclik posa en circulació molt més que objectes.";
+};
+
+const oldSetLanguage = setLanguage;
+setLanguage = function(lang){
+  oldSetLanguage(lang);
+  fixLang(lang);
+};
+
+fixLang(localStorage.getItem("ciclikLang") || "ca");
+</script>
 </body>
 </html>
