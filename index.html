@@ -189,5 +189,108 @@ function saveDemo(e){
 }
 loadDemo();
 </script>
+<script>
+const TR={
+"ca":{
+"Inici":"Inici","Com funciona":"Com funciona","Tallers":"Tallers","Comunitat":"Comunitat","El meu Cíclik":"El meu Cíclik","Inicia sessió":"Inicia sessió",
+"DEIXAR ANAR · FER ESPAI · FER CIRCULAR":"DEIXAR ANAR · FER ESPAI · FER CIRCULAR",
+"Tot pot tornar a circular.":"Tot pot tornar a circular.",
+"Objectes, coneixements, temps, habilitats i experiències. Allò que pots aportar també té valor.":"Objectes, coneixements, temps, habilitats i experiències. Allò que pots aportar també té valor.",
+"DESCOBREIX CÍCLIK ↓":"DESCOBREIX CÍCLIK ↓",
+"Com funciona Cíclik?":"Com funciona Cíclik?",
+"Dóna":"Dóna","Comparteix":"Comparteix","Rep":"Rep","Connecta":"Connecta",
+"Allò que ja no necessites pot tenir valor per algú altre.":"Allò que ja no necessites pot tenir valor per algú altre.",
+"El teu temps, coneixement o una habilitat també poden circular.":"El teu temps, coneixement o una habilitat també poden circular.",
+"Participa en intercanvis, tallers i experiències.":"Participa en intercanvis, tallers i experiències.",
+"Forma part d'una comunitat conscient i col·laborativa.":"Forma part d'una comunitat conscient i col·laborativa.",
+"El teu moneder, dins del cercle.":"El teu moneder, dins del cercle.",
+"EL TEU MONEDER":"EL TEU MONEDER",
+"Activitat recent":"Activitat recent",
+"Tallers i experiències":"Tallers i experiències",
+"PROPERAMENT":"PROPERAMENT",
+"Forma part del cercle.":"Forma part del cercle.",
+"Preguntes freqüents":"Preguntes freqüents","Contacte":"Contacte","Condicions":"Condicions","Privacitat":"Privacitat"
+},
+"es":{
+"Inici":"Inicio","Com funciona":"Cómo funciona","Tallers":"Talleres","Comunitat":"Comunidad","El meu Cíclik":"Mi Cíclik","Inicia sessió":"Iniciar sesión",
+"DEIXAR ANAR · FER ESPAI · FER CIRCULAR":"DEJAR IR · HACER ESPACIO · HACER CIRCULAR",
+"Tot pot tornar a circular.":"Todo puede volver a circular.",
+"Objectes, coneixements, temps, habilitats i experiències. Allò que pots aportar també té valor.":"Objetos, conocimientos, tiempo, habilidades y experiencias. Lo que puedes aportar también tiene valor.",
+"DESCOBREIX CÍCLIK ↓":"DESCUBRE CÍCLIK ↓",
+"Com funciona Cíclik?":"¿Cómo funciona Cíclik?",
+"Dóna":"Da","Comparteix":"Comparte","Rep":"Recibe","Connecta":"Conecta",
+"Allò que ja no necessites pot tenir valor per algú altre.":"Lo que ya no necesitas puede tener valor para otra persona.",
+"El teu temps, coneixement o una habilitat també poden circular.":"Tu tiempo, conocimiento o una habilidad también pueden circular.",
+"Participa en intercanvis, tallers i experiències.":"Participa en intercambios, talleres y experiencias.",
+"Forma part d'una comunitat conscient i col·laborativa.":"Forma parte de una comunidad consciente y colaborativa.",
+"El teu moneder, dins del cercle.":"Tu monedero, dentro del círculo.",
+"EL TEU MONEDER":"TU MONEDERO",
+"Activitat recent":"Actividad reciente",
+"Tallers i experiències":"Talleres y experiencias",
+"PROPERAMENT":"PRÓXIMAMENTE",
+"Forma part del cercle.":"Forma parte del círculo.",
+"Preguntes freqüents":"Preguntas frecuentes","Contacte":"Contacto","Condicions":"Condiciones","Privacitat":"Privacidad"
+}};
+
+const originals=new Map();
+const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+let n;
+while(n=walker.nextNode()){
+ if(!["SCRIPT","STYLE"].includes(n.parentElement?.tagName)){
+  const s=n.nodeValue.trim();
+  if(s) originals.set(n,s);
+ }
+}
+
+const style=document.createElement("style");
+style.textContent=`
+#langSwitch{display:flex;align-items:center;gap:4px;margin-left:auto;margin-right:12px}
+#langSwitch button{border:0;background:transparent;color:#4f5633;font-weight:700;font-size:12px;padding:7px 5px;cursor:pointer;opacity:.45}
+#langSwitch button.active{opacity:1;text-decoration:underline;text-underline-offset:4px}
+#langSwitch span{opacity:.3}
+`;
+document.head.appendChild(style);
+
+const sw=document.createElement("div");
+sw.id="langSwitch";
+sw.innerHTML='<button id="caBtn">CA</button><span>|</span><button id="esBtn">ES</button>';
+
+const nav=document.querySelector(".nav");
+const menu=document.querySelector(".menuBtn");
+if(nav){
+ if(menu) nav.insertBefore(sw,menu);
+ else nav.appendChild(sw);
+}
+
+function setLanguage(lang){
+ document.documentElement.lang=lang;
+ localStorage.setItem("ciclikLang",lang);
+
+ originals.forEach((original,node)=>{
+  const key=original.trim();
+  if(TR[lang][key]){
+   const before=original.match(/^\s*/)[0];
+   const after=original.match(/\s*$/)[0];
+   node.nodeValue=before+TR[lang][key]+after;
+  }else if(lang==="ca"){
+   node.nodeValue=original;
+  }
+ });
+
+ const name=document.getElementById("nameInput");
+ const email=document.getElementById("emailInput");
+ if(name) name.placeholder=lang==="es"?"Tu nombre":"El teu nom";
+ if(email) email.placeholder=lang==="es"?"Tu correo electrónico":"El teu correu electrònic";
+
+ document.title=lang==="es"?"CICLIK · Todo puede volver a circular":"CICLIK · Tot pot tornar a circular";
+
+ document.getElementById("caBtn").classList.toggle("active",lang==="ca");
+ document.getElementById("esBtn").classList.toggle("active",lang==="es");
+}
+
+document.getElementById("caBtn").onclick=()=>setLanguage("ca");
+document.getElementById("esBtn").onclick=()=>setLanguage("es");
+setLanguage(localStorage.getItem("ciclikLang")||"ca");
+</script>  
 </body>
 </html>
