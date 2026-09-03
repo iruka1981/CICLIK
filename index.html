@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4eee2">
+<title>CICLIK · Tot pot tornar a circular</title>
+<style>
+:root{
+  --cream:#f4eee2;--cream2:#efe6d6;--olive:#4f5633;--olive2:#68704a;
+  --ink:#343724;--line:#d8cdbb;--white:#fffaf1;--rust:#9c4e2f;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(244,238,226,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(79,86,51,.15)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.logo{display:flex;align-items:center;gap:3px;font-size:29px;letter-spacing:.12em;color:var(--olive);font-weight:500}
+.logo-c{width:43px;height:43px;border:3px solid var(--olive);border-right-color:transparent;border-radius:50%;position:relative;display:inline-block}
+.logo-c:after{content:"";position:absolute;right:-2px;top:3px;border-left:9px solid var(--olive);border-top:6px solid transparent;border-bottom:6px solid transparent;transform:rotate(-20deg)}
+.logo-word{letter-spacing:.14em}
+nav{display:flex;align-items:center;gap:30px;font-size:13px;text-transform:uppercase}
+nav a:hover{opacity:.6}.login{padding:12px 20px;border:1px solid var(--olive);border-radius:999px}
+.menuBtn{display:none;border:0;background:none;font-size:26px;color:var(--olive)}
+
+.hero{min-height:680px;display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden;background:linear-gradient(90deg,#f7f0e4 0 48%,#eadcc6 48%)}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:70px max(7vw,40px)}
+.eyebrow{font-size:12px;letter-spacing:.22em;font-weight:700;color:var(--olive);margin-bottom:25px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;color:var(--olive);margin:0}
+h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
+.lead{font-size:19px;line-height:1.55;max-width:470px;margin:24px 0 30px;color:#50533f}
+.cta{display:inline-flex;align-items:center;gap:10px;width:max-content;background:#f7f0e4;border:1px solid rgba(79,86,51,.08);padding:16px 25px;border-radius:999px;color:var(--olive);font-weight:700;font-size:13px;letter-spacing:.04em}
+.hero-photo{background:url('hero-ciclik.jpg') center center/cover no-repeat;min-height:680px}
+
+.section{padding:80px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:38px}
+.section h2{font-size:48px}.smalllink{font-size:12px;font-weight:700;letter-spacing:.08em}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.step{padding:35px 28px;text-align:center;border-right:1px dotted #c8bda9}.step:last-child{border-right:0}
+.icon{width:70px;height:70px;border:1px solid var(--olive);border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:28px;color:var(--olive)}
+.step h3{font-size:28px;margin-bottom:10px}.step p{line-height:1.5;margin:0;color:#565945;font-size:15px}
+
+.walletSection{padding:75px 0 90px;background:linear-gradient(180deg,#f4eee2,#f0e6d6)}
+.walletGrid{display:grid;grid-template-columns:280px 1fr;gap:35px;align-items:start}
+.walletIntro h2{font-size:50px}.walletIntro p{margin:10px 0 25px;color:#5b5e4b}
+.outline{display:inline-block;border:1px solid var(--olive);border-radius:999px;padding:13px 22px;font-size:12px;font-weight:700}
+.card{background:rgba(255,250,241,.5);border:1px solid #d8cdbb;border-radius:24px;padding:28px}
+.profileTop{display:grid;grid-template-columns:auto 1fr 1.25fr;gap:24px;align-items:center}
+.avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#7b6a4c,#c3a371);display:grid;place-items:center;color:white;font:36px Georgia}
+.name h3{font-size:30px}.name p{margin:8px 0 4px;font-size:14px}.edit{font-size:11px;font-weight:700;text-transform:uppercase}
+.balance{border-left:1px solid var(--line);padding-left:28px;position:relative}
+.balance small{font-weight:700}.balance strong{display:block;font:42px Georgia;color:var(--olive);margin-top:8px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+.actions button{background:transparent;border:1px solid var(--line);padding:13px;border-radius:10px;color:var(--ink);cursor:pointer}
+.activity{border-top:1px solid var(--line);margin-top:22px;padding-top:20px}
+.activityHead{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.activityGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.activityItem{padding-right:15px;border-right:1px dotted #c8bda9;font-size:13px;line-height:1.5}.activityItem:last-child{border-right:0}
+.delta{font-weight:700;color:var(--olive)}
+
+.join{padding:85px 0;background:var(--olive);color:var(--white)}
+.joinGrid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.join h2{color:var(--white);font-size:50px}.join p{line-height:1.6;opacity:.9}
+.form{background:rgba(255,255,255,.08);padding:24px;border-radius:18px}
+.form input{width:100%;padding:14px 15px;margin-bottom:10px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:white;border-radius:10px}
+.form input::placeholder{color:rgba(255,255,255,.7)}
+.form button{width:100%;padding:14px;border:0;border-radius:999px;background:var(--cream);color:var(--olive);font-weight:700}
+.note{font-size:11px;opacity:.7;margin-top:10px}
+footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:12px}.footlinks{display:flex;gap:24px}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:#2f3325;color:white;padding:13px 18px;border-radius:999px;z-index:50;transition:.25s;box-shadow:0 10px 30px #0003}.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:850px){
+ nav{display:none}.menuBtn{display:block}.nav.open nav{display:flex;position:absolute;top:78px;left:0;right:0;background:var(--cream);padding:20px;flex-direction:column;border-bottom:1px solid var(--line)}
+ .hero{grid-template-columns:1fr}.hero-photo{order:-1;min-height:390px;background-position:center}.hero-copy{padding:48px 25px 60px}.hero{background:var(--cream)}
+ .steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px dotted #c8bda9}
+ .walletGrid,.joinGrid{grid-template-columns:1fr}.profileTop{grid-template-columns:auto 1fr}.balance{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:20px 0 0}
+ .actions{grid-template-columns:1fr 1fr}.activityGrid{grid-template-columns:1fr}.activityItem{border-right:0;border-bottom:1px dotted #c8bda9;padding-bottom:12px}
+ .section h2,.walletIntro h2,.join h2{font-size:39px}.foot{flex-direction:column;align-items:flex-start}.footlinks{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav" id="nav">
+    <a class="logo" href="#inici" aria-label="CICLIK">
+      <span class="logo-c"></span><span class="logo-word">ICLIK</span>
+    </a>
+    <button class="menuBtn" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menú">☰</button>
+    <nav>
+      <a href="#inici">Inici</a><a href="#com-funciona">Com funciona</a><a href="#tallers">Tallers</a><a href="#comunitat">Comunitat</a><a href="#moneder">El meu Cíclik</a>
+      <a class="login" href="#comunitat">Inicia sessió</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inici">
+  <div class="hero-copy">
+    <div class="eyebrow">DEIXAR ANAR · FER ESPAI · FER CIRCULAR</div>
+    <h1>Tot pot<br>tornar a<br>circular.</h1>
+    <p class="lead">Objectes, coneixements, temps, habilitats i experiències. Allò que pots aportar també té valor.</p>
+    <a class="cta" href="#com-funciona">DESCOBREIX CÍCLIK ↓</a>
+  </div>
+  <div class="hero-photo" role="img" aria-label="Objectes, roba, costura i estris de cuina en una escena càlida"></div>
+</section>
+
+<section class="section" id="com-funciona">
+ <div class="wrap">
+  <div class="section-head"><h2>Com funciona Cíclik?</h2><a class="smalllink" href="#comunitat">SABER-NE MÉS →</a></div>
+  <div class="steps">
+   <article class="step"><div class="icon">◇</div><h3>Dóna</h3><p>Allò que ja no necessites pot tenir valor per algú altre.</p></article>
+   <article class="step"><div class="icon">◎</div><h3>Comparteix</h3><p>El teu temps, coneixement o una habilitat també poden circular.</p></article>
+   <article class="step"><div class="icon">↻</div><h3>Rep</h3><p>Participa en intercanvis, tallers i experiències.</p></article>
+   <article class="step"><div class="icon">♧</div><h3>Connecta</h3><p>Forma part d'una comunitat conscient i col·laborativa.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="walletSection" id="moneder">
+ <div class="wrap walletGrid">
+  <div class="walletIntro"><h2>El meu Cíclik</h2><p>El teu moneder, dins del cercle.</p><a class="outline" href="#comunitat">CREAR PERFIL</a></div>
+  <div class="card">
+   <div class="profileTop">
+    <div class="avatar" id="avatar">C</div>
+    <div class="name"><h3 id="profileName">El teu perfil</h3><p>Membre de la comunitat Cíclik</p><span class="edit">Editar perfil</span></div>
+    <div class="balance"><small>EL TEU MONEDER</small><strong><span id="balance">20</span> Cícliks</strong></div>
+   </div>
+   <div class="actions">
+    <button onclick="demo('Guanya Cícliks participant i aportant valor a la comunitat.')">☆ Guanya</button>
+    <button onclick="demo('Aquí hi haurà tallers, objectes i experiències disponibles.')">⌕ Descobreix</button>
+    <button onclick="demo('Aquí podràs proposar i acceptar intercanvis.')">⇄ Intercanvia</button>
+    <button onclick="demo('Aquí podràs enviar Cícliks a una altra persona.')">➤ Envia</button>
+   </div>
+   <div class="activity">
+    <div class="activityHead"><span>Activitat recent</span><span>VEURE TOT →</span></div>
+    <div class="activityGrid">
+      <div class="activityItem">Has participat al taller<br><b>Costura creativa</b><br><span class="delta">+ 20 Cícliks</span></div>
+      <div class="activityItem">Has intercanviat<br><b>Llibres per plantes</b><br><span class="delta">− 15 Cícliks</span></div>
+      <div class="activityItem">Has ofert<br><b>Classes d'anglès</b><br><span class="delta">+ 10 Cícliks</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="join" id="comunitat">
+ <div class="wrap joinGrid">
+   <div><h2>Forma part del cercle.</h2><p>Crea el teu perfil i prepara el teu moneder Cíclik. Aquesta versió ja deixa preparada la interfície; el següent pas serà connectar registre, inici de sessió i saldo real perquè cada membre tingui el seu compte propi.</p></div>
+   <form class="form" onsubmit="saveDemo(event)">
+     <input id="nameInput" required placeholder="El teu nom">
+     <input id="emailInput" required type="email" placeholder="El teu correu electrònic">
+     <button type="submit">CREAR PERFIL DE PROVA</button>
+     <div class="note">Prototip local: ara mateix les dades només es guarden en aquest navegador. Per a comptes reals cal connectar una base de dades i autenticació.</div>
+   </form>
+ </div>
+</section>
+
+<section class="section" id="tallers">
+ <div class="wrap"><div class="section-head"><h2>Tallers i experiències</h2><span class="smalllink">PROPERAMENT</span></div>
+ <p class="lead">Cuina, costura, artesania, coneixements i experiències compartides. Cíclik posa en circulació molt més que objectes.</p></div>
+</section>
+</main>
+
+<footer><div class="wrap foot">
+ <a class="logo" href="#inici"><span class="logo-c"></span><span class="logo-word">ICLIK</span></a>
+ <div class="footlinks"><span>Sobre Cíclik</span><span>Preguntes freqüents</span><span>Contacte</span><span>Condicions</span><span>Privacitat</span></div>
+</div></footer>
+
+<div class="toast" id="toast"></div>
+<script>
+function demo(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+function loadDemo(){
+  const p=JSON.parse(localStorage.getItem('ciclikDemo')||'null');
+  if(p){document.getElementById('profileName').textContent=p.name;document.getElementById('avatar').textContent=p.name.trim().charAt(0).toUpperCase()}
+}
+function saveDemo(e){
+  e.preventDefault();
+  const name=document.getElementById('nameInput').value.trim();
+  const email=document.getElementById('emailInput').value.trim();
+  localStorage.setItem('ciclikDemo',JSON.stringify({name,email}));
+  document.getElementById('profileName').textContent=name;
+  document.getElementById('avatar').textContent=name.charAt(0).toUpperCase();
+  demo('Perfil de prova creat. Ja el veus al teu moneder.');
+  location.hash='moneder';
+}
+loadDemo();
+</script>
+</body>
+</html>
