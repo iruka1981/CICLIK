@@ -382,7 +382,10 @@ fixLang(localStorage.getItem("ciclikLang") || "ca");
    const supabaseKey = ' sb_publishable_CN9hlz_Kkl6iMR3lyoZWEA_AzNVWs4M';
     
       const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-    async function registrarUsuario(nombre, email, password) {
+    async function registrarUsuario(event) {
+      const nombre = document.getElementById("nameInput").value;
+const email = document.getElementById("emailInput").value;
+const password = document.getElementById("passwordInput").value;
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
