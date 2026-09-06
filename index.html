@@ -407,7 +407,27 @@ async function registrarUsuario(event) {
 
   alert("Registro realizado. Revisa tu correo para confirmar la cuenta.");
 }
-  async function cargarUsuarioReal() {
+async function iniciarSesion() {
+  const email = document.getElementById("emailInput").value;
+  const password = document.getElementById("passwordInput").value;
+
+  if (!email || !password) {
+    alert("Escriu el teu correu i la contrasenya.");
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    alert("No s'ha pogut iniciar sessió: " + error.message);
+    return;
+  }
+
+  location.reload();
+}  async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
   if (!user) return;
