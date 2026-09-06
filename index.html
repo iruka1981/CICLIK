@@ -407,6 +407,28 @@ async function registrarUsuario(event) {
 
   alert("Registro realizado. Revisa tu correo para confirmar la cuenta.");
 }
+  async function cargarUsuarioReal() {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+
+  if (!user) return;
+
+  const nombre =
+    user.user_metadata?.nombre ||
+    user.email?.split("@")[0] ||
+    "El teu perfil";
+
+  document.getElementById("profileName").textContent = nombre;
+  document.getElementById("avatar").textContent =
+    nombre.trim().charAt(0).toUpperCase();
+
+  localStorage.removeItem("ciclikDemo");
+}
+
+cargarUsuarioReal();
+
+supabaseClient.auth.onAuthStateChange(() => {
+  cargarUsuarioReal();
+});
 </script> 
 
 </body>
