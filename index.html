@@ -81,6 +81,207 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  .actions{grid-template-columns:1fr 1fr}.activityGrid{grid-template-columns:1fr}.activityItem{border-right:0;border-bottom:1px dotted #c8bda9;padding-bottom:12px}
  .section h2,.walletIntro h2,.join h2{font-size:39px}.foot{flex-direction:column;align-items:flex-start}.footlinks{flex-wrap:wrap}
 }
+.authSection{
+  background:#556238;
+  color:#f7f2e8;
+  padding:42px 0 54px;
+}
+
+.authWrap{
+  max-width:760px;
+}
+
+.authIntro{
+  margin-bottom:22px;
+}
+
+.authIntro h2{
+  font-family:Georgia, serif;
+  font-size:52px;
+  line-height:.95;
+  font-weight:400;
+  margin:0 0 14px;
+  color:#f7f2e8;
+}
+
+.authIntro p{
+  margin:0;
+  font-size:17px;
+  line-height:1.45;
+  max-width:620px;
+  color:rgba(247,242,232,.9);
+}
+
+.authCard{
+  background:rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:24px 20px 22px;
+  backdrop-filter:blur(2px);
+}
+
+.authTabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.authTab{
+  background:transparent;
+  border:0;
+  color:rgba(247,242,232,.55);
+  padding:10px 8px 12px;
+  font-size:14px;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+}
+
+.authTab.active{
+  color:#fff;
+  border-bottom-color:#fff;
+}
+
+.authForm{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.authForm input[type="text"],
+.authForm input[type="email"],
+.authForm input[type="password"]{
+  width:100%;
+  border:0;
+  outline:0;
+  border-radius:8px;
+  padding:16px 16px;
+  font-size:16px;
+  background:#f8f7f4;
+  color:#343724;
+  box-sizing:border-box;
+}
+
+.passwordWrap{
+  position:relative;
+}
+
+.passwordWrap input{
+  padding-right:50px !important;
+}
+
+.eyeBtn{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:transparent;
+  color:#6b7057;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.loginOptions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-size:13px;
+  color:#f7f2e8;
+}
+
+.loginOptions label{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.forgotBtn{
+  background:transparent;
+  border:0;
+  color:#f7f2e8;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:0;
+}
+
+.authPrimary{
+  width:100%;
+  border:0;
+  border-radius:999px;
+  padding:15px 18px;
+  background:#f7f2e8;
+  color:#444b2d;
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.authDivider{
+  height:1px;
+  background:rgba(247,242,232,.35);
+  margin:2px 0 0;
+}
+
+.createAccountFooter{
+  text-align:center;
+  font-size:13px;
+  color:#f7f2e8;
+}
+
+.createAccountFooter span{
+  display:block;
+  margin-bottom:10px;
+}
+
+.createAccountFooter button{
+  background:transparent;
+  color:#fff;
+  border:1px solid #fff;
+  border-radius:999px;
+  padding:10px 22px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.authSignature{
+  text-align:center;
+  margin-top:24px;
+  color:rgba(247,242,232,.75);
+}
+
+.authSignature div{
+  font-size:34px;
+  line-height:1;
+  margin-bottom:9px;
+}
+
+.authSignature small{
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+@media (max-width:700px){
+  .authSection{
+    padding:26px 18px 34px;
+  }
+
+  .authIntro h2{
+    font-size:43px;
+  }
+
+  .authIntro p{
+    font-size:15px;
+  }
+
+  .authCard{
+    padding:18px 14px;
+  }
+
+  .loginOptions{
+    font-size:12px;
+  }
+}
 </style>
 </head>
 <body>
@@ -147,19 +348,108 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  </div>
 </section>
 
-<section class="join" id="comunitat">
- <div class="wrap joinGrid">
-   <div><h2>Forma part del cercle.</h2><p>Crea el teu perfil i prepara el teu moneder Cíclik. Aquesta versió ja deixa preparada la interfície; el següent pas serà connectar registre, inici de sessió i saldo real perquè cada membre tingui el seu compte propi.</p></div>
-   <form class="form" onsubmit="registrarUsuario(event); return false;">
-  <input id="nameInput" required placeholder="El teu nom">
-  <input id="emailInput" required type="email" placeholder="El teu correu electrònic">
-  <input id="passwordInput" required type="password" minlength="6" placeholder="Contrasenya">
-  <button type="submit">CREAR PERFIL DE PROVA</button>
- <button type="button" onclick="iniciarSesion()">INICIA SESSIÓ</button> <div class="note">Prototip local: ara mateix les dades només es guarden en aquest navegador. Per a comptes reals cal connectar una base de dades i autenticació.</div>
-</form>
- </div>
-</section>
 
+<section class="join authSection" id="comunitat">
+  <div class="wrap authWrap">
+
+    <div class="authIntro">
+      <h2>Forma part<br>del canvi</h2>
+      <p>Crea el teu compte per començar a connectar, intercanviar i fer créixer la comunitat Cíclik.</p>
+    </div>
+
+    <div class="authCard">
+
+      <div class="authTabs">
+        <button type="button" id="tabLogin" class="authTab active" onclick="mostrarLogin()">
+          INICIA SESSIÓ
+        </button>
+
+        <button type="button" id="tabRegister" class="authTab" onclick="mostrarRegistro()">
+          CREA UN COMPTE
+        </button>
+      </div>
+
+      <form class="form authForm" onsubmit="return false;">
+
+        <div id="nameField" style="display:none;">
+          <input
+            id="nameInput"
+            type="text"
+            placeholder="El teu nom"
+          >
+        </div>
+
+        <input
+          id="emailInput"
+          required
+          type="email"
+          placeholder="Nom o correu electrònic"
+        >
+
+        <div class="passwordWrap">
+          <input
+            id="passwordInput"
+            required
+            type="password"
+            placeholder="Contrasenya"
+          >
+          <button type="button" class="eyeBtn" onclick="mostrarPassword()">◉</button>
+        </div>
+
+        <div id="loginOptions" class="loginOptions">
+          <label>
+            <input type="checkbox" id="rememberMe">
+            Recorda'm
+          </label>
+
+          <button type="button" class="forgotBtn" onclick="recuperarContrasena()">
+            Has oblidat la contrasenya?
+          </button>
+        </div>
+
+        <button
+          id="loginSubmit"
+          class="authPrimary"
+          type="button"
+          onclick="iniciarSesion()">
+          INICIA SESSIÓ
+        </button>
+
+        <button
+          id="registerSubmit"
+          class="authPrimary"
+          type="button"
+          onclick="registrarUsuario(event)"
+          style="display:none;">
+          CREA UN COMPTE
+        </button>
+
+        <div class="authDivider"></div>
+
+        <div id="createAccountFooter" class="createAccountFooter">
+          <span>Encara no tens compte?</span>
+          <button type="button" onclick="mostrarRegistro()">
+            CREA UN COMPTE
+          </button>
+        </div>
+
+        <div id="loginFooter" class="createAccountFooter" style="display:none;">
+          <span>Ja tens compte?</span>
+          <button type="button" onclick="mostrarLogin()">
+            INICIA SESSIÓ
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="authSignature">
+      <div>⌁</div>
+      <small>DEIXAR ANAR · FER ESPAI · FER CIRCULAR</small>
+    </div>
+
+  </div>
+</section>
 <section class="section" id="tallers">
  <div class="wrap"><div class="section-head"><h2>Tallers i experiències</h2><span class="smalllink">PROPERAMENT</span></div>
  <p class="lead">Cuina, costura, artesania, coneixements i experiències compartides. Cíclik posa en circulació molt més que objectes.</p></div>
@@ -459,6 +749,69 @@ cargarUsuarioReal();
 supabaseClient.auth.onAuthStateChange(() => {
   cargarUsuarioReal();
 });
+  function mostrarLogin() {
+  document.getElementById("tabLogin").classList.add("active");
+  document.getElementById("tabRegister").classList.remove("active");
+
+  document.getElementById("nameField").style.display = "none";
+  document.getElementById("loginOptions").style.display = "flex";
+
+  document.getElementById("loginSubmit").style.display = "block";
+  document.getElementById("registerSubmit").style.display = "none";
+
+  document.getElementById("createAccountFooter").style.display = "block";
+  document.getElementById("loginFooter").style.display = "none";
+
+  document.getElementById("nameInput").required = false;
+}
+
+function mostrarRegistro() {
+  document.getElementById("tabRegister").classList.add("active");
+  document.getElementById("tabLogin").classList.remove("active");
+
+  document.getElementById("nameField").style.display = "block";
+  document.getElementById("loginOptions").style.display = "none";
+
+  document.getElementById("loginSubmit").style.display = "none";
+  document.getElementById("registerSubmit").style.display = "block";
+
+  document.getElementById("createAccountFooter").style.display = "none";
+  document.getElementById("loginFooter").style.display = "block";
+
+  document.getElementById("nameInput").required = true;
+}
+
+function mostrarPassword() {
+  const input = document.getElementById("passwordInput");
+
+  if (input.type === "password") {
+    input.type = "text";
+  } else {
+    input.type = "password";
+  }
+}
+
+async function recuperarContrasena() {
+  const email = document.getElementById("emailInput").value.trim();
+
+  if (!email) {
+    alert("Escriu primer el teu correu electrònic.");
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin
+  });
+
+  if (error) {
+    alert("No s'ha pogut enviar el correu: " + error.message);
+    return;
+  }
+
+  alert("T'hem enviat un correu per restablir la contrasenya.");
+}
+
+mostrarLogin();
 </script> 
 
 </body>
