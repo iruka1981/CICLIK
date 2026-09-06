@@ -410,7 +410,8 @@ async function registrarUsuario(event) {
   async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
-  if (!user) return;const loginBtn = document.querySelector("a.login");
+  if (!user) return;
+    const loginBtn = document.querySelector("a.login");
 if (loginBtn) {
   loginBtn.textContent = "TANCA SESSIÓ";
   loginBtn.href = "#";
