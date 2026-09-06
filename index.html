@@ -379,9 +379,9 @@ fixLang(localStorage.getItem("ciclikLang") || "ca");
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
   <script>
     const supabaseUrl = 'https://nlrodtqqrkqqzelhtnqd.supabase.co';
-   const supabaseKey = ' sb_publishable_CN9hlz_Kkl6iMR3lyoZWEA_AzNVWs4M';
+   const supabaseKey = 'sb_publishable_CN9hlz_Kkl6iMR3lyoZWEA_AzNVWs4M';
     
-      const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+      const supabase = window.supabase.createClient(supabaseUrl,supabaseKey);
     async function registrarUsuario(event) {event.preventDefault();
       const nombre = document.getElementById("nameInput").value;
 const email = document.getElementById("emailInput").value;
