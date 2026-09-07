@@ -925,7 +925,12 @@ if (loginBtn) {
 
 cargarUsuarioReal();
 
-supabaseClient.auth.onAuthStateChange(() => {
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (event === "PASSWORD_RECOVERY") {
+    activarRecuperacionPassword();
+    return;
+  }
+
   cargarUsuarioReal();
 });
   function mostrarLogin() {
@@ -989,7 +994,76 @@ async function recuperarContrasena() {
 
   alert("T'hem enviat un correu per restablir la contrasenya.");
 }
+function activarRecuperacionPassword() {
+  mostrarLogin();
 
+  const emailInput = document.getElementById("emailInput");
+  const passwordInput = document.getElementById("passwordInput");
+  const loginOptions = document.getElementById("loginOptions");
+  const createFooter = document.getElementById("createAccountFooter");
+  const loginSubmit = document.getElementById("loginSubmit");
+  const tabLogin = document.getElementById("tabLogin");
+  const tabRegister = document.getElementById("tabRegister");
+
+  if (emailInput) emailInput.style.display = "none";
+  if (loginOptions) loginOptions.style.display = "none";
+  if (createFooter) createFooter.style.display = "none";
+  if (tabRegister) tabRegister.style.display = "none";
+
+  if (passwordInput) {
+    passwordInput.value = "";
+    passwordInput.placeholder =
+      document.documentElement.lang === "es"
+        ? "Nueva contraseña"
+        : "Nova contrasenya";
+  }
+
+  if (tabLogin) {
+    tabLogin.textContent =
+      document.documentElement.lang === "es"
+        ? "NUEVA CONTRASEÑA"
+        : "NOVA CONTRASENYA";
+  }
+
+  if (loginSubmit) {
+    loginSubmit.textContent =
+      document.documentElement.lang === "es"
+        ? "GUARDAR CONTRASEÑA"
+        : "DESAR CONTRASENYA";
+
+    loginSubmit.onclick = guardarNuevaContrasena;
+  }
+}
+
+async function guardarNuevaContrasena() {
+  const password = document.getElementById("passwordInput").value;
+
+  if (!password || password.length < 6) {
+    alert(
+      document.documentElement.lang === "es"
+        ? "La contraseña debe tener al menos 6 caracteres."
+        : "La contrasenya ha de tenir almenys 6 caràcters."
+    );
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.updateUser({
+    password: password
+  });
+
+  if (error) {
+    alert("Error: " + error.message);
+    return;
+  }
+
+  alert(
+    document.documentElement.lang === "es"
+      ? "Contraseña actualizada correctamente."
+      : "Contrasenya actualitzada correctament."
+  );
+
+  window.location.href = window.location.origin;
+}
 mostrarLogin();
 </script> 
 
