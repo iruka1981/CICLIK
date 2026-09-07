@@ -355,6 +355,60 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
   height:1px;
   background:rgba(247,242,232,.35);
 
+@media(max-width:700px){
+
+  .authTabs{
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+  }
+
+  .authTab{
+    font-size:12px !important;
+    line-height:1.2 !important;
+    padding:10px 2px 12px !important;
+    white-space:nowrap;
+  }
+
+  .loginOptions{
+    display:grid !important;
+    grid-template-columns:auto 1fr !important;
+    align-items:center !important;
+    gap:12px !important;
+  }
+
+  .loginOptions label{
+    white-space:nowrap !important;
+  }
+
+  .forgotBtn{
+    justify-self:end !important;
+    max-width:180px !important;
+    text-align:right !important;
+    line-height:1.2 !important;
+  }
+
+  .createAccountFooter{
+    text-align:center !important;
+  }
+
+  .createAccountFooter span{
+    display:block !important;
+    font-size:15px !important;
+    line-height:1.3 !important;
+    margin-bottom:10px !important;
+  }
+
+  .createAccountFooter button{
+    display:block !important;
+    width:auto !important;
+    max-width:100% !important;
+    margin:0 auto !important;
+    padding:12px 20px !important;
+    font-size:13px !important;
+    white-space:nowrap !important;
+  }
+
+}
 </style>
 </head>
 <body>
