@@ -710,15 +710,59 @@ const fixLang = (lang) => {
     items[1].innerHTML='Has intercanviat<br><b>Llibres per plantes</b><br><span class="delta">− 15 Cícliks</span>';
     items[2].innerHTML='Has ofert<br><b>Classes d\'anglès</b><br><span class="delta">+ 10 Cícliks</span>';
   }
+document.querySelector(".authIntro h2").innerHTML =
+  es ? "Forma parte<br>del cambio" : "Forma part<br>del canvi";
 
+document.querySelector(".authIntro p").textContent =
+  es
+    ? "Crea tu cuenta para empezar a conectar, intercambiar y hacer crecer la comunidad Cíclik."
+    : "Crea el teu compte per començar a connectar, intercanviar i fer créixer la comunitat Cíclik.";
+
+document.getElementById("tabLogin").textContent =
+  es ? "INICIAR SESIÓN" : "INICIA SESSIÓ";
+
+document.getElementById("tabRegister").textContent =
+  es ? "CREAR UNA CUENTA" : "CREA UN COMPTE";
+
+document.getElementById("nameInput").placeholder =
+  es ? "Tu nombre" : "El teu nom";
+
+document.getElementById("emailInput").placeholder =
+  es ? "Tu correo electrónico" : "El teu correu electrònic";
+
+document.getElementById("passwordInput").placeholder =
+  es ? "Contraseña" : "Contrasenya";
+
+document.querySelector("#loginOptions label").lastChild.textContent =
+  es ? " Recuérdame" : " Recorda'm";
+
+document.querySelector(".forgotBtn").textContent =
+  es ? "¿Has olvidado la contraseña?" : "Has oblidat la contrasenya?";
+
+document.getElementById("loginSubmit").textContent =
+  es ? "INICIAR SESIÓN" : "INICIA SESSIÓ";
+
+document.getElementById("registerSubmit").textContent =
+  es ? "CREAR UNA CUENTA" : "CREA UN COMPTE";
+
+document.querySelector("#createAccountFooter span").textContent =
+  es ? "¿Todavía no tienes cuenta?" : "Encara no tens compte?";
+
+document.querySelector("#createAccountFooter button").textContent =
+  es ? "CREAR UNA CUENTA" : "CREA UN COMPTE";
+
+document.querySelector("#loginFooter span").textContent =
+  es ? "¿Ya tienes cuenta?" : "Ja tens compte?";
+
+document.querySelector("#loginFooter button").textContent =
+  es ? "INICIAR SESIÓN" : "INICIA SESSIÓ";
+
+document.querySelector(".authSignature small").textContent =
+  es
+    ? "SOLTAR · DAR ESPACIO · RECIRCULAR"
+    : "DEIXAR ANAR · FER ESPAI · FER CIRCULAR";
   document.querySelector("#comunitat h2").textContent =
-    es ? "Forma parte del círculo." : "Forma part del cercle.";
-
-  document.querySelector("#comunitat .joinGrid > div > p").textContent =
-    es
-    ? "Crea tu perfil y prepara tu monedero Cíclik. Esta versión ya deja preparada la interfaz; el siguiente paso será conectar registro, inicio de sesión y saldo real para que cada miembro tenga su propia cuenta."
-    : "Crea el teu perfil i prepara el teu moneder Cíclik. Aquesta versió ja deixa preparada la interfície; el següent pas serà connectar registre, inici de sessió i saldo real perquè cada membre tingui el seu compte propi.";
-
+  
   document.querySelector("#tallers h2").textContent =
     es ? "Talleres y experiencias" : "Tallers i experiències";
 
