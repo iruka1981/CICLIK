@@ -983,7 +983,7 @@ if (loginBtn) {
   loginBtn.onclick = async (e) => {
     e.preventDefault();
     await supabaseClient.auth.signOut();
-    window.location.href = window.location.origin + "#inici";
+    window.location.replace(window.location.origin);
   };
 }
 
