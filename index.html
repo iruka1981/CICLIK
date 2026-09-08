@@ -964,7 +964,8 @@ async function iniciarSesion() {
     return;
   }
 
-  window.location.href = window.location.origin + "#moneder";
+  await cargarUsuarioReal();
+document.getElementById("moneder").scrollIntoView({ behavior: "smooth" });
 }  async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
