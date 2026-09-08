@@ -456,7 +456,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  </div>
 </section>
 
-<section class="walletSection" id="moneder">
+<section class="walletSection" id="moneder" style="display:none;">
  <div class="wrap walletGrid">
   <div class="walletIntro"><h2>El meu Cíclik</h2><p>El teu moneder, dins del cercle.</p><a class="outline" href="#comunitat">CREAR PERFIL</a></div>
   <div class="card">
@@ -899,7 +899,14 @@ async function iniciarSesion() {
 }  async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
-  if (!user) return;
+  const walletSection = document.getElementById("moneder");
+
+if (!user) {
+  if (walletSection) walletSection.style.display = "none";
+  return;
+}
+
+if (walletSection) walletSection.style.display = "block";
 const loginBtn = document.getElementById("authButton");
 if (loginBtn) {
   loginBtn.textContent = "TANCA SESSIÓ";
