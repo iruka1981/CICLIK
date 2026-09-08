@@ -417,6 +417,55 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 .authForm input{
   color:#343724 !important;
 }
+  .guanyaInfo{
+  padding:70px 0;
+  background:var(--cream);
+  border-top:1px solid var(--line);
+}
+
+.guanyaInfo .wrap{
+  max-width:760px;
+}
+
+.guanyaInfo h2{
+  font-size:42px;
+  margin:0 0 10px;
+}
+
+.guanyaInfo h3{
+  font-size:20px;
+  margin:0 0 24px;
+  font-weight:500;
+}
+
+.guanyaInfo p{
+  font-size:17px;
+  line-height:1.7;
+  margin:0 0 18px;
+}
+
+.guanyaInfo button{
+  margin-top:16px;
+  padding:14px 24px;
+  border:1px solid currentColor;
+  background:transparent;
+  cursor:pointer;
+  font-weight:600;
+}
+
+@media(max-width:700px){
+  .guanyaInfo{
+    padding:46px 0;
+  }
+
+  .guanyaInfo h2{
+    font-size:34px;
+  }
+
+  .guanyaInfo p{
+    font-size:16px;
+  }
+}
 </style>
 </head>
 <body>
@@ -466,7 +515,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     <div class="balance"><small>EL TEU MONEDER</small><strong><span id="balance">20</span> Cícliks</strong></div>
    </div>
    <div class="actions">
-    <button onclick="demo('Guanya Cícliks participant i aportant valor a la comunitat.')">☆ Guanya</button>
+    <button onclick="document.getElementById('guanyaInfo').scrollIntoView({behavior:'smooth'})">☆ Guanya</button>
     <button onclick="demo('Aquí hi haurà tallers, objectes i experiències disponibles.')">⌕ Descobreix</button>
     <button onclick="demo('Aquí podràs proposar i acceptar intercanvis.')">⇄ Intercanvia</button>
     <button onclick="demo('Aquí podràs enviar Cícliks a una altra persona.')">➤ Envia</button>
@@ -482,7 +531,27 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
   </div>
  </div>
 </section>
+<section id="guanyaInfo" class="guanyaInfo">
+  <div class="wrap">
+    <h2>Guanya Cícliks</h2>
+    <h3>Tens alguna cosa per aportar?</h3>
 
+    <p>
+      Cíclik creix amb el que cadascú sap, pot o vol compartir.
+      Aporta temps, coneixements, habilitats o ajuda a la comunitat
+      i rep Cícliks a canvi.
+    </p>
+
+    <p>
+      Pots impartir tallers o cursos, compartir un ofici o una habilitat,
+      col·laborar en projectes, ajudar en activitats i esdeveniments,
+      aportar coneixements professionals o simplement oferir el teu temps
+      i les teves ganes de participar.
+    </p>
+
+    <button type="button">VULL APORTAR</button>
+  </div>
+</section>
 
 <section class="join authSection" id="comunitat">
   <div class="wrap authWrap">
