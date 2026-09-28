@@ -74,11 +74,35 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .step h3{font-size:28px;margin-bottom:10px}.step p{line-height:1.5;margin:0;color:#565945;font-size:15px}
 
 .walletSection{padding:75px 0 90px;background:linear-gradient(180deg,#f4eee2,#f0e6d6)}
+.personalHub{margin-bottom:58px}
+.personalHubIntro{max-width:760px;margin-bottom:32px}
+.personalHubIntro h2{font-size:46px;line-height:1.08;margin-bottom:12px}
+.personalHubIntro p{margin:0;color:#565945;font-size:17px;line-height:1.55}
+.personalIdentity{display:flex;align-items:center;gap:16px;margin:-10px 0 34px}
+.personalIdentity .avatar{width:64px;height:64px;flex:0 0 64px;font-size:27px}
+.personalIdentity .name h3{font-size:25px;line-height:1.15}
+.personalIdentity .name p{margin:5px 0 4px;color:#565945;font-size:13px}
+.personalIdentity .edit{color:var(--olive);cursor:pointer}
+.personalHubCards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.personalHubCard{min-height:200px;padding:22px;background:rgba(255,250,241,.7);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;align-items:flex-start}
+.personalHubWallet{border-top:3px solid var(--rust)}
+.personalHubActivities{border-top:3px solid var(--olive2)}
+.personalHubCommunity{border-top:3px solid var(--line)}
+.personalHubLabel{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--olive);margin-bottom:16px}
+.personalHubBalance{font:30px Georgia,serif;color:var(--olive);margin:-5px 0 8px}
+.personalHubCard p{margin:0 0 20px;color:#565945;font-size:14px;line-height:1.5}
+.personalHubCard a{margin-top:auto;color:var(--olive);font-size:12px;font-weight:700;letter-spacing:.03em}
+.personalHubSoon{margin-top:auto;color:#827c69;font-size:10px;font-weight:700;letter-spacing:.1em}
+.personalNews{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:34px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.personalNews h3{font-size:27px}
+.personalNews .personalHubSoon{margin:0}
 .walletGrid{display:grid;grid-template-columns:280px 1fr;gap:35px;align-items:start}
 .walletIntro h2{font-size:50px}.walletIntro p{margin:10px 0 25px;color:#5b5e4b}
 .outline{display:inline-block;border:1px solid var(--olive);border-radius:999px;padding:13px 22px;font-size:12px;font-weight:700}
 .card{background:rgba(255,250,241,.5);border:1px solid #d8cdbb;border-radius:24px;padding:28px}
 .profileTop{display:grid;grid-template-columns:auto 1fr 1.25fr;gap:24px;align-items:center}
+.walletBalanceTop{grid-template-columns:minmax(0,1fr)}
+.walletBalanceTop .balance{border-left:0;padding-left:0}
 .avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#7b6a4c,#c3a371);display:grid;place-items:center;color:white;font:36px Georgia}
 .name h3{font-size:30px}.name p{margin:8px 0 4px;font-size:14px}.edit{font-size:11px;font-weight:700;text-transform:uppercase}
 .balance{border-left:1px solid var(--line);padding-left:28px;position:relative}
@@ -91,10 +115,6 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .activityItem{padding-right:15px;border-right:1px dotted #c8bda9;font-size:13px;line-height:1.5}.activityItem:last-child{border-right:0}
 .delta{font-weight:700;color:var(--olive)}
 
-.ciclikProposals{display:none;padding:72px 0 34px;scroll-margin-top:78px}
-.ciclikProposals .wrap{width:min(1180px,calc(100% - 40px))}
-.ciclikProposals h2{font-size:44px;line-height:1.08}
-.ciclikProposalsIntro{max-width:700px;margin:12px 0 28px;color:#565945;font-size:17px;line-height:1.55}
 .proposalFilters{display:none;flex-wrap:wrap;gap:8px;margin:0 0 22px}
 .proposalFilter{border:1px solid var(--line);border-radius:999px;background:transparent;padding:10px 15px;color:var(--olive);font-size:13px;cursor:pointer}
 .proposalFilter[aria-pressed="true"]{border-color:var(--olive);background:var(--olive);color:var(--white)}
@@ -115,6 +135,13 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .proposalCtaRust:disabled{opacity:.55;cursor:not-allowed}
 .proposalCtaOlive{background:var(--olive2);color:var(--white)}
 .proposalEmpty{display:none;margin:12px 0;color:#68634f;font-size:14px}
+.proposalMemberCta[hidden],.activityJoinCta[hidden]{display:none}
+.activityJoinCta{margin-top:34px;padding:26px 30px;background:var(--cream2);border:1px solid var(--line);border-radius:12px;color:var(--ink)}
+.activityJoinCta h3{font-size:27px;line-height:1.15;margin-bottom:9px}
+.activityJoinCta p{margin:0;color:#565945;line-height:1.5}
+.activityJoinActions{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:18px}
+.activityJoinPrimary{display:inline-flex;align-items:center;justify-content:center;background:var(--olive);color:var(--white);border-radius:999px;padding:13px 20px;font-size:12px;font-weight:700}
+.activityJoinSecondary{color:var(--olive);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
 .join{padding:85px 0;background:var(--olive);color:var(--white)}
 .joinGrid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.join h2{color:var(--white);font-size:50px}.join p{line-height:1.6;opacity:.9}
@@ -141,11 +168,10 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  .heroArrowNext{right:8px}
  .heroDots{bottom:8px}
  .steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px dotted #c8bda9}
- .walletGrid,.joinGrid{grid-template-columns:1fr}.profileTop{grid-template-columns:auto 1fr}.balance{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:20px 0 0}
+ .walletGrid,.joinGrid{grid-template-columns:1fr}.personalHubCards{grid-template-columns:1fr}.personalHubIntro h2{font-size:39px}.profileTop{grid-template-columns:auto 1fr}.balance{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:20px 0 0}
  .actions{grid-template-columns:1fr 1fr}.activityGrid{grid-template-columns:1fr}.activityItem{border-right:0;border-bottom:1px dotted #c8bda9;padding-bottom:12px}
  .section h2,.walletIntro h2,.join h2{font-size:39px}.foot{flex-direction:column;align-items:flex-start}.footlinks{flex-wrap:wrap}
  html[lang="es"] #com-funciona .section-head h2{font-size:34px}
- .ciclikProposals{padding-top:54px}
  .proposalCardV2{grid-template-columns:1fr}
  .proposalMediaV2{border-radius:16px 16px 0 0;min-height:180px}
  .proposalMainV2,.proposalSideV2{border-left:0;border-top:1px solid rgba(79,86,51,.12)}
@@ -164,7 +190,6 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  .membershipCta .wrap{width:min(100% - 40px,760px)}
  .membershipCta h2{font-size:36px;line-height:1.05}
  .membershipCta p{font-size:16px;line-height:1.5}
- .ciclikProposals h2{font-size:36px;line-height:1.08}
  .proposalFilters{gap:7px}
  .proposalFilter{padding:9px 12px;font-size:12px}
  .proposalMediaV2{min-height:150px}
@@ -685,68 +710,44 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  </div>
 </section>
 
-<section class="ciclikProposals" id="ciclikProposals" aria-labelledby="ciclikProposalsTitle">
- <div class="wrap">
-  <div class="section-head proposalsHead">
-   <div>
-    <h2 id="ciclikProposalsTitle">Utilitza Cicliks</h2>
-    <p class="ciclikProposalsIntro" id="ciclikProposalsIntro">Tallers, mercats i experiències que fan circular la comunitat.</p>
-   </div>
-   <a class="smalllink" id="ciclikProposalsSeeAll" href="#ciclikProposals" onclick="event.preventDefault();demo(document.documentElement.lang==='es'?'Muy pronto podrás ver todas las propuestas':'Molt aviat podràs veure totes les propostes')">Veure tot →</a>
-  </div>
-  <div class="proposalFilters" role="group" aria-label="Filtra les propostes">
-   <button class="proposalFilter" type="button" data-proposal-filter="workshops" aria-pressed="false" onclick="filtrarPropostesCiclik('workshops')">Tallers i experiències</button>
-   <button class="proposalFilter" type="button" data-proposal-filter="objects" aria-pressed="false" onclick="filtrarPropostesCiclik('objects')">Objectes</button>
-   <button class="proposalFilter" type="button" data-proposal-filter="help" aria-pressed="false" onclick="filtrarPropostesCiclik('help')">Ajuda i habilitats</button>
-   <button class="proposalFilter" type="button" data-proposal-filter="activities" aria-pressed="false" onclick="filtrarPropostesCiclik('activities')">Activitats</button>
-  </div>
-  <div class="proposalList" id="proposalList">
-   <article class="proposalCardV2 proposalCardWorkshop" data-proposal-category="workshops">
-    <div class="proposalMediaV2" style="background-image:url('TALLER CUINA PALESTINA.png')" aria-hidden="true"></div>
-    <div class="proposalMainV2">
-     <span class="proposalTag" id="proposalCookingTag">TALLER</span>
-     <h3 id="proposalCookingTitle">Cuina palestina</h3>
-     <p class="proposalSubtitle" id="proposalCookingByline">amb Mazeed Khalilia</p>
-     <ul class="proposalMeta">
-      <li id="proposalCookingMeta1">Properament</li>
-      <li id="proposalCookingMeta2">Terrassa</li>
-      <li id="proposalCookingMeta3">Places limitades</li>
-     </ul>
-    </div>
-    <div class="proposalSideV2">
-     <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
-     <button class="proposalCta proposalCtaRust" id="proposalCookingCta" type="button" disabled>INSCRIU-TE</button>
-    </div>
-   </article>
-   <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
-    <div class="proposalMediaV2" style="background-image:url('MERCAT CIRCULAR SEGONA EDICIO.png')" aria-hidden="true"></div>
-    <div class="proposalMainV2">
-     <span class="proposalTag" id="proposalMarketTag">MERCAT</span>
-     <h3 id="proposalMarketTitle">Mercat Circular de roba</h3>
-     <p class="proposalSubtitle" id="proposalMarketEdition">2a edició</p>
-     <ul class="proposalMeta">
-      <li id="proposalMarketMeta1">Diumenge 18 d'octubre 2026</li>
-      <li id="proposalMarketMeta2">Terrassa</li>
-      <li id="proposalMarketMeta3">Entrada: 6 €</li>
-     </ul>
-    </div>
-    <div class="proposalSideV2">
-     <p class="proposalDesc" id="proposalMarketDesc">Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.</p>
-     <a class="proposalCta proposalCtaOlive" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer">INSCRIU-TE</a>
-    </div>
-   </article>
-  </div>
-  <p class="proposalEmpty" id="proposalEmpty" role="status">Encara no hi ha propostes en aquesta categoria.</p>
- </div>
-</section>
-
 <section class="walletSection" id="moneder" style="display:none;">
- <div class="wrap walletGrid">
+ <div class="wrap">
+  <div class="personalHub">
+   <div class="personalHubIntro">
+    <h2 id="personalWelcomeTitle">Benvinguda al teu espai Ciclik</h2>
+    <p id="personalWelcomeText">Aquí pots veure els teus Cicliks, les teves aportacions i tot el que està passant a la comunitat.</p>
+   </div>
+  <div class="personalIdentity">
+   <div class="avatar" id="avatar">C</div>
+   <div class="name"><h3 id="profileName">El teu perfil</h3><p>Membre de la comunitat Ciclik</p><span id="editProfileButton" class="edit" role="button" tabindex="0" onclick="obrirPerfilMembre(event)">Editar perfil</span></div>
+  </div>
+   <div class="personalHubCards">
+    <article class="personalHubCard personalHubWallet">
+     <span class="personalHubLabel" id="personalWalletLabel">MONEDER</span>
+     <strong class="personalHubBalance"><span id="personalBalance"></span> Cicliks</strong>
+     <p id="personalWalletText">Consulta el teu saldo i els teus moviments.</p>
+     <a href="#walletDetails" id="personalWalletLink">VEURE MONEDER →</a>
+    </article>
+    <article class="personalHubCard personalHubActivities">
+     <span class="personalHubLabel" id="personalActivitiesLabel">LES MEVES ACTIVITATS</span>
+     <p id="personalActivitiesText">Tallers, mercats i experiències en què participes.</p>
+     <a href="#tallers" id="personalActivitiesLink">VEURE ACTIVITATS →</a>
+    </article>
+    <article class="personalHubCard personalHubCommunity">
+     <span class="personalHubLabel" id="personalCommunityLabel">COMUNITAT</span>
+     <p id="personalCommunityText">Connecta i comparteix amb altres persones de Ciclik.</p>
+     <span class="personalHubSoon" id="personalCommunitySoon">PROPERAMENT</span>
+    </article>
+   </div>
+   <section class="personalNews" aria-labelledby="personalNewsTitle">
+    <h3 id="personalNewsTitle">Novetats a Ciclik</h3>
+    <span class="personalHubSoon" id="personalNewsSoon">PROPERAMENT</span>
+   </section>
+  </div>
+  <div class="walletGrid">
   <div class="walletIntro"><h2>El meu Ciclik</h2><p>El teu moneder, dins del cercle.</p><a id="createProfileLink" class="outline" href="#memberProfileSection" onclick="obrirPerfilMembre(event)">CREAR PERFIL</a></div>
-  <div class="card">
-   <div class="profileTop">
-    <div class="avatar" id="avatar">C</div>
-    <div class="name"><h3 id="profileName">El teu perfil</h3><p>Membre de la comunitat Ciclik</p><span id="editProfileButton" class="edit" role="button" tabindex="0" onclick="obrirPerfilMembre(event)">Editar perfil</span></div>
+  <div class="card" id="walletDetails">
+  <div class="profileTop walletBalanceTop">
     <div class="balance"><small>EL TEU MONEDER</small><strong><span id="balance">20</span> Cicliks</strong></div>
    </div>
    <div class="actions">
@@ -764,6 +765,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </div>
    </div>
   </div>
+ </div>
  </div>
 </section>
 <section id="guanyaInfo" class="guanyaInfo">
@@ -822,8 +824,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
           id="emailInput"
           required
           type="email"
-          autocomplete="username"
-          placeholder="Nom o correu electrònic"
+          placeholder="El teu correu electrònic"
         >
 
         <div class="passwordWrap">
@@ -928,8 +929,61 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
   </div>
 </section>
 <section class="section" id="tallers">
- <div class="wrap"><div class="section-head"><h2>Tallers i experiències</h2><span class="smalllink">PROPERAMENT</span></div>
- <p class="lead">Cuina, costura, artesania, coneixements i experiències compartides. Ciclik posa en circulació molt més que objectes.</p></div>
+ <div class="wrap">
+  <div class="section-head"><h2>Tallers i experiències</h2></div>
+  <p class="lead">Cuina, costura, artesania, coneixements i experiències compartides. Ciclik posa en circulació molt més que objectes.</p>
+  <div class="proposalFilters" role="group" aria-label="Filtra les propostes">
+   <button class="proposalFilter" type="button" data-proposal-filter="workshops" aria-pressed="false" onclick="filtrarPropostesCiclik('workshops')">Tallers i experiències</button>
+   <button class="proposalFilter" type="button" data-proposal-filter="objects" aria-pressed="false" onclick="filtrarPropostesCiclik('objects')">Objectes</button>
+   <button class="proposalFilter" type="button" data-proposal-filter="help" aria-pressed="false" onclick="filtrarPropostesCiclik('help')">Ajuda i habilitats</button>
+   <button class="proposalFilter" type="button" data-proposal-filter="activities" aria-pressed="false" onclick="filtrarPropostesCiclik('activities')">Activitats</button>
+  </div>
+  <div class="proposalList" id="proposalList">
+   <article class="proposalCardV2 proposalCardWorkshop" data-proposal-category="workshops">
+    <div class="proposalMediaV2" style="background-image:url('TALLER CUINA PALESTINA.png')" aria-hidden="true"></div>
+    <div class="proposalMainV2">
+     <span class="proposalTag" id="proposalCookingTag">TALLER</span>
+     <h3 id="proposalCookingTitle">Cuina palestina</h3>
+     <p class="proposalSubtitle" id="proposalCookingByline">amb Mazeed Khalilia</p>
+     <ul class="proposalMeta">
+      <li id="proposalCookingMeta1">Properament</li>
+      <li id="proposalCookingMeta2">Terrassa</li>
+      <li id="proposalCookingMeta3">Places limitades</li>
+     </ul>
+    </div>
+    <div class="proposalSideV2">
+     <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
+    <button class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" type="button" disabled hidden>INSCRIU-TE</button>
+    </div>
+   </article>
+   <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
+    <div class="proposalMediaV2" style="background-image:url('MERCAT CIRCULAR SEGONA EDICIO.png')" aria-hidden="true"></div>
+    <div class="proposalMainV2">
+     <span class="proposalTag" id="proposalMarketTag">MERCAT</span>
+     <h3 id="proposalMarketTitle">Mercat Circular de roba</h3>
+     <p class="proposalSubtitle" id="proposalMarketEdition">2a edició</p>
+     <ul class="proposalMeta">
+      <li id="proposalMarketMeta1">Diumenge 18 d'octubre 2026</li>
+      <li id="proposalMarketMeta2">Terrassa</li>
+      <li id="proposalMarketMeta3">Entrada: 6 €</li>
+     </ul>
+    </div>
+    <div class="proposalSideV2">
+     <p class="proposalDesc" id="proposalMarketDesc">Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.</p>
+    <a class="proposalCta proposalCtaOlive proposalMemberCta" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer" hidden>INSCRIU-TE</a>
+    </div>
+   </article>
+  </div>
+    <p class="proposalEmpty" id="proposalEmpty" role="status">Encara no hi ha propostes en aquesta categoria.</p>
+  <aside class="activityJoinCta" id="activityJoinCta">
+   <h3 id="activityJoinTitle">Vols gaudir de les activitats de Ciclik?</h3>
+   <p id="activityJoinText">Registra't a Ciclik i forma part de la comunitat per participar en tallers, mercats i experiències.</p>
+   <div class="activityJoinActions">
+    <a class="activityJoinPrimary" id="activityJoinRegister" href="#comunitat" onclick="mostrarRegistro();document.getElementById('comunitat').scrollIntoView({behavior:'smooth'})">CREA EL TEU COMPTE</a>
+    <a class="activityJoinSecondary" id="activityJoinLogin" href="#comunitat" onclick="mostrarLogin();document.getElementById('comunitat').scrollIntoView({behavior:'smooth'})">Ja tens compte? Inicia sessió</a>
+   </div>
+  </aside>
+ </div>
 </section>
 </main>
 
@@ -1224,17 +1278,11 @@ document.querySelector(".authSignature small").textContent =
     step.querySelector("h3").textContent = howItWorksTexts[index * 2 + 2];
     step.querySelector("p").textContent = howItWorksTexts[index * 2 + 3];
   });
-  document.getElementById("ciclikProposalsTitle").textContent =
-    es ? "Utiliza Cicliks" : "Utilitza Cicliks";
-  document.getElementById("ciclikProposalsIntro").textContent = es
-    ? "Talleres, mercados y experiencias que hacen circular la comunidad."
-    : "Tallers, mercats i experiències que fan circular la comunitat.";
-  document.getElementById("ciclikProposalsSeeAll").textContent = es ? "Ver todo →" : "Veure tot →";
   document.querySelector(".proposalFilters").setAttribute("aria-label", es ? "Filtrar propuestas" : "Filtra les propostes");
   const proposalFilterLabels = es
     ? ["Talleres y experiencias", "Objetos", "Ayuda y habilidades", "Actividades"]
     : ["Tallers i experiències", "Objectes", "Ajuda i habilitats", "Activitats"];
-  document.querySelectorAll("#ciclikProposals [data-proposal-filter]").forEach((button, index) => {
+  document.querySelectorAll("#tallers [data-proposal-filter]").forEach((button, index) => {
     button.textContent = proposalFilterLabels[index];
   });
   document.getElementById("proposalCookingTitle").textContent = es ? "Cocina palestina" : "Cuina palestina";
@@ -1259,16 +1307,44 @@ document.querySelector(".authSignature small").textContent =
   document.getElementById("proposalEmpty").textContent = es
     ? "Todavía no hay propuestas en esta categoría."
     : "Encara no hi ha propostes en aquesta categoria.";
+  document.getElementById("activityJoinTitle").textContent = es
+    ? "¿Quieres disfrutar de las actividades de Ciclik?"
+    : "Vols gaudir de les activitats de Ciclik?";
+  document.getElementById("activityJoinText").textContent = es
+    ? "Regístrate en Ciclik y forma parte de la comunidad para participar en talleres, mercados y experiencias."
+    : "Registra't a Ciclik i forma part de la comunitat per participar en tallers, mercats i experiències.";
+  document.getElementById("activityJoinRegister").textContent = es ? "CREA TU CUENTA" : "CREA EL TEU COMPTE";
+  document.getElementById("activityJoinLogin").textContent = es ? "¿Ya tienes cuenta? Inicia sesión" : "Ja tens compte? Inicia sessió";
   document.querySelector("#tallers h2").textContent =
     es ? "Talleres y experiencias" : "Tallers i experiències";
-
-  document.querySelector("#tallers .smalllink").textContent =
-    es ? "PRÓXIMAMENTE" : "PROPERAMENT";
 
   document.querySelector("#tallers .lead").textContent =
     es
     ? "Cocina, costura, artesanía, conocimientos y experiencias compartidas. Ciclik pone en circulación mucho más que objetos."
     : "Cuina, costura, artesania, coneixements i experiències compartides. Ciclik posa en circulació molt més que objectes.";
+  document.getElementById("personalWelcomeTitle").textContent = es
+    ? "Bienvenida a tu espacio Ciclik"
+    : "Benvinguda al teu espai Ciclik";
+  document.getElementById("personalWelcomeText").textContent = es
+    ? "Aquí puedes ver tus Cicliks, tus aportaciones y todo lo que está pasando en la comunidad."
+    : "Aquí pots veure els teus Cicliks, les teves aportacions i tot el que està passant a la comunitat.";
+  document.getElementById("personalWalletLabel").textContent = es ? "MONEDERO" : "MONEDER";
+  document.getElementById("personalWalletText").textContent = es
+    ? "Consulta tu saldo y tus movimientos."
+    : "Consulta el teu saldo i els teus moviments.";
+  document.getElementById("personalWalletLink").textContent = es ? "VER MONEDERO →" : "VEURE MONEDER →";
+  document.getElementById("personalActivitiesLabel").textContent = es ? "MIS ACTIVIDADES" : "LES MEVES ACTIVITATS";
+  document.getElementById("personalActivitiesText").textContent = es
+    ? "Talleres, mercados y experiencias en los que participas."
+    : "Tallers, mercats i experiències en què participes.";
+  document.getElementById("personalActivitiesLink").textContent = es ? "VER ACTIVIDADES →" : "VEURE ACTIVITATS →";
+  document.getElementById("personalCommunityLabel").textContent = es ? "COMUNIDAD" : "COMUNITAT";
+  document.getElementById("personalCommunityText").textContent = es
+    ? "Conecta y comparte con otras personas de Ciclik."
+    : "Connecta i comparteix amb altres persones de Ciclik.";
+  document.getElementById("personalCommunitySoon").textContent = es ? "PRÓXIMAMENTE" : "PROPERAMENT";
+  document.getElementById("personalNewsTitle").textContent = es ? "Novedades en Ciclik" : "Novetats a Ciclik";
+  document.getElementById("personalNewsSoon").textContent = es ? "PRÓXIMAMENTE" : "PROPERAMENT";
 };
 
 const oldSetLanguage = setLanguage;
@@ -1341,8 +1417,8 @@ function mostrarPerfilMembre(scroll=true){
 }
 
 function filtrarPropostesCiclik(category){
-  const filters=document.querySelectorAll("#ciclikProposals [data-proposal-filter]");
-  const cards=document.querySelectorAll("#ciclikProposals [data-proposal-category]");
+  const filters=document.querySelectorAll("#tallers [data-proposal-filter]");
+  const cards=document.querySelectorAll("#tallers [data-proposal-category]");
   const selected=filtrarPropostesCiclik.selected===category?null:category;
   filtrarPropostesCiclik.selected=selected;
   let visibleCount=0;
@@ -1364,7 +1440,7 @@ async function obrirPerfilMembre(event){
 }
 
 async function actualitzarFluxPerfil(user){
-  const proposalsSection=document.getElementById("ciclikProposals");
+  const personalSection=document.getElementById("moneder");
   const walletSection=document.getElementById("moneder");
   const createProfileLink=document.getElementById("createProfileLink");
   const profileSection=document.getElementById("memberProfileSection");
@@ -1372,14 +1448,13 @@ async function actualitzarFluxPerfil(user){
 
   if(profile){
     profileSection.style.display="none";
-    proposalsSection.style.display="block";
     walletSection.style.display="block";
     createProfileLink.style.display="none";
-    proposalsSection.scrollIntoView({behavior:"smooth",block:"start"});
+    document.getElementById("personalBalance").textContent=document.getElementById("balance").textContent;
+    personalSection.scrollIntoView({behavior:"smooth",block:"start"});
     return true;
   }
 
-  proposalsSection.style.display="none";
   walletSection.style.display="none";
   createProfileLink.style.display="none";
   mostrarPerfilMembre();
@@ -1408,6 +1483,7 @@ async function guardarPerfilMembre(event){
   status.textContent=document.documentElement.lang==="es"?"Perfil guardado correctamente.":"Perfil desat correctament.";
   document.getElementById("memberProfileSection").style.display="none";
   document.getElementById("moneder").style.display="block";
+  document.getElementById("personalBalance").textContent=document.getElementById("balance").textContent;
   document.getElementById("createProfileLink").style.display="none";
   document.getElementById("moneder").scrollIntoView({behavior:"smooth"});
 }
@@ -1476,6 +1552,11 @@ function restaurarAcceso(){
   };
 }
 
+function actualizarAccesoActividades(hasSession){
+  document.getElementById("activityJoinCta").hidden=hasSession;
+  document.querySelectorAll(".proposalMemberCta").forEach(button=>{button.hidden=!hasSession});
+}
+
 async function cerrarSesion(event){
   event.preventDefault();
   const walletSection=document.getElementById("moneder");
@@ -1515,6 +1596,7 @@ async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
   const walletSection = document.getElementById("moneder");
+  actualizarAccesoActividades(Boolean(user));
 
 if (!user) {
   if (walletSection) walletSection.style.display = "none";
