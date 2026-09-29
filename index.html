@@ -83,6 +83,72 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .personalIdentity .name h3{font-size:25px;line-height:1.15}
 .personalIdentity .name p{margin:5px 0 4px;color:#565945;font-size:13px}
 .personalIdentity .edit{color:var(--olive);cursor:pointer}
+.staffAccess{margin:-14px 0 28px}
+.staffAccess[hidden],.clothesOperation[hidden]{display:none!important}
+.staffAccess button{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--olive);font-size:11px;font-weight:700;letter-spacing:.06em;cursor:pointer}
+.staffAccess .adminAccessButton{margin-right:8px;background:var(--olive);color:var(--white)}
+.adminPanel{padding:28px;background:rgba(255,250,241,.7);border:1px solid var(--line);border-radius:12px}
+.adminPanel[hidden]{display:none!important}
+.adminPanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:26px}
+.adminPanelHead h2{font-size:38px;line-height:1.1;margin-bottom:9px}
+.adminPanelHead p{margin:0;color:#565945;font-size:15px;line-height:1.5}
+.adminPanelBack{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--olive);padding:10px 14px;font-size:11px;font-weight:700;cursor:pointer}
+.adminPanelTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.adminPanelTile{min-height:128px;display:flex;align-items:flex-end;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--cream);color:var(--olive);font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
+.adminPanelTileButton{font:inherit;text-align:left;cursor:pointer}
+.adminIdentifyScannerVideo{display:block;width:100%;max-height:360px;margin-top:14px;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#171914}
+.adminIdentifyStatus{min-height:20px;margin:14px 0 0;color:var(--rust);font-size:13px;line-height:1.45}
+.adminIdentifyStatus:empty{display:none}
+.adminManualQrEntry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-top:12px}
+.adminManualQrEntry[hidden]{display:none}
+.adminManualQrEntry input{min-width:0;min-height:48px;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--white);color:var(--ink);font:14px Arial,Helvetica,sans-serif}
+.clothesOperation{margin:0 0 34px;padding:24px;background:rgba(255,250,241,.82);border:1px solid var(--line);border-radius:12px;scroll-margin-top:90px}
+.personalHub.clothesMode{margin:0}
+.personalHub.clothesMode>:not(#clothesOperationPanel){display:none!important}
+.clothesModePicker{display:grid;gap:14px;margin-bottom:20px}
+.clothesModePicker[hidden],.clothesEntryForm[hidden]{display:none!important}
+.clothesModePicker p{margin:0;color:#565945;font-size:14px;line-height:1.5}
+.clothesModeButtons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.clothesModeButtons button{min-height:58px;padding:14px;border:1px solid var(--olive);border-radius:8px;background:var(--cream);color:var(--olive);font-size:13px;font-weight:700;cursor:pointer}
+.clothesModeButtons button[aria-pressed="true"]{background:var(--olive);color:var(--white)}
+.clothesIdentifyMember{min-height:50px;padding:13px 18px;border:0;border-radius:999px;background:var(--olive);color:var(--white);font-size:12px;font-weight:700;cursor:pointer}
+.clothesIdentifyMember:disabled{opacity:.5;cursor:not-allowed}
+.clothesOperationHead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}
+.clothesOperationHead h3{font-size:28px}
+.clothesOperationClose{border:0;background:transparent;color:var(--olive);font-size:13px;font-weight:700;cursor:pointer}
+.clothesRecipient{display:grid;gap:7px;max-width:480px;margin-bottom:20px;color:var(--olive);font-size:12px;font-weight:700}
+.clothesRecipient select{width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:var(--white);color:var(--ink);font:14px Arial,Helvetica,sans-serif}
+.clothesItems{display:grid;gap:8px}
+.clothesItemRow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:12px 14px;border-bottom:1px solid rgba(79,86,51,.12)}
+.clothesItemName{display:grid;gap:4px;color:var(--ink);font-size:15px;font-weight:700}
+.clothesItemValue{color:#68634f;font-size:12px;font-weight:400}
+.clothesQuantity{display:flex;align-items:center;gap:12px}
+.clothesQuantity button{width:48px;height:48px;border:1px solid var(--olive2);border-radius:8px;background:var(--cream);color:var(--olive);font-size:25px;line-height:1;cursor:pointer}
+.clothesQuantity button:disabled{opacity:.45;cursor:not-allowed}
+.clothesQuantityOutput{min-width:28px;text-align:center;color:var(--olive);font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.clothesOperationFooter{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.clothesOperationTotal{color:var(--olive);font-size:17px;font-weight:700}
+.clothesConfirm{min-height:48px;padding:12px 20px;border:0;border-radius:999px;background:var(--olive);color:var(--white);font-size:12px;font-weight:700;letter-spacing:.04em;cursor:pointer}
+.clothesConfirm:disabled{opacity:.55;cursor:wait}
+.clothesOperationStatus{min-height:20px;margin:14px 0 0;color:var(--olive);font-size:13px;line-height:1.45}
+.clothesOperationStatus[data-state="error"]{color:var(--rust)}
+.clothesCategoriesStatus{margin:6px 0;color:#68634f;font-size:14px}
+@media(max-width:700px){
+ .walletQrDialog{width:calc(100vw - 16px);padding:16px}
+ .adminManualQrEntry{grid-template-columns:1fr}
+ .adminPanel{padding:20px 16px}
+ .adminPanelHead{flex-direction:column}
+ .adminPanelHead h2{font-size:31px}
+ .adminPanelTiles{grid-template-columns:1fr}
+ .adminPanelTile{min-height:94px}
+ .clothesModeButtons{grid-template-columns:1fr}
+ .clothesOperation{padding:18px 14px}
+ .clothesOperationHead h3{font-size:23px}
+ .clothesItemRow{grid-template-columns:minmax(0,1fr);gap:10px;padding:12px 4px}
+ .clothesQuantity{justify-content:flex-end}
+ .clothesOperationFooter{align-items:stretch;flex-direction:column}
+ .clothesConfirm{width:100%;min-height:54px}
+}
 .personalHubCards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .personalHubCard{min-height:200px;padding:22px;background:rgba(255,250,241,.7);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;align-items:flex-start}
 .personalHubWallet{border-top:3px solid var(--rust)}
@@ -109,10 +175,23 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .balance small{font-weight:700}.balance strong{display:block;font:42px Georgia;color:var(--olive);margin-top:8px}
 .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
 .actions button{background:transparent;border:1px solid var(--line);padding:13px;border-radius:10px;color:var(--ink);cursor:pointer}
+.walletQrTrigger{display:inline-flex;align-items:center;gap:9px;margin:18px 0 0;padding:11px 16px;border:1px solid var(--olive);border-radius:999px;background:transparent;color:var(--olive);font-size:11px;font-weight:700;letter-spacing:.06em;cursor:pointer}
+.walletQrTrigger[hidden]{display:none}
+.walletQrDialog{width:min(92vw,420px);max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);box-shadow:0 20px 70px rgba(30,30,20,.28);text-align:center;overflow:auto}
+.walletQrDialog::backdrop{background:rgba(31,34,25,.56);backdrop-filter:blur(2px)}
+.walletQrDialogHead{display:flex;justify-content:flex-end;margin:-10px -10px 4px}
+.walletQrClose{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--white);color:var(--olive);font-size:20px;cursor:pointer}
+.walletQrDialog h2{font-size:29px;line-height:1.15;margin:0 0 10px}
+.walletQrDialog p{margin:0 auto 18px;max-width:320px;color:#565945;font-size:14px;line-height:1.5}
+.walletQrImage{display:grid;place-items:center;width:min(88vw,320px);max-width:100%;aspect-ratio:1;margin:0 auto 16px;padding:0;border:1px solid #e2dfd5;border-radius:8px;background:#fff}
+.walletQrImage canvas,.walletQrImage img{display:block;width:auto;height:auto;max-width:100%;image-rendering:pixelated}
+.walletQrCaption{margin:0!important;color:var(--olive)!important;font-size:12px!important;font-weight:700;letter-spacing:.04em}
+.walletQrStatus{min-height:18px;margin:12px 0 0!important;color:var(--rust)!important;font-size:12px!important}
 .activity{border-top:1px solid var(--line);margin-top:22px;padding-top:20px}
 .activityHead{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
 .activityGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
 .activityItem{padding-right:15px;border-right:1px dotted #c8bda9;font-size:13px;line-height:1.5}.activityItem:last-child{border-right:0}
+.activityEmpty{display:none;margin:18px 0 0;color:#68634f;font-size:14px}
 .delta{font-weight:700;color:var(--olive)}
 
 .proposalFilters{display:none;flex-wrap:wrap;gap:8px;margin:0 0 22px}
@@ -712,7 +791,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 
 <section class="walletSection" id="moneder" style="display:none;">
  <div class="wrap">
-  <div class="personalHub">
+  <div class="personalHub" id="personalHub">
    <div class="personalHubIntro">
     <h2 id="personalWelcomeTitle">Benvinguda al teu espai Ciclik</h2>
     <p id="personalWelcomeText">Aquí pots veure els teus Cicliks, les teves aportacions i tot el que està passant a la comunitat.</p>
@@ -721,10 +800,42 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    <div class="avatar" id="avatar">C</div>
    <div class="name"><h3 id="profileName">El teu perfil</h3><p>Membre de la comunitat Ciclik</p><span id="editProfileButton" class="edit" role="button" tabindex="0" onclick="obrirPerfilMembre(event)">Editar perfil</span></div>
   </div>
+  <div class="staffAccess" id="staffAccess" hidden>
+   <button type="button" id="staffAccessButton" onclick="toggleClothesOperation()">Administració</button>
+  </div>
+  <section class="clothesOperation" id="clothesOperationPanel" aria-labelledby="clothesOperationTitle" hidden>
+   <div class="clothesOperationHead">
+    <h3 id="clothesOperationTitle">Entrada / sortida de roba</h3>
+    <button class="clothesOperationClose" type="button" id="clothesOperationClose" onclick="tornarSelectorRoba()">Torna</button>
+   </div>
+     <div class="clothesModePicker" id="clothesModePicker">
+    <p id="clothesModePrompt">Tria l'operació i identifica el membre per continuar.</p>
+      <p id="clothesSelectedMember" hidden>Membre identificat</p>
+    <div class="clothesModeButtons">
+     <button type="button" id="clothesModeEntry" aria-pressed="false" onclick="seleccionarTipusRoba('entrada_ropa')">ENTRADA DE ROBA</button>
+     <button type="button" id="clothesModeExit" aria-pressed="false" onclick="seleccionarTipusRoba('salida_ropa')">SORTIDA DE ROBA</button>
+    </div>
+    <button class="clothesIdentifyMember" id="clothesIdentifyMember" type="button" onclick="identificarMembrePerRoba()" disabled>IDENTIFICAR MEMBRE</button>
+     </div>
+     <div class="clothesEntryForm" id="clothesEntryForm" hidden>
+   <label class="clothesRecipient" for="clothesRecipient">
+    <span id="clothesRecipientLabel">Destinatari</span>
+    <select id="clothesRecipient"></select>
+   </label>
+   <div class="clothesItems" id="clothesItems" aria-live="polite">
+    <p class="clothesCategoriesStatus" id="clothesCategoriesStatus">Carregant categories...</p>
+   </div>
+   <div class="clothesOperationFooter">
+    <div class="clothesOperationTotal"><span id="clothesTotalLabel">Total:</span> <span id="clothesTotal">0</span> Cicliks</div>
+    <button class="clothesConfirm" id="clothesConfirm" type="button" onclick="confirmClothesEntry()">CONFIRMA L'ENTRADA</button>
+   </div>
+   <p class="clothesOperationStatus" id="clothesOperationStatus" role="status" aria-live="polite"></p>
+  </div>
+  </section>
    <div class="personalHubCards">
     <article class="personalHubCard personalHubWallet">
      <span class="personalHubLabel" id="personalWalletLabel">MONEDER</span>
-     <strong class="personalHubBalance"><span id="personalBalance"></span> Cicliks</strong>
+    <strong class="personalHubBalance"><span id="personalBalance">0</span> Cicliks</strong>
      <p id="personalWalletText">Consulta el teu saldo i els teus moviments.</p>
      <a href="#walletDetails" id="personalWalletLink">VEURE MONEDER →</a>
     </article>
@@ -744,12 +855,48 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     <span class="personalHubSoon" id="personalNewsSoon">PROPERAMENT</span>
    </section>
   </div>
+  <section class="adminPanel" id="adminPanelSection" aria-labelledby="adminPanelTitle" hidden>
+   <div class="adminPanelHead">
+    <div>
+     <h2 id="adminPanelTitle">Administració Ciclik</h2>
+     <p id="adminPanelSubtitle">Gestió de la comunitat i dels Cicliks</p>
+    </div>
+    <button class="adminPanelBack" id="adminPanelBack" type="button" onclick="tancarPanellAdministracio()">TORNA A EL MEU CICLIK</button>
+   </div>
+   <div class="adminPanelTiles">
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">ESCANEJAR / IDENTIFICAR MEMBRE</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileClothes" type="button" onclick="obrirFluxRoba('admin')">ENTRADA / SORTIDA DE ROBA</button>
+    <article class="adminPanelTile" id="adminTileConvert">CONVERTIR CICLIKS FÍSICS</article>
+    <article class="adminPanelTile" id="adminTileMovements">MOVIMENTS</article>
+   </div>
+  </section>
+  <section class="adminPanel" id="adminIdentifyPlaceholder" aria-labelledby="adminIdentifyTitle" hidden>
+   <div class="adminPanelHead">
+    <div>
+     <h2 id="adminIdentifyTitle">Identificar membre</h2>
+     <p id="adminIdentifyText">Escaneja el QR Ciclik del membre o introdueix el seu codi.</p>
+    </div>
+   </div>
+   <div class="adminPanelTiles">
+    <button class="adminPanelTile adminPanelTileButton" id="adminIdentifyScan" type="button" onclick="iniciarEscanerQrMembre()">ESCANEAR QR</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminIdentifyManual" type="button" onclick="toggleManualQrEntry()">INTRODUIR CODI</button>
+   </div>
+     <form class="adminManualQrEntry" id="adminManualQrEntry" onsubmit="event.preventDefault();resoldreMembreEscanejat(document.getElementById('adminManualQrCode').value)" hidden>
+    <input id="adminManualQrCode" type="text" inputmode="url" autocomplete="off" placeholder="URL o codi QR" aria-label="Codi QR del membre">
+    <button class="memberIdentifyPrimary" id="adminManualQrSubmit" type="submit">IDENTIFICA</button>
+     </form>
+    <video id="adminMemberScannerVideo" class="adminIdentifyScannerVideo" playsinline muted hidden></video>
+    <p id="adminIdentifyStatus" class="adminIdentifyStatus" role="status" aria-live="polite"></p>
+    <button class="clothesIdentifyMember" id="adminIdentifyContinue" type="button" onclick="continuarRobaDespresIdentificacio()" hidden>CONTINUAR</button>
+  <button class="adminPanelBack" id="adminIdentifyBack" type="button" onclick="tancarIdentificacioMembre()">TORNAR A ADMINISTRACIÓ</button>
+  </section>
   <div class="walletGrid">
   <div class="walletIntro"><h2>El meu Ciclik</h2><p>El teu moneder, dins del cercle.</p><a id="createProfileLink" class="outline" href="#memberProfileSection" onclick="obrirPerfilMembre(event)">CREAR PERFIL</a></div>
   <div class="card" id="walletDetails">
   <div class="profileTop walletBalanceTop">
-    <div class="balance"><small>EL TEU MONEDER</small><strong><span id="balance">20</span> Cicliks</strong></div>
+    <div class="balance"><small>EL TEU MONEDER</small><strong><span id="balance">0</span> Cicliks</strong></div>
    </div>
+   <button class="walletQrTrigger" id="walletQrTrigger" type="button" onclick="obrirQrPersonal()" hidden>EL MEU QR</button>
    <div class="actions">
     <button onclick="document.getElementById('guanyaInfo').scrollIntoView({behavior:'smooth'})">＋ Suma Cicliks</button>
 <button onclick="demo('Aquí podràs veure com utilitzar els teus Cicliks')">↻Utilitza Cicliks</button>
@@ -758,15 +905,20 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    </div>
    <div class="activity">
     <div class="activityHead"><span>Activitat recent</span><span>VEURE TOT →</span></div>
-    <div class="activityGrid">
-      <div class="activityItem">Has participat al taller<br><b>Costura creativa</b><br><span class="delta">+ 20 Cicliks</span></div>
-      <div class="activityItem">Has intercanviat<br><b>Llibres per plantes</b><br><span class="delta">− 15 Cicliks</span></div>
-      <div class="activityItem">Has ofert<br><b>Classes d'anglès</b><br><span class="delta">+ 10 Cicliks</span></div>
-    </div>
+    <div class="activityGrid" id="recentActivityList"></div>
+    <p class="activityEmpty" id="recentActivityEmpty" role="status">Encara no tens moviments.</p>
    </div>
   </div>
  </div>
  </div>
+ <dialog class="walletQrDialog" id="memberQrDialog" aria-labelledby="memberQrTitle">
+  <div class="walletQrDialogHead"><button class="walletQrClose" type="button" onclick="tancarQrPersonal()" aria-label="Tanca">×</button></div>
+  <h2 id="memberQrTitle">El meu QR Ciclik</h2>
+  <p id="memberQrIntro">Mostra aquest codi quan vulguis identificar-te a Ciclik.</p>
+  <div class="walletQrImage" id="memberQrImage" role="img" aria-label="Codi QR personal Ciclik"></div>
+  <p class="walletQrCaption" id="memberQrCaption">El teu codi personal Ciclik</p>
+  <p class="walletQrStatus" id="memberQrStatus" role="status" aria-live="polite"></p>
+ </dialog>
 </section>
 <section id="guanyaInfo" class="guanyaInfo">
   <div class="wrap">
@@ -1174,17 +1326,8 @@ const fixLang = (lang) => {
   activityHead[0].textContent = es ? "Actividad reciente" : "Activitat recent";
   activityHead[1].textContent = es ? "VER TODO →" : "VEURE TOT →";
 
-  const items = document.querySelectorAll(".activityItem");
-
-  if(es){
-    items[0].innerHTML='Has participado en el taller<br><b>Costura creativa</b><br><span class="delta">+ 20 Cicliks</span>';
-    items[1].innerHTML='Has intercambiado<br><b>Libros por plantas</b><br><span class="delta">− 15 Cicliks</span>';
-    items[2].innerHTML='Has ofrecido<br><b>Clases de inglés</b><br><span class="delta">+ 10 Cicliks</span>';
-  }else{
-    items[0].innerHTML='Has participat al taller<br><b>Costura creativa</b><br><span class="delta">+ 20 Cicliks</span>';
-    items[1].innerHTML='Has intercanviat<br><b>Llibres per plantes</b><br><span class="delta">− 15 Cicliks</span>';
-    items[2].innerHTML='Has ofert<br><b>Classes d\'anglès</b><br><span class="delta">+ 10 Cicliks</span>';
-  }
+  if(typeof renderRecentCiclikTransactions==="function")renderRecentCiclikTransactions();
+  document.getElementById("recentActivityEmpty").textContent = es ? "Todavía no tienes movimientos." : "Encara no tens moviments.";
 document.querySelector(".authIntro h2").innerHTML =
   es ? "Forma parte de Ciclik" : "Forma part de Ciclik";
 
@@ -1345,17 +1488,24 @@ document.querySelector(".authSignature small").textContent =
   document.getElementById("personalCommunitySoon").textContent = es ? "PRÓXIMAMENTE" : "PROPERAMENT";
   document.getElementById("personalNewsTitle").textContent = es ? "Novedades en Ciclik" : "Novetats a Ciclik";
   document.getElementById("personalNewsSoon").textContent = es ? "PRÓXIMAMENTE" : "PROPERAMENT";
+  if (typeof translateClothesOperation === "function") translateClothesOperation();
 };
 
 const oldSetLanguage = setLanguage;
 setLanguage = function(lang){
   oldSetLanguage(lang);
   fixLang(lang);
+  if(typeof translateClothesOperation==="function")translateClothesOperation();
+  if(typeof translateAdminPanel==="function")translateAdminPanel(lang);
+  if(typeof renderClothesItemValues==="function")renderClothesItemValues();
+  if(typeof translateMemberQr==="function")translateMemberQr(lang);
 };
 
 fixLang(localStorage.getItem("ciclikLang") || "ca");
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 <script>
 const supabaseUrl = 'https://nlrodtqqrkqqzelhtnqd.supabase.co';
 const supabaseKey = 'sb_publishable_CN9hlz_Kkl6iMR3lyoZWEA_AzNVWs4M';
@@ -1592,6 +1742,724 @@ async function cerrarSesion(event){
   });
 }
 
+async function carregarSaldoCiclik(userId){
+  const {data,error}=await supabaseClient
+    .from("ciclik_balances")
+    .select("balance")
+    .eq("user_id",userId)
+    .maybeSingle();
+  const saldo=Number(error ? 0 : data?.balance ?? 0);
+  const saldoVisible=Number.isFinite(saldo)?String(saldo):"0";
+  document.getElementById("balance").textContent=saldoVisible;
+  document.getElementById("personalBalance").textContent=saldoVisible;
+}
+
+let ciclikPersonalQrCode=null;
+function translateMemberQr(lang=document.documentElement.lang){
+  const es=lang==="es";
+  document.getElementById("walletQrTrigger").textContent=es?"MI QR":"EL MEU QR";
+  document.getElementById("memberQrTitle").textContent=es?"Mi QR Ciclik":"El meu QR Ciclik";
+  document.getElementById("memberQrIntro").textContent=es
+    ?"Muestra este código cuando quieras identificarte en Ciclik."
+    :"Mostra aquest codi quan vulguis identificar-te a Ciclik.";
+  document.getElementById("memberQrCaption").textContent=es?"Tu código personal Ciclik":"El teu codi personal Ciclik";
+  document.querySelector(".walletQrClose").setAttribute("aria-label",es?"Cerrar":"Tanca");
+}
+
+async function carregarQrPersonal(userId){
+  const {data,error}=await supabaseClient
+    .from("ciclik_users")
+    .select("qr_code")
+    .eq("user_id",userId)
+    .maybeSingle();
+  const qrCode=data?.qr_code;
+  ciclikPersonalQrCode=!error&&typeof qrCode==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(qrCode)?qrCode:null;
+  document.getElementById("walletQrTrigger").hidden=!ciclikPersonalQrCode;
+  translateMemberQr();
+}
+
+function obrirQrPersonal(){
+  const dialog=document.getElementById("memberQrDialog");
+  const image=document.getElementById("memberQrImage");
+  const status=document.getElementById("memberQrStatus");
+  image.replaceChildren();
+  status.textContent="";
+  if(!ciclikPersonalQrCode){
+    status.textContent=document.documentElement.lang==="es"?"No se pudo cargar tu código personal.":"No s'ha pogut carregar el teu codi personal.";
+    dialog.showModal();
+    return;
+  }
+  if(typeof QRCode!=="function"){
+    status.textContent=document.documentElement.lang==="es"?"No se pudo generar el código QR en este dispositivo.":"No s'ha pogut generar el codi QR en aquest dispositiu.";
+    dialog.showModal();
+    return;
+  }
+  try{
+    const qrSize=Math.min(280,Math.max(260,window.innerWidth-60));
+    const quietZone=Math.ceil(qrSize*0.1);
+    const matrixSize=qrSize-quietZone*2;
+    const qrCanvasHost=document.createElement("div");
+    new QRCode(qrCanvasHost,{
+      text:`https://cik1.vercel.app/?member=${ciclikPersonalQrCode}`,
+      width:matrixSize,
+      height:matrixSize,
+      colorDark:"#000000",
+      colorLight:"#ffffff",
+      correctLevel:QRCode.CorrectLevel.M
+    });
+    const matrixCanvas=qrCanvasHost.querySelector("canvas");
+    if(!matrixCanvas)throw new Error("QR canvas unavailable");
+    const framedCanvas=document.createElement("canvas");
+    framedCanvas.width=qrSize;
+    framedCanvas.height=qrSize;
+    const context=framedCanvas.getContext("2d");
+    context.fillStyle="#ffffff";
+    context.fillRect(0,0,qrSize,qrSize);
+    context.imageSmoothingEnabled=false;
+    context.drawImage(matrixCanvas,quietZone,quietZone);
+    image.appendChild(framedCanvas);
+  }catch(error){
+    status.textContent=document.documentElement.lang==="es"?"No se pudo generar el código QR.":"No s'ha pogut generar el codi QR.";
+  }
+  dialog.showModal();
+}
+
+function tancarQrPersonal(){
+  document.getElementById("memberQrDialog").close();
+}
+
+let recentCiclikTransactions=[];
+function renderRecentCiclikTransactions(){
+  const es=document.documentElement.lang==="es";
+  const list=document.getElementById("recentActivityList");
+  const empty=document.getElementById("recentActivityEmpty");
+  list.replaceChildren();
+  recentCiclikTransactions.forEach(transaction=>{
+    const item=document.createElement("div");
+    item.className="activityItem";
+    const concept=document.createElement("b");
+    const description=(transaction.description||"").trim();
+    concept.textContent=es&&description.toLocaleLowerCase()==="benvinguda a ciclik"?"Bienvenida a Ciclik":description;
+    const amount=document.createElement("span");
+    amount.className="delta";
+    const value=Number(transaction.amount);
+    const signedAmount=value>0?`+${value}`:value<0?`−${Math.abs(value)}`:"0";
+    amount.textContent=`${signedAmount} Cicliks`;
+    item.append(concept,document.createElement("br"),amount);
+    list.appendChild(item);
+  });
+  empty.style.display=recentCiclikTransactions.length?"none":"block";
+}
+
+async function carregarActivitatRecent(userId){
+  const {data,error}=await supabaseClient
+    .from("ciclik_transactions")
+    .select("description, amount, created_at")
+    .eq("user_id",userId)
+    .order("created_at",{ascending:false})
+    .limit(3);
+  recentCiclikTransactions=error?[]:(data||[]);
+  renderRecentCiclikTransactions();
+}
+
+let ciclikStaffRole=null;
+let clothesOperationUser=null;
+let clothesItemValues=[];
+let clothesQuantities=new Map();
+let clothesOperationBusy=false;
+let clothesOperationType=null;
+let clothesTargetUserId=null;
+let clothesReturnView="personal";
+let memberIdentifyReturnView="admin";
+let identifiedMemberUserId=null;
+
+function obrirFluxRoba(source="personal"){
+  if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
+  clothesReturnView=source;
+  clothesOperationType=null;
+  clothesTargetUserId=null;
+  clothesQuantities=new Map();
+  identifiedMemberUserId=null;
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("adminIdentifyPlaceholder").hidden=true;
+  document.getElementById("adminIdentifyContinue").hidden=true;
+  document.getElementById("personalHub").hidden=false;
+  document.getElementById("personalHub").classList.add("clothesMode");
+  document.querySelector("#moneder .walletGrid").hidden=true;
+  document.getElementById("clothesOperationPanel").hidden=false;
+  document.getElementById("clothesModePicker").hidden=false;
+  document.getElementById("clothesEntryForm").hidden=true;
+  document.getElementById("clothesIdentifyMember").disabled=true;
+  document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
+  document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
+  document.getElementById("clothesSelectedMember").hidden=true;
+  setClothesOperationStatus("");
+  translateClothesOperation();
+  document.getElementById("clothesOperationPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function seleccionarTipusRoba(operationType){
+  if(!["entrada_ropa","salida_ropa"].includes(operationType))return;
+  if(clothesOperationType!==operationType)clothesQuantities=new Map();
+  clothesOperationType=operationType;
+  document.getElementById("clothesModeEntry").setAttribute("aria-pressed",String(operationType==="entrada_ropa"));
+  document.getElementById("clothesModeExit").setAttribute("aria-pressed",String(operationType==="salida_ropa"));
+  document.getElementById("clothesIdentifyMember").disabled=false;
+  translateClothesOperation();
+  setClothesOperationStatus("");
+  if(clothesTargetUserId)mostrarFormularioRoba();
+}
+
+function identificarMembrePerRoba(){
+  if((!clothesOperationType&&!clothesTargetUserId)||!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
+  if(clothesTargetUserId){
+    clothesOperationType=null;
+    clothesQuantities=new Map();
+    document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
+    document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
+  }
+  memberIdentifyReturnView="clothes";
+  identifiedMemberUserId=null;
+  clothesTargetUserId=null;
+  document.getElementById("clothesRecipient").replaceChildren();
+  document.getElementById("clothesSelectedMember").hidden=true;
+  document.getElementById("personalHub").hidden=true;
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("clothesOperationPanel").hidden=true;
+  document.getElementById("adminIdentifyPlaceholder").hidden=false;
+  document.getElementById("adminIdentifyContinue").hidden=true;
+  document.getElementById("adminManualQrCode").value="";
+  setMemberIdentifyStatus("");
+  document.getElementById("adminIdentifyPlaceholder").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+async function continuarRobaDespresIdentificacio(){
+  if(!identifiedMemberUserId)return;
+  const {data:{user},error}=await supabaseClient.auth.getUser();
+  if(error||!user||user.id!==clothesOperationUser?.id||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator")){
+    setMemberIdentifyStatus(document.documentElement.lang==="es"?"No tienes permisos para continuar.":"No tens permisos per continuar.","error");
+    return;
+  }
+  clothesOperationType=null;
+  clothesTargetUserId=identifiedMemberUserId;
+  document.getElementById("clothesSelectedMember").hidden=false;
+  document.getElementById("adminIdentifyPlaceholder").hidden=true;
+  document.getElementById("personalHub").hidden=false;
+  document.getElementById("personalHub").classList.add("clothesMode");
+  document.getElementById("clothesOperationPanel").hidden=false;
+  document.getElementById("clothesModePicker").hidden=false;
+  document.getElementById("clothesEntryForm").hidden=true;
+  document.getElementById("clothesSelectedMember").hidden=false;
+  document.getElementById("clothesIdentifyMember").disabled=false;
+  document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
+  document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
+  translateClothesOperation();
+  document.getElementById("clothesOperationPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+async function mostrarFormularioRoba(){
+  if(!clothesTargetUserId||!clothesOperationType)return;
+  const recipient=document.getElementById("clothesRecipient");
+  recipient.replaceChildren();
+  const option=document.createElement("option");
+  option.value=clothesTargetUserId;
+  option.textContent=document.documentElement.lang==="es"?"Miembro identificado":"Membre identificat";
+  recipient.appendChild(option);
+  document.getElementById("clothesModePicker").hidden=true;
+  document.getElementById("clothesEntryForm").hidden=false;
+  document.getElementById("clothesSelectedMember").hidden=false;
+  translateClothesOperation();
+  await carregarValorsRoba();
+  document.getElementById("clothesOperationPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function tancarIdentificacioMembre(){
+  aturarEscanerQrMembre();
+  document.getElementById("adminIdentifyPlaceholder").hidden=true;
+  if(memberIdentifyReturnView==="clothes"){
+    document.getElementById("personalHub").hidden=false;
+    document.getElementById("personalHub").classList.add("clothesMode");
+    document.getElementById("clothesOperationPanel").hidden=false;
+    document.getElementById("clothesModePicker").hidden=false;
+    document.getElementById("clothesEntryForm").hidden=true;
+    document.getElementById("clothesSelectedMember").hidden=!clothesTargetUserId;
+    document.getElementById("clothesIdentifyMember").disabled=!clothesOperationType;
+    translateClothesOperation();
+  }else{
+    document.getElementById("adminPanelSection").hidden=false;
+  }
+}
+
+function tornarSelectorRoba(){
+  aturarEscanerQrMembre();
+  clothesOperationType=null;
+  document.getElementById("clothesModePicker").hidden=false;
+  document.getElementById("clothesEntryForm").hidden=true;
+  document.getElementById("clothesSelectedMember").hidden=!clothesTargetUserId;
+  document.getElementById("clothesIdentifyMember").disabled=!clothesTargetUserId;
+  document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
+  document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
+  translateClothesOperation();
+  document.getElementById("clothesOperationPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function tancarFluxRoba(){
+  aturarEscanerQrMembre();
+  document.getElementById("clothesOperationPanel").hidden=true;
+  document.getElementById("personalHub").classList.remove("clothesMode");
+  document.getElementById("personalHub").hidden=clothesReturnView==="admin";
+  document.getElementById("adminPanelSection").hidden=clothesReturnView!=="admin";
+  document.getElementById("clothesModePicker").hidden=false;
+  document.getElementById("clothesEntryForm").hidden=true;
+  document.getElementById("clothesIdentifyMember").disabled=true;
+  clothesOperationType=null;
+  clothesTargetUserId=null;
+  identifiedMemberUserId=null;
+  clothesQuantities=new Map();
+  if(clothesReturnView!=="admin")document.getElementById("moneder").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function translateClothesOperation(){
+  const es=document.documentElement.lang==="es";
+  const isSalida=clothesOperationType==="salida_ropa";
+  document.getElementById("clothesOperationTitle").textContent=clothesOperationType==="entrada_ropa"?(es?"Entrada de ropa":"Entrada de roba"):clothesOperationType==="salida_ropa"?(es?"Salida de ropa":"Sortida de roba"):(es?"Entrada / salida de ropa":"Entrada / sortida de roba");
+  document.getElementById("clothesOperationClose").textContent=es?"VOLVER A ELEGIR":"TORNA A TRIAR";
+  document.getElementById("clothesModePrompt").textContent=es?"Elige el tipo de operación e identifica al miembro para continuar.":"Tria l'operació i identifica el membre per continuar.";
+  document.getElementById("clothesSelectedMember").textContent=es?"Miembro identificado":"Membre identificat";
+  document.getElementById("clothesModeEntry").textContent=es?"ENTRADA DE ROPA":"ENTRADA DE ROBA";
+  document.getElementById("clothesModeExit").textContent=es?"SALIDA DE ROPA":"SORTIDA DE ROBA";
+  document.getElementById("clothesIdentifyMember").textContent=clothesTargetUserId?(es?"CAMBIAR MIEMBRO":"CANVIAR MEMBRE"):(es?"IDENTIFICAR MIEMBRO":"IDENTIFICAR MEMBRE");
+  document.getElementById("clothesRecipientLabel").textContent=es?"Destinatario":"Destinatari";
+  document.getElementById("clothesTotalLabel").textContent=isSalida?(es?"Total a descontar:":"Total a descomptar:"):(es?"Total a sumar:":"Total a sumar:");
+  document.getElementById("clothesConfirm").textContent=isSalida?(es?"CONFIRMAR SALIDA":"CONFIRMA LA SORTIDA"):(es?"CONFIRMAR ENTRADA":"CONFIRMA L'ENTRADA");
+  document.getElementById("staffAccessButton").textContent=es?"OPERACIONES":"OPERACIONS";
+  if(clothesTargetUserId){
+    const option=document.getElementById("clothesRecipient").selectedOptions[0];
+    if(option)option.textContent=es?"Miembro identificado":"Membre identificat";
+  }
+}
+
+function translateAdminPanel(lang=document.documentElement.lang){
+  const es=lang==="es";
+  const adminButton=document.getElementById("adminAccessButton");
+  if(adminButton)adminButton.textContent=es?"ADMINISTRACIÓN":"ADMINISTRACIÓ";
+  document.getElementById("adminPanelTitle").textContent=es?"Administración Ciclik":"Administració Ciclik";
+  document.getElementById("adminPanelSubtitle").textContent=es
+    ?"Gestión de la comunidad y de los Cicliks"
+    :"Gestió de la comunitat i dels Cicliks";
+  document.getElementById("adminPanelBack").textContent=es?"VOLVER A MI CICLIK":"TORNA A EL MEU CICLIK";
+  document.getElementById("adminTileIdentify").textContent=es?"ESCANEAR / IDENTIFICAR MIEMBRO":"ESCANEJAR / IDENTIFICAR MEMBRE";
+  document.getElementById("adminTileClothes").textContent=es?"ENTRADA / SALIDA DE ROPA":"ENTRADA / SORTIDA DE ROBA";
+  document.getElementById("adminTileConvert").textContent=es?"CONVERTIR CICLIKS FÍSICOS":"CONVERTIR CICLIKS FÍSICS";
+  document.getElementById("adminTileMovements").textContent=es?"MOVIMIENTOS":"MOVIMENTS";
+  document.getElementById("adminIdentifyTitle").textContent=es?"Identificar miembro":"Identificar membre";
+  document.getElementById("adminIdentifyText").textContent=es?"Escanea el QR Ciclik del miembro o introduce su código.":"Escaneja el QR Ciclik del membre o introdueix el seu codi.";
+  document.getElementById("adminIdentifyScan").textContent="ESCANEAR QR";
+  document.getElementById("adminIdentifyManual").textContent=es?"INTRODUCIR CÓDIGO":"INTRODUIR CODI";
+  document.getElementById("adminManualQrCode").placeholder=es?"URL o código QR":"URL o codi QR";
+  document.getElementById("adminManualQrCode").setAttribute("aria-label",es?"Código QR del miembro":"Codi QR del membre");
+  document.getElementById("adminManualQrSubmit").textContent=es?"IDENTIFICAR":"IDENTIFICA";
+  document.getElementById("adminIdentifyBack").textContent=es?"VOLVER A ADMINISTRACIÓN":"TORNAR A ADMINISTRACIÓ";
+  document.getElementById("adminIdentifyContinue").textContent=es?"CONTINUAR":"CONTINUAR";
+}
+
+function actualitzarAccesAdministracio(role){
+  const access=document.getElementById("staffAccess");
+  const existingButton=document.getElementById("adminAccessButton");
+  if(role!=="admin"){
+    existingButton?.remove();
+    document.getElementById("adminPanelSection").hidden=true;
+    document.getElementById("personalHub").hidden=false;
+    document.querySelector("#moneder .walletGrid").hidden=false;
+    return;
+  }
+  if(!existingButton){
+    const button=document.createElement("button");
+    button.type="button";
+    button.id="adminAccessButton";
+    button.className="adminAccessButton";
+    button.addEventListener("click",obrirPanellAdministracio);
+    access.insertBefore(button,access.firstChild);
+  }
+  translateAdminPanel();
+}
+
+async function obrirPanellAdministracio(){
+  const es=document.documentElement.lang==="es";
+  const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+  if(userError||!user){
+    actualitzarAccesAdministracio(null);
+    return;
+  }
+  const {data,error}=await supabaseClient
+    .from("ciclik_users")
+    .select("role")
+    .eq("user_id",user.id)
+    .maybeSingle();
+  if(error||data?.role!=="admin"){
+    actualitzarAccesAdministracio(null);
+    document.getElementById("staffAccess").hidden=true;
+    document.getElementById("personalHub").hidden=false;
+    document.querySelector("#moneder .walletGrid").hidden=false;
+    return;
+  }
+  actualitzarAccesAdministracio("admin");
+  document.getElementById("personalHub").hidden=true;
+  document.querySelector("#moneder .walletGrid").hidden=true;
+  const panel=document.getElementById("adminPanelSection");
+  panel.hidden=false;
+  translateAdminPanel(es?"es":"ca");
+  panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function tancarPanellAdministracio(){
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("personalHub").hidden=false;
+  document.querySelector("#moneder .walletGrid").hidden=false;
+  document.getElementById("moneder").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+let memberQrCameraStream=null;
+let memberQrCameraFrame=0;
+let memberQrCameraBusy=false;
+
+function setMemberIdentifyStatus(message,state=""){
+  const status=document.getElementById("adminIdentifyStatus");
+  if(!status)return;
+  status.textContent=message;
+  status.dataset.state=state;
+}
+
+function aturarEscanerQrMembre(){
+  if(memberQrCameraFrame)cancelAnimationFrame(memberQrCameraFrame);
+  memberQrCameraFrame=0;
+  if(memberQrCameraStream){
+    memberQrCameraStream.getTracks().forEach(track=>track.stop());
+    memberQrCameraStream=null;
+  }
+  const video=document.getElementById("adminMemberScannerVideo");
+  if(video){video.pause();video.srcObject=null;video.hidden=true}
+}
+
+function extreureCodiQrMembre(qrText){
+  const rawCode=String(qrText||"").trim();
+  if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawCode))return rawCode;
+  try{
+    const url=new URL(rawCode);
+    if(url.protocol!=="https:"||url.hostname!=="cik1.vercel.app")return null;
+    const qrCode=url.searchParams.get("member");
+    return qrCode&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(qrCode)?qrCode:null;
+  }catch{return null}
+}
+
+function toggleManualQrEntry(){
+  const form=document.getElementById("adminManualQrEntry");
+  form.hidden=!form.hidden;
+  if(!form.hidden)document.getElementById("adminManualQrCode").focus();
+}
+
+async function resoldreMembreEscanejat(qrText){
+  if(memberQrCameraBusy)return;
+  memberQrCameraBusy=true;
+  const es=document.documentElement.lang==="es";
+  const status=document.getElementById("adminIdentifyStatus");
+  const continueButton=document.getElementById("adminIdentifyContinue");
+  continueButton.hidden=true;
+  identifiedMemberUserId=null;
+  const qrCode=extreureCodiQrMembre(qrText);
+  if(!qrCode){
+    status.textContent=es?"Código Ciclik no válido":"Codi Ciclik no vàlid";
+    memberQrCameraBusy=false;
+    return;
+  }
+  if(!clothesOperationUser||!(["admin","operator"].includes(ciclikStaffRole))){
+    status.textContent=es?"No tienes permisos para identificar miembros.":"No tens permisos per identificar membres.";
+    memberQrCameraBusy=false;
+    return;
+  }
+  try{
+    const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+    if(userError||!user||user.id!==clothesOperationUser.id){
+      status.textContent=es?"No tienes permisos para identificar miembros.":"No tens permisos per identificar membres.";
+      return;
+    }
+    status.textContent=es?"Validando código...":"Validant codi...";
+    const {data,error}=await supabaseClient.rpc("ciclik_resolve_member_qr",{
+      p_qr_code:qrCode
+    });
+    if(error)throw error;
+    const result=Array.isArray(data)?data[0]:data;
+    const memberUserId=typeof result==="string"?result:result?.user_id;
+    identifiedMemberUserId=memberUserId||null;
+    status.textContent=memberUserId?(es?"Miembro identificado":"Membre identificat"):(es?"Código Ciclik no válido":"Codi Ciclik no vàlid");
+    continueButton.hidden=!(memberUserId&&memberIdentifyReturnView==="clothes");
+  }catch(error){
+    status.textContent=es?"No se pudo validar el código. Inténtalo de nuevo.":"No s'ha pogut validar el codi. Torna-ho a provar.";
+  }finally{
+    memberQrCameraBusy=false;
+  }
+}
+
+async function iniciarEscanerQrMembre(){
+  const es=document.documentElement.lang==="es";
+  const status=document.getElementById("adminIdentifyStatus");
+  if(!clothesOperationUser||!(["admin","operator"].includes(ciclikStaffRole))){
+    status.textContent=es?"No tienes permisos para identificar miembros.":"No tens permisos per identificar membres.";
+    return;
+  }
+  if(!navigator.mediaDevices?.getUserMedia||typeof jsQR!=="function"){
+    status.textContent=es?"Cámara no disponible en este dispositivo. Puedes continuar con INTRODUCIR CÓDIGO.":"Càmera no disponible en aquest dispositiu. Pots continuar amb INTRODUIR CODI.";
+    return;
+  }
+  aturarEscanerQrMembre();
+  status.textContent=es?"Apunta la cámara al QR Ciclik del miembro.":"Apunta la càmera al QR Ciclik del membre.";
+  try{
+    memberQrCameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});
+    const video=document.getElementById("adminMemberScannerVideo");
+    video.srcObject=memberQrCameraStream;
+    video.hidden=false;
+    await video.play();
+    llegirMarcQrMembre();
+  }catch(error){
+    aturarEscanerQrMembre();
+    status.textContent=es?"No se pudo abrir la cámara. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut obrir la càmera. Pots continuar amb INTRODUIR CODI.";
+  }
+}
+
+function llegirMarcQrMembre(){
+  const video=document.getElementById("adminMemberScannerVideo");
+  if(!memberQrCameraStream)return;
+  if(video.readyState<2||!video.videoWidth){
+    memberQrCameraFrame=requestAnimationFrame(llegirMarcQrMembre);
+    return;
+  }
+  try{
+    const scale=Math.min(1,720/video.videoWidth);
+    const canvas=document.createElement("canvas");
+    canvas.width=Math.round(video.videoWidth*scale);
+    canvas.height=Math.round(video.videoHeight*scale);
+    const context=canvas.getContext("2d",{willReadFrequently:true});
+    context.drawImage(video,0,0,canvas.width,canvas.height);
+    const pixels=context.getImageData(0,0,canvas.width,canvas.height);
+    const result=jsQR(pixels.data,pixels.width,pixels.height,{inversionAttempts:"attemptBoth"});
+    if(result?.data){
+      aturarEscanerQrMembre();
+      resoldreMembreEscanejat(result.data);
+      return;
+    }
+  }catch(error){
+    aturarEscanerQrMembre();
+    document.getElementById("adminIdentifyStatus").textContent=document.documentElement.lang==="es"?"No se pudo leer el QR. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut llegir el QR. Pots continuar amb INTRODUIR CODI.";
+    return;
+  }
+  memberQrCameraFrame=requestAnimationFrame(llegirMarcQrMembre);
+}
+
+async function carregarAccesOperador(user){
+  const access=document.getElementById("staffAccess");
+  const {data,error}=await supabaseClient
+    .from("ciclik_users")
+    .select("role")
+    .eq("user_id",user.id)
+    .maybeSingle();
+  ciclikStaffRole=error?null:data?.role||null;
+  clothesOperationUser=ciclikStaffRole==="admin"||ciclikStaffRole==="operator"?user:null;
+  access.hidden=!clothesOperationUser;
+  actualitzarAccesAdministracio(ciclikStaffRole);
+  if(!clothesOperationUser){
+    document.getElementById("clothesOperationPanel").hidden=true;
+    return;
+  }
+  const recipient=document.getElementById("clothesRecipient");
+  recipient.replaceChildren();
+  const option=document.createElement("option");
+  option.value=user.id;
+  option.textContent=document.documentElement.lang==="es"?"Mi usuario autenticado":"El meu usuari autenticat";
+  recipient.appendChild(option);
+  translateClothesOperation();
+}
+
+function setClothesOperationStatus(message,state=""){
+  const status=document.getElementById("clothesOperationStatus");
+  status.textContent=message;
+  status.dataset.state=state;
+}
+
+function toggleClothesOperation(forceOpen){
+  if(forceOpen===false){tancarFluxRoba();return}
+  obrirFluxRoba("personal");
+}
+
+function renderClothesItemValues(){
+  const es=document.documentElement.lang==="es";
+  const container=document.getElementById("clothesItems");
+  container.replaceChildren();
+  if(!clothesItemValues.length){
+    const message=document.createElement("p");
+    message.className="clothesCategoriesStatus";
+    message.textContent=es?"No hay categorías activas disponibles.":"No hi ha categories actives disponibles.";
+    container.appendChild(message);
+    document.getElementById("clothesTotal").textContent="0";
+    return;
+  }
+  let total=0;
+  clothesItemValues.forEach(itemValue=>{
+    const quantity=clothesQuantities.get(itemValue.id)||0;
+    const value=Number(itemValue.ciclik_value)||0;
+    total+=value*quantity;
+    const row=document.createElement("div");
+    row.className="clothesItemRow";
+    const nameBlock=document.createElement("div");
+    nameBlock.className="clothesItemName";
+    const name=document.createElement("span");
+    name.textContent=es?(itemValue.name_es||itemValue.name_ca||itemValue.code):(itemValue.name_ca||itemValue.name_es||itemValue.code);
+    const officialValue=document.createElement("span");
+    officialValue.className="clothesItemValue";
+    officialValue.textContent=`${itemValue.ciclik_value} Cicliks`;
+    nameBlock.append(name,officialValue);
+    const controls=document.createElement("div");
+    controls.className="clothesQuantity";
+    const minus=document.createElement("button");
+    minus.type="button";
+    minus.textContent="−";
+    minus.setAttribute("aria-label",es?"Reducir cantidad":"Reduir quantitat");
+    minus.disabled=quantity===0||clothesOperationBusy;
+    minus.addEventListener("click",()=>setClothesQuantity(itemValue.id,quantity-1));
+    const quantityOutput=document.createElement("span");
+    quantityOutput.className="clothesQuantityOutput";
+    quantityOutput.textContent=String(quantity);
+    const plus=document.createElement("button");
+    plus.type="button";
+    plus.textContent="+";
+    plus.setAttribute("aria-label",es?"Aumentar cantidad":"Augmentar quantitat");
+    plus.disabled=clothesOperationBusy;
+    plus.addEventListener("click",()=>setClothesQuantity(itemValue.id,quantity+1));
+    controls.append(minus,quantityOutput,plus);
+    row.append(nameBlock,controls);
+    container.appendChild(row);
+  });
+  document.getElementById("clothesTotal").textContent=new Intl.NumberFormat(es?"es":"ca").format(total);
+  document.getElementById("clothesConfirm").disabled=clothesOperationBusy;
+}
+
+function setClothesQuantity(itemValueId,quantity){
+  if(clothesOperationBusy)return;
+  clothesQuantities.set(itemValueId,Math.max(0,Math.floor(quantity)));
+  setClothesOperationStatus("");
+  renderClothesItemValues();
+}
+
+async function carregarValorsRoba(){
+  const es=document.documentElement.lang==="es";
+  const container=document.getElementById("clothesItems");
+  const loading=document.createElement("p");
+  loading.className="clothesCategoriesStatus";
+  loading.textContent=es?"Cargando categorías...":"Carregant categories...";
+  container.replaceChildren(loading);
+  const {data,error}=await supabaseClient
+    .from("ciclik_item_values")
+    .select("id, code, name_ca, name_es, ciclik_value, display_order, active")
+    .eq("active",true)
+    .order("display_order",{ascending:true});
+  if(error){
+    clothesItemValues=[];
+    renderClothesItemValues();
+    setClothesOperationStatus(es?"No se pudieron cargar las categorías.":"No s'han pogut carregar les categories.","error");
+    return;
+  }
+  clothesItemValues=data||[];
+  clothesQuantities=new Map(clothesItemValues.map(itemValue=>[itemValue.id,clothesQuantities.get(itemValue.id)||0]));
+  renderClothesItemValues();
+  setClothesOperationStatus("");
+}
+
+function extractClothesCredits(result){
+  const keys=["cicliks_credited","credited_cicliks","cicliks_awarded","cicliks_earned","earned_cicliks","cicliks_added","total_cicliks","total_value","amount","total"];
+  const visit=value=>{
+    if(typeof value==="number"&&Number.isFinite(value))return value;
+    if(typeof value==="string"){
+      try{return visit(JSON.parse(value))}catch{return null}
+    }
+    if(Array.isArray(value)){
+      for(const entry of value){const found=visit(entry);if(found!==null)return found}
+      return null;
+    }
+    if(!value||typeof value!=="object")return null;
+    for(const key of keys){
+      if(value[key]!==undefined&&value[key]!==null){const number=Number(value[key]);if(Number.isFinite(number))return number}
+    }
+    for(const key of ["data","result","details","operation"]){if(value[key]!==undefined){const found=visit(value[key]);if(found!==null)return found}}
+    return null;
+  };
+  return visit(result);
+}
+
+async function confirmClothesEntry(){
+  if(clothesOperationBusy)return;
+  if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator")||!clothesTargetUserId||!clothesOperationType){
+    setClothesOperationStatus(document.documentElement.lang==="es"?"Identifica un miembro y selecciona una operación.":"Identifica un membre i selecciona una operació.","error");
+    return;
+  }
+  const es=document.documentElement.lang==="es";
+  const pItems=clothesItemValues
+    .filter(itemValue=>(clothesQuantities.get(itemValue.id)||0)>0)
+    .map(itemValue=>({item_value_id:itemValue.id,quantity:clothesQuantities.get(itemValue.id)}));
+  if(!pItems.length){
+    setClothesOperationStatus(es?"Selecciona al menos una cantidad.":"Selecciona com a mínim una quantitat.","error");
+    return;
+  }
+  const confirmButton=document.getElementById("clothesConfirm");
+  clothesOperationBusy=true;
+  confirmButton.disabled=true;
+  renderClothesItemValues();
+  setClothesOperationStatus(es?"Registrando operación...":"Registrant l'operació...");
+  try{
+    const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+    if(userError||!user||user.id!==clothesOperationUser.id||document.getElementById("clothesRecipient").value!==clothesTargetUserId){
+      throw new Error(es?"No se ha podido validar el miembro seleccionado.":"No s'ha pogut validar el membre seleccionat.");
+    }
+    const {data:roleData,error:roleError}=await supabaseClient
+      .from("ciclik_users")
+      .select("role")
+      .eq("user_id",user.id)
+      .maybeSingle();
+    if(roleError||!(roleData?.role==="admin"||roleData?.role==="operator")){
+      ciclikStaffRole=null;
+      clothesOperationUser=null;
+      document.getElementById("staffAccess").hidden=true;
+      document.getElementById("clothesOperationPanel").hidden=true;
+      throw new Error(es?"No tienes permisos para registrar entradas.":"No tens permisos per registrar entrades.");
+    }
+    const {data,error}=await supabaseClient.rpc("ciclik_process_clothes",{
+      p_user_id:clothesTargetUserId,
+      p_operation_type:clothesOperationType,
+      p_items:pItems
+    });
+    if(error)throw error;
+    clothesQuantities=new Map(clothesItemValues.map(itemValue=>[itemValue.id,0]));
+    renderClothesItemValues();
+    const credits=extractClothesCredits(data);
+    const isEntrada=clothesOperationType==="entrada_ropa";
+    const amount=credits===null?null:Math.abs(credits);
+    const successMessage=credits===null
+      ?(es?"Operación registrada correctamente.":"Operació registrada correctament.")
+      :(isEntrada
+        ?(es?`Entrada confirmada: +${amount} Cicliks acreditados.`:`Entrada confirmada: +${amount} Cicliks acreditats.`)
+        :(es?`Salida confirmada: −${amount} Cicliks descontados.`:`Sortida confirmada: −${amount} Cicliks descomptats.`));
+    setClothesOperationStatus(successMessage);
+    if(clothesTargetUserId===user.id){
+      await carregarSaldoCiclik(user.id);
+      await carregarActivitatRecent(user.id);
+    }
+  }catch(error){
+    setClothesOperationStatus(`${es?"No se pudo registrar la entrada":"No s'ha pogut registrar l'entrada"}: ${error.message||error}`,"error");
+  }finally{
+    clothesOperationBusy=false;
+    confirmButton.disabled=false;
+    renderClothesItemValues();
+  }
+}
+
 async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
@@ -1601,6 +2469,23 @@ async function cargarUsuarioReal() {
 if (!user) {
   if (walletSection) walletSection.style.display = "none";
   document.getElementById("memberProfileSection").style.display = "none";
+  document.getElementById("balance").textContent = "0";
+  document.getElementById("personalBalance").textContent = "0";
+  ciclikPersonalQrCode=null;
+  document.getElementById("walletQrTrigger").hidden=true;
+  document.getElementById("memberQrDialog").close();
+  recentCiclikTransactions=[];
+  renderRecentCiclikTransactions();
+  ciclikStaffRole=null;
+  actualitzarAccesAdministracio(null);
+  clothesOperationUser=null;
+  clothesItemValues=[];
+  clothesQuantities.clear();
+  document.getElementById("staffAccess").hidden=true;
+  document.getElementById("clothesOperationPanel").hidden=true;
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("personalHub").hidden=false;
+  document.querySelector("#moneder .walletGrid").hidden=false;
   restaurarAcceso();
   return;
 }
@@ -1612,6 +2497,8 @@ if (loginBtn) {
   loginBtn.onclick = cerrarSesion;
 }
 
+  await carregarAccesOperador(user);
+
   const nombre =
     user.user_metadata?.nombre ||
     user.email?.split("@")[0] ||
@@ -1621,6 +2508,9 @@ if (loginBtn) {
   document.getElementById("avatar").textContent =
     nombre.trim().charAt(0).toUpperCase();
 
+  await carregarSaldoCiclik(user.id);
+  await carregarQrPersonal(user.id);
+  await carregarActivitatRecent(user.id);
   await actualitzarFluxPerfil(user);
 
   localStorage.removeItem("ciclikDemo");
