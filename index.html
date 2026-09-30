@@ -96,9 +96,19 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .adminPanelTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .adminPanelTile{min-height:128px;display:flex;align-items:flex-end;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--cream);color:var(--olive);font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
 .adminPanelTileButton{font:inherit;text-align:left;cursor:pointer}
+#adminTileConvert{font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
 .adminIdentifyScannerVideo{display:block;width:100%;max-height:360px;margin-top:14px;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#171914}
 .adminIdentifyStatus{min-height:20px;margin:14px 0 0;color:var(--rust);font-size:13px;line-height:1.45}
 .adminIdentifyStatus:empty{display:none}
+.physicalConversionAmount{display:grid;gap:8px;max-width:420px;margin:0 0 16px;color:var(--olive);font-size:13px;font-weight:700}
+.physicalConversionAmount input{min-height:48px;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--white);color:var(--ink);font:16px Arial,Helvetica,sans-serif}
+.physicalConversionPreview{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:520px;margin:0 0 20px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--olive)}
+.physicalConversionPreview strong{font:24px Georgia,serif;text-align:right}
+.physicalConversionStatus{min-height:20px;margin:16px 0 0;color:var(--olive);font-size:14px;line-height:1.5}
+.physicalConversionStatus[data-state="error"]{color:var(--rust)}
+.physicalConversionActions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.physicalConversionSubmit{min-height:48px;padding:12px 20px;border:0;border-radius:999px;background:var(--olive);color:var(--white);font-size:12px;font-weight:700;letter-spacing:.04em;cursor:pointer}
+.physicalConversionSubmit:disabled{opacity:.5;cursor:not-allowed}
 .adminManualQrEntry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-top:12px}
 .adminManualQrEntry[hidden]{display:none}
 .adminManualQrEntry input{min-width:0;min-height:48px;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--white);color:var(--ink);font:14px Arial,Helvetica,sans-serif}
@@ -866,7 +876,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    <div class="adminPanelTiles">
     <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">ESCANEJAR / IDENTIFICAR MEMBRE</button>
     <button class="adminPanelTile adminPanelTileButton" id="adminTileClothes" type="button" onclick="obrirFluxRoba('admin')">ENTRADA / SORTIDA DE ROBA</button>
-    <article class="adminPanelTile" id="adminTileConvert">CONVERTIR CICLIKS FÍSICS</article>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileConvert" type="button" onclick="obrirConversioFisica()">CONVERTIR CICLIKS FÍSICS</button>
     <article class="adminPanelTile" id="adminTileMovements">MOVIMENTS</article>
    </div>
   </section>
@@ -887,8 +897,31 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
      </form>
     <video id="adminMemberScannerVideo" class="adminIdentifyScannerVideo" playsinline muted hidden></video>
     <p id="adminIdentifyStatus" class="adminIdentifyStatus" role="status" aria-live="polite"></p>
-    <button class="clothesIdentifyMember" id="adminIdentifyContinue" type="button" onclick="continuarRobaDespresIdentificacio()" hidden>CONTINUAR</button>
+    <button class="clothesIdentifyMember" id="adminIdentifyContinue" type="button" onclick="continuarIdentificacioAdministracio()" hidden>CONTINUAR</button>
   <button class="adminPanelBack" id="adminIdentifyBack" type="button" onclick="tancarIdentificacioMembre()">TORNAR A ADMINISTRACIÓ</button>
+  </section>
+  <section class="adminPanel" id="physicalConversionPanel" aria-labelledby="physicalConversionTitle" hidden>
+   <div class="adminPanelHead">
+    <div>
+     <h2 id="physicalConversionTitle">Convertir Cicliks físics</h2>
+     <p id="physicalConversionMember" aria-live="polite"></p>
+    </div>
+    <button class="adminPanelBack" id="physicalConversionBack" type="button" onclick="tancarConversioFisica()">TORNAR A ADMINISTRACIÓ</button>
+   </div>
+   <form id="physicalConversionForm" onsubmit="event.preventDefault();confirmarConversioFisica()">
+    <label class="physicalConversionAmount" for="physicalConversionAmount">
+     <span id="physicalConversionAmountLabel">Cicliks físics entregados</span>
+     <input id="physicalConversionAmount" type="number" min="1" max="2147483647" step="1" inputmode="numeric" required oninput="actualitzarPrevisualitzacioConversioFisica()">
+    </label>
+    <div class="physicalConversionPreview" aria-live="polite">
+     <span id="physicalConversionPreviewLabel">Cicliks digitales que recibirá</span>
+     <strong id="physicalConversionPreview">—</strong>
+    </div>
+    <div class="physicalConversionActions">
+     <button class="physicalConversionSubmit" id="physicalConversionSubmit" type="submit" disabled>CONFIRMAR CONVERSIÓ</button>
+    </div>
+   </form>
+   <p class="physicalConversionStatus" id="physicalConversionStatus" role="status" aria-live="polite"></p>
   </section>
   <div class="walletGrid">
   <div class="walletIntro"><h2>El meu Ciclik</h2><p>El teu moneder, dins del cercle.</p><a id="createProfileLink" class="outline" href="#memberProfileSection" onclick="obrirPerfilMembre(event)">CREAR PERFIL</a></div>
@@ -1872,6 +1905,9 @@ let clothesTargetUserId=null;
 let clothesReturnView="personal";
 let memberIdentifyReturnView="admin";
 let identifiedMemberUserId=null;
+let physicalConversionMemberId=null;
+let physicalConversionBusy=false;
+let physicalConversionCompleted=false;
 
 function obrirFluxRoba(source="personal"){
   if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
@@ -1893,6 +1929,7 @@ function obrirFluxRoba(source="personal"){
   document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
   document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
   document.getElementById("clothesSelectedMember").hidden=true;
+  document.getElementById("clothesOperationClose").hidden=true;
   setClothesOperationStatus("");
   translateClothesOperation();
   document.getElementById("clothesOperationPanel").scrollIntoView({behavior:"smooth",block:"start"});
@@ -1911,13 +1948,12 @@ function seleccionarTipusRoba(operationType){
 }
 
 function identificarMembrePerRoba(){
-  if((!clothesOperationType&&!clothesTargetUserId)||!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
+  if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
   if(clothesTargetUserId){
-    clothesOperationType=null;
-    clothesQuantities=new Map();
-    document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
-    document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
+    tancarFluxRoba();
+    return;
   }
+  if(!clothesOperationType)return;
   memberIdentifyReturnView="clothes";
   identifiedMemberUserId=null;
   clothesTargetUserId=null;
@@ -1951,6 +1987,7 @@ async function continuarRobaDespresIdentificacio(){
   document.getElementById("clothesEntryForm").hidden=true;
   document.getElementById("clothesSelectedMember").hidden=false;
   document.getElementById("clothesIdentifyMember").disabled=false;
+  document.getElementById("clothesOperationClose").hidden=true;
   document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
   document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
   translateClothesOperation();
@@ -1968,6 +2005,7 @@ async function mostrarFormularioRoba(){
   document.getElementById("clothesModePicker").hidden=true;
   document.getElementById("clothesEntryForm").hidden=false;
   document.getElementById("clothesSelectedMember").hidden=false;
+  document.getElementById("clothesOperationClose").hidden=false;
   translateClothesOperation();
   await carregarValorsRoba();
   document.getElementById("clothesOperationPanel").scrollIntoView({behavior:"smooth",block:"start"});
@@ -1984,10 +2022,12 @@ function tancarIdentificacioMembre(){
     document.getElementById("clothesEntryForm").hidden=true;
     document.getElementById("clothesSelectedMember").hidden=!clothesTargetUserId;
     document.getElementById("clothesIdentifyMember").disabled=!clothesOperationType;
+    document.getElementById("clothesOperationClose").hidden=true;
     translateClothesOperation();
   }else{
     document.getElementById("adminPanelSection").hidden=false;
   }
+  memberIdentifyReturnView="admin";
 }
 
 function tornarSelectorRoba(){
@@ -1997,6 +2037,7 @@ function tornarSelectorRoba(){
   document.getElementById("clothesEntryForm").hidden=true;
   document.getElementById("clothesSelectedMember").hidden=!clothesTargetUserId;
   document.getElementById("clothesIdentifyMember").disabled=!clothesTargetUserId;
+  document.getElementById("clothesOperationClose").hidden=true;
   document.getElementById("clothesModeEntry").setAttribute("aria-pressed","false");
   document.getElementById("clothesModeExit").setAttribute("aria-pressed","false");
   translateClothesOperation();
@@ -2012,6 +2053,7 @@ function tancarFluxRoba(){
   document.getElementById("clothesModePicker").hidden=false;
   document.getElementById("clothesEntryForm").hidden=true;
   document.getElementById("clothesIdentifyMember").disabled=true;
+  document.getElementById("clothesOperationClose").hidden=true;
   clothesOperationType=null;
   clothesTargetUserId=null;
   identifiedMemberUserId=null;
@@ -2119,6 +2161,160 @@ function tancarPanellAdministracio(){
   document.getElementById("moneder").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+function obrirConversioFisica(){
+  if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
+  aturarEscanerQrMembre();
+  memberIdentifyReturnView="physicalConversion";
+  identifiedMemberUserId=null;
+  physicalConversionMemberId=null;
+  physicalConversionBusy=false;
+  physicalConversionCompleted=false;
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("adminIdentifyPlaceholder").hidden=false;
+  document.getElementById("physicalConversionPanel").hidden=true;
+  document.getElementById("adminIdentifyContinue").hidden=true;
+  document.getElementById("adminManualQrEntry").hidden=true;
+  document.getElementById("adminManualQrCode").value="";
+  document.getElementById("physicalConversionForm").reset();
+  setMemberIdentifyStatus("");
+  setPhysicalConversionStatus("");
+  translatePhysicalConversion();
+  document.getElementById("adminIdentifyPlaceholder").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function translatePhysicalConversion(){
+  const es=document.documentElement.lang==="es";
+  document.getElementById("physicalConversionTitle").textContent=es?"Convertir Cicliks físicos":"Convertir Cicliks físics";
+  document.getElementById("physicalConversionAmountLabel").textContent=es?"Cicliks físicos entregados":"Cicliks físics lliurats";
+  document.getElementById("physicalConversionPreviewLabel").textContent=es?"Cicliks digitales que recibirá":"Cicliks digitals que rebrà";
+  document.getElementById("physicalConversionSubmit").textContent=es?"CONFIRMAR CONVERSIÓN":"CONFIRMAR CONVERSIÓ";
+  document.getElementById("physicalConversionBack").textContent=es?"VOLVER A ADMINISTRACIÓN":"TORNAR A ADMINISTRACIÓ";
+  actualitzarPrevisualitzacioConversioFisica();
+}
+
+function setPhysicalConversionStatus(message,state=""){
+  const status=document.getElementById("physicalConversionStatus");
+  status.textContent=message;
+  status.dataset.state=state;
+}
+
+function actualitzarPrevisualitzacioConversioFisica(){
+  const input=document.getElementById("physicalConversionAmount");
+  const amount=Number(input.value);
+  const valid=input.value.trim()!==""&&Number.isSafeInteger(amount)&&amount>0&&amount<=2147483647&&input.validity.valid;
+  const es=document.documentElement.lang==="es";
+  document.getElementById("physicalConversionPreview").textContent=valid
+    ?`${new Intl.NumberFormat(es?"es":"ca").format(amount)} ${es?"Cicliks digitales":"Cicliks digitals"}`
+    :"—";
+  document.getElementById("physicalConversionSubmit").disabled=!valid||physicalConversionBusy||physicalConversionCompleted;
+}
+
+async function continuarIdentificacioAdministracio(){
+  if(memberIdentifyReturnView==="physicalConversion"){
+    await continuarConversioFisica();
+    return;
+  }
+  await continuarRobaDespresIdentificacio();
+}
+
+async function continuarConversioFisica(){
+  if(!identifiedMemberUserId)return;
+  const es=document.documentElement.lang==="es";
+  const {data:{user},error}=await supabaseClient.auth.getUser();
+  if(error||!user||user.id!==clothesOperationUser?.id||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator")){
+    setMemberIdentifyStatus(es?"No tienes permisos para continuar.":"No tens permisos per continuar.","error");
+    return;
+  }
+  physicalConversionMemberId=identifiedMemberUserId;
+  document.getElementById("physicalConversionMember").textContent=es
+    ?`Miembro identificado · ${physicalConversionMemberId}`
+    :`Membre identificat · ${physicalConversionMemberId}`;
+  document.getElementById("adminIdentifyPlaceholder").hidden=true;
+  document.getElementById("physicalConversionPanel").hidden=false;
+  document.getElementById("physicalConversionForm").reset();
+  physicalConversionCompleted=false;
+  setPhysicalConversionStatus("");
+  translatePhysicalConversion();
+  document.getElementById("physicalConversionPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function tancarConversioFisica(){
+  aturarEscanerQrMembre();
+  document.getElementById("physicalConversionPanel").hidden=true;
+  document.getElementById("adminIdentifyPlaceholder").hidden=true;
+  document.getElementById("adminPanelSection").hidden=false;
+  physicalConversionMemberId=null;
+  identifiedMemberUserId=null;
+  memberIdentifyReturnView="admin";
+  document.getElementById("adminPanelSection").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+async function confirmarConversioFisica(){
+  if(physicalConversionBusy||physicalConversionCompleted||!physicalConversionMemberId)return;
+  const input=document.getElementById("physicalConversionAmount");
+  const amount=Number(input.value);
+  const es=document.documentElement.lang==="es";
+  if(input.value.trim()===""||!Number.isSafeInteger(amount)||amount<=0||amount>2147483647||!input.validity.valid){
+    setPhysicalConversionStatus(es?"Introduce una cantidad entera mayor que cero.":"Introdueix una quantitat entera superior a zero.","error");
+    actualitzarPrevisualitzacioConversioFisica();
+    return;
+  }
+  const memberLabel=document.getElementById("physicalConversionMember").textContent;
+  const confirmation=es
+    ?`¿Confirmas convertir ${amount} Cicliks físicos en ${amount} Cicliks digitales para ${memberLabel}?`
+    :`Confirmes convertir ${amount} Cicliks físics en ${amount} Cicliks digitals per a ${memberLabel}?`;
+  if(!window.confirm(confirmation))return;
+  physicalConversionBusy=true;
+  actualitzarPrevisualitzacioConversioFisica();
+  setPhysicalConversionStatus(es?"Registrando conversión...":"Registrant la conversió...");
+  try{
+    const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+    if(userError||!user||user.id!==clothesOperationUser?.id)throw new Error(es?"No se pudo validar la sesión.":"No s'ha pogut validar la sessió.");
+    const {data:roleData,error:roleError}=await supabaseClient
+      .from("ciclik_users")
+      .select("role")
+      .eq("user_id",user.id)
+      .maybeSingle();
+    if(roleError||!(roleData?.role==="admin"||roleData?.role==="operator"))throw new Error(es?"No tienes permisos para convertir Cicliks.":"No tens permisos per convertir Cicliks.");
+    const {data:conversionData,error}=await supabaseClient.rpc("ciclik_redeem_physical",{
+      p_user_id:physicalConversionMemberId,
+      p_amount:amount
+    });
+    if(error)throw error;
+    physicalConversionCompleted=true;
+    let balanceText="";
+    const conversionResult=Array.isArray(conversionData)?conversionData[0]:conversionData;
+    const returnedBalance=conversionResult&&typeof conversionResult==="object"
+      ?conversionResult.new_balance??conversionResult.current_balance??conversionResult.balance
+      :null;
+    let updatedBalance=returnedBalance!==null&&Number.isFinite(Number(returnedBalance))?Number(returnedBalance):null;
+    if(updatedBalance===null){
+      const {data:balanceData,error:balanceError}=await supabaseClient
+        .from("ciclik_balances")
+        .select("balance")
+        .eq("user_id",physicalConversionMemberId)
+        .maybeSingle();
+      if(!balanceError&&balanceData?.balance!==undefined&&Number.isFinite(Number(balanceData.balance)))updatedBalance=Number(balanceData.balance);
+    }
+    if(updatedBalance!==null){
+      const balance=new Intl.NumberFormat(es?"es":"ca").format(updatedBalance);
+      balanceText=es?` Saldo actualizado: ${balance} Cicliks.`:` Saldo actualitzat: ${balance} Cicliks.`;
+    }
+    if(physicalConversionMemberId===user.id){
+      await carregarSaldoCiclik(user.id);
+      await carregarActivitatRecent(user.id);
+    }
+    setPhysicalConversionStatus(es
+      ?`Conversión confirmada: ${amount} Cicliks físicos convertidos en +${amount} Cicliks digitales.${balanceText}`
+      :`Conversió confirmada: ${amount} Cicliks físics convertits en +${amount} Cicliks digitals.${balanceText}`);
+  }catch(error){
+    setPhysicalConversionStatus(`${es?"No se pudo completar la conversión":"No s'ha pogut completar la conversió"}: ${error.message||error}`,"error");
+  }finally{
+    physicalConversionBusy=false;
+    actualitzarPrevisualitzacioConversioFisica();
+  }
+}
+
 let memberQrCameraStream=null;
 let memberQrCameraFrame=0;
 let memberQrCameraBusy=false;
@@ -2192,7 +2388,7 @@ async function resoldreMembreEscanejat(qrText){
     const memberUserId=typeof result==="string"?result:result?.user_id;
     identifiedMemberUserId=memberUserId||null;
     status.textContent=memberUserId?(es?"Miembro identificado":"Membre identificat"):(es?"Código Ciclik no válido":"Codi Ciclik no vàlid");
-    continueButton.hidden=!(memberUserId&&memberIdentifyReturnView==="clothes");
+    continueButton.hidden=!(memberUserId&&["clothes","physicalConversion"].includes(memberIdentifyReturnView));
   }catch(error){
     status.textContent=es?"No se pudo validar el código. Inténtalo de nuevo.":"No s'ha pogut validar el codi. Torna-ho a provar.";
   }finally{
