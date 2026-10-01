@@ -74,6 +74,7 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .step h3{font-size:28px;margin-bottom:10px}.step p{line-height:1.5;margin:0;color:#565945;font-size:15px}
 
 .walletSection{padding:75px 0 90px;background:linear-gradient(180deg,#f4eee2,#f0e6d6)}
+#walletDetails{scroll-margin-top:98px}
 .personalHub{margin-bottom:58px}
 .personalHubIntro{max-width:760px;margin-bottom:32px}
 .personalHubIntro h2{font-size:46px;line-height:1.08;margin-bottom:12px}
@@ -97,6 +98,19 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .adminPanelTile{min-height:128px;display:flex;align-items:flex-end;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--cream);color:var(--olive);font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
 .adminPanelTileButton{font:inherit;text-align:left;cursor:pointer}
 #adminTileConvert{font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
+#adminTileMovements{font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
+.adminMovementSection{margin-top:28px}
+.adminMovementSection h3{font-size:25px;margin-bottom:14px}
+.adminMovementStatus{min-height:20px;margin:14px 0;color:var(--rust);font-size:13px;line-height:1.45}
+.adminMovementList{display:grid;gap:8px}
+.adminMovementRow{display:grid;grid-template-columns:minmax(150px,.8fr) minmax(170px,1.2fr) minmax(130px,.8fr) minmax(180px,1.4fr);align-items:start;gap:14px;padding:14px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.45}
+.adminMovementRow time,.adminMovementIdentity,.adminMovementDescription{overflow-wrap:anywhere}
+.adminMovementIdentity,.adminMovementDescription{display:grid;gap:4px}
+.adminMovementMuted{color:#68634f;font-size:11px}
+.adminMovementAmount{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.adminMovementAmount.is-credit{color:var(--olive)}
+.adminMovementAmount.is-debit{color:var(--rust)}
+.adminMovementEmpty{padding:18px 0;border-top:1px solid var(--line);color:#68634f;font-size:14px}
 .adminIdentifyScannerVideo{display:block;width:100%;max-height:360px;margin-top:14px;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#171914}
 .adminIdentifyStatus{min-height:20px;margin:14px 0 0;color:var(--rust);font-size:13px;line-height:1.45}
 .adminIdentifyStatus:empty{display:none}
@@ -151,6 +165,8 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
  .adminPanelHead h2{font-size:31px}
  .adminPanelTiles{grid-template-columns:1fr}
  .adminPanelTile{min-height:94px}
+ .adminMovementRow{grid-template-columns:minmax(0,1fr);gap:8px}
+ .adminMovementRow time,.adminMovementDescription{grid-column:1}
  .clothesModeButtons{grid-template-columns:1fr}
  .clothesOperation{padding:18px 14px}
  .clothesOperationHead h3{font-size:23px}
@@ -811,7 +827,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    <div class="name"><h3 id="profileName">El teu perfil</h3><p>Membre de la comunitat Ciclik</p><span id="editProfileButton" class="edit" role="button" tabindex="0" onclick="obrirPerfilMembre(event)">Editar perfil</span></div>
   </div>
   <div class="staffAccess" id="staffAccess" hidden>
-   <button type="button" id="staffAccessButton" onclick="toggleClothesOperation()">Administració</button>
+  <button type="button" id="staffAccessButton" onclick="obrirPanellAdministracio()">Administració</button>
   </div>
   <section class="clothesOperation" id="clothesOperationPanel" aria-labelledby="clothesOperationTitle" hidden>
    <div class="clothesOperationHead">
@@ -847,7 +863,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
      <span class="personalHubLabel" id="personalWalletLabel">MONEDER</span>
     <strong class="personalHubBalance"><span id="personalBalance">0</span> Cicliks</strong>
      <p id="personalWalletText">Consulta el teu saldo i els teus moviments.</p>
-     <a href="#walletDetails" id="personalWalletLink">VEURE MONEDER →</a>
+    <a href="#walletDetails" id="personalWalletLink" onclick="event.preventDefault();history.replaceState(null,'','#walletDetails');requestAnimationFrame(()=>document.getElementById('walletDetails').scrollIntoView({behavior:'smooth',block:'start'}))">VEURE MONEDER →</a>
     </article>
     <article class="personalHubCard personalHubActivities">
      <span class="personalHubLabel" id="personalActivitiesLabel">LES MEVES ACTIVITATS</span>
@@ -874,11 +890,29 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     <button class="adminPanelBack" id="adminPanelBack" type="button" onclick="tancarPanellAdministracio()">TORNA A EL MEU CICLIK</button>
    </div>
    <div class="adminPanelTiles">
-    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">ESCANEJAR / IDENTIFICAR MEMBRE</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="memberIdentifyReturnView='admin';document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">ESCANEJAR / IDENTIFICAR MEMBRE</button>
     <button class="adminPanelTile adminPanelTileButton" id="adminTileClothes" type="button" onclick="obrirFluxRoba('admin')">ENTRADA / SORTIDA DE ROBA</button>
     <button class="adminPanelTile adminPanelTileButton" id="adminTileConvert" type="button" onclick="obrirConversioFisica()">CONVERTIR CICLIKS FÍSICS</button>
-    <article class="adminPanelTile" id="adminTileMovements">MOVIMENTS</article>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileMovements" type="button" onclick="obrirMovimentsAdministracio()">MOVIMENTS</button>
    </div>
+  </section>
+  <section class="adminPanel" id="adminMovementsPanel" aria-labelledby="adminMovementsTitle" hidden>
+   <div class="adminPanelHead">
+    <div>
+     <h2 id="adminMovementsTitle">Moviments</h2>
+     <p id="adminMovementsSubtitle">Historial global de Cicliks i operacions de roba</p>
+    </div>
+    <button class="adminPanelBack" id="adminMovementsBack" type="button" onclick="tancarMovimentsAdministracio()">TORNAR A ADMINISTRACIÓ</button>
+   </div>
+   <p class="adminMovementStatus" id="adminMovementsStatus" role="status" aria-live="polite"></p>
+   <section class="adminMovementSection" aria-labelledby="adminTransactionsTitle">
+    <h3 id="adminTransactionsTitle">Moviments de Cicliks</h3>
+    <div class="adminMovementList" id="adminTransactionsList" aria-live="polite"></div>
+   </section>
+   <section class="adminMovementSection" aria-labelledby="adminClothesOperationsTitle">
+    <h3 id="adminClothesOperationsTitle">Operacions de roba</h3>
+    <div class="adminMovementList" id="adminClothesOperationsList" aria-live="polite"></div>
+   </section>
   </section>
   <section class="adminPanel" id="adminIdentifyPlaceholder" aria-labelledby="adminIdentifyTitle" hidden>
    <div class="adminPanelHead">
@@ -1905,9 +1939,15 @@ let clothesTargetUserId=null;
 let clothesReturnView="personal";
 let memberIdentifyReturnView="admin";
 let identifiedMemberUserId=null;
+let physicalConversionOperatorId=null;
 let physicalConversionMemberId=null;
 let physicalConversionBusy=false;
 let physicalConversionCompleted=false;
+let adminMovementTransactions=[];
+let adminClothesOperations=[];
+let adminClothesOperationItems=[];
+let adminClothesItemNames=new Map();
+let adminMovementError="";
 
 function obrirFluxRoba(source="personal"){
   if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
@@ -2014,16 +2054,18 @@ async function mostrarFormularioRoba(){
 function tancarIdentificacioMembre(){
   aturarEscanerQrMembre();
   document.getElementById("adminIdentifyPlaceholder").hidden=true;
-  if(memberIdentifyReturnView==="clothes"){
-    document.getElementById("personalHub").hidden=false;
-    document.getElementById("personalHub").classList.add("clothesMode");
-    document.getElementById("clothesOperationPanel").hidden=false;
-    document.getElementById("clothesModePicker").hidden=false;
-    document.getElementById("clothesEntryForm").hidden=true;
-    document.getElementById("clothesSelectedMember").hidden=!clothesTargetUserId;
-    document.getElementById("clothesIdentifyMember").disabled=!clothesOperationType;
-    document.getElementById("clothesOperationClose").hidden=true;
-    translateClothesOperation();
+  if(memberIdentifyReturnView==="physicalConversion"){
+    physicalConversionOperatorId=null;
+    physicalConversionMemberId=null;
+    document.getElementById("physicalConversionForm").reset();
+    document.getElementById("physicalConversionMember").textContent="";
+    setPhysicalConversionStatus("");
+    actualitzarPrevisualitzacioConversioFisica();
+    document.getElementById("adminPanelSection").hidden=false;
+    memberIdentifyReturnView="admin";
+    translateAdminPanel();
+  }else if(memberIdentifyReturnView==="clothes"){
+    tancarFluxRoba();
   }else{
     document.getElementById("adminPanelSection").hidden=false;
   }
@@ -2103,12 +2145,233 @@ function translateAdminPanel(lang=document.documentElement.lang){
   document.getElementById("adminManualQrSubmit").textContent=es?"IDENTIFICAR":"IDENTIFICA";
   document.getElementById("adminIdentifyBack").textContent=es?"VOLVER A ADMINISTRACIÓN":"TORNAR A ADMINISTRACIÓ";
   document.getElementById("adminIdentifyContinue").textContent=es?"CONTINUAR":"CONTINUAR";
+  translateAdminMovements(lang);
+}
+
+function translateAdminMovements(lang=document.documentElement.lang){
+  const es=lang==="es";
+  document.getElementById("adminMovementsTitle").textContent=es?"Movimientos":"Moviments";
+  document.getElementById("adminMovementsSubtitle").textContent=es?"Historial global de Cicliks y operaciones de ropa":"Historial global de Cicliks i operacions de roba";
+  document.getElementById("adminMovementsBack").textContent=es?"VOLVER A ADMINISTRACIÓN":"TORNAR A ADMINISTRACIÓ";
+  document.getElementById("adminTransactionsTitle").textContent=es?"Movimientos de Cicliks":"Moviments de Cicliks";
+  document.getElementById("adminClothesOperationsTitle").textContent=es?"Operaciones de ropa":"Operacions de roba";
+  renderAdminMovements();
+}
+
+function setAdminMovementsStatus(message,state=""){
+  const status=document.getElementById("adminMovementsStatus");
+  status.textContent=message;
+  status.dataset.state=state;
+}
+
+function adminMovementDate(value){
+  const date=new Date(value);
+  if(!Number.isFinite(date.getTime()))return value||"—";
+  return new Intl.DateTimeFormat(document.documentElement.lang==="es"?"es":"ca",{dateStyle:"medium",timeStyle:"short"}).format(date);
+}
+
+function adminMovementAmount(value,isDebit=false){
+  const amount=Math.abs(Number(value)||0);
+  const sign=isDebit?"−":"+";
+  return {text:`${sign}${new Intl.NumberFormat(document.documentElement.lang==="es"?"es":"ca").format(amount)} Cicliks`,className:isDebit?"is-debit":"is-credit"};
+}
+
+function appendAdminMovementRow(container,{createdAt,userId,operation,amount,isDebit,description,operatorId}){
+  const es=document.documentElement.lang==="es";
+  const row=document.createElement("article");
+  row.className="adminMovementRow";
+  const time=document.createElement("time");
+  time.dateTime=createdAt||"";
+  time.textContent=adminMovementDate(createdAt);
+  const identity=document.createElement("div");
+  identity.className="adminMovementIdentity";
+  const member=document.createElement("span");
+  member.textContent=`${es?"Miembro":"Membre"}: ${userId||"—"}`;
+  identity.appendChild(member);
+  const operationBlock=document.createElement("div");
+  operationBlock.className="adminMovementIdentity";
+  const operationType=document.createElement("strong");
+  operationType.textContent=operation||"—";
+  const operator=document.createElement("span");
+  operator.className="adminMovementMuted";
+  operator.textContent=operatorId?`${es?"Operador":"Operador"}: ${operatorId}`:(es?"Operador: no indicado":"Operador: no indicat");
+  operationBlock.append(operationType,operator);
+  const amountText=adminMovementAmount(amount,isDebit);
+  const amountElement=document.createElement("strong");
+  amountElement.className=`adminMovementAmount ${amountText.className}`;
+  amountElement.textContent=amountText.text;
+  const descriptionElement=document.createElement("div");
+  descriptionElement.className="adminMovementDescription";
+  descriptionElement.textContent=description||"—";
+  row.append(time,identity,operationBlock,amountElement,descriptionElement);
+  container.appendChild(row);
+}
+
+function renderAdminMovements(){
+  const es=document.documentElement.lang==="es";
+  const transactionList=document.getElementById("adminTransactionsList");
+  const clothesList=document.getElementById("adminClothesOperationsList");
+  if(!transactionList||!clothesList)return;
+  transactionList.replaceChildren();
+  clothesList.replaceChildren();
+  let visibleTransactionCount=0;
+  adminMovementTransactions.forEach(transaction=>{
+    const transactionDate=new Date(transaction.created_at).getTime();
+    const matchesClothesOperation=adminClothesOperations.some(operation=>
+      operation.user_id===transaction.user_id&&
+      new Date(operation.created_at).getTime()===transactionDate&&
+      Math.abs(Number(operation.total_cicliks))===Math.abs(Number(transaction.amount))&&
+      (operation.operation_type==="salida_ropa")===(Number(transaction.amount)<0)
+    );
+    if(matchesClothesOperation)return;
+    visibleTransactionCount++;
+    const type=transaction.transaction_type|| (es?"Movimiento":"Moviment");
+    appendAdminMovementRow(transactionList,{
+      createdAt:transaction.created_at,
+      userId:transaction.user_id,
+      operation:type,
+      amount:transaction.amount,
+      isDebit:Number(transaction.amount)<0,
+      description:transaction.description||type,
+      operatorId:transaction.created_by
+    });
+  });
+  const itemsByOperation=new Map();
+  adminClothesOperationItems.forEach(item=>{
+    if(!itemsByOperation.has(item.operation_id))itemsByOperation.set(item.operation_id,[]);
+    itemsByOperation.get(item.operation_id).push(item);
+  });
+  adminClothesOperations.forEach(operation=>{
+    const isExit=operation.operation_type==="salida_ropa";
+    const type=operation.operation_type==="entrada_ropa"
+      ?(es?"Entrada de ropa":"Entrada de roba")
+      :isExit?(es?"Salida de ropa":"Sortida de roba"):operation.operation_type;
+    const details=(itemsByOperation.get(operation.id)||[]).map(item=>{
+      const itemName=adminClothesItemNames.get(item.item_value_id)||item.item_value_id;
+      return `${itemName} × ${item.quantity}`;
+    }).join(" · ");
+    appendAdminMovementRow(clothesList,{
+      createdAt:operation.created_at,
+      userId:operation.user_id,
+      operation:type,
+      amount:operation.total_cicliks,
+      isDebit:isExit,
+      description:details||type,
+      operatorId:operation.operator_id
+    });
+  });
+  if(!visibleTransactionCount)appendAdminMovementEmpty(transactionList,es?"No hay movimientos de Cicliks.":"No hi ha moviments de Cicliks.");
+  if(!adminClothesOperations.length)appendAdminMovementEmpty(clothesList,es?"No hay operaciones de ropa.":"No hi ha operacions de roba.");
+  if(adminMovementError)setAdminMovementsStatus(adminMovementError,"error");
+  else setAdminMovementsStatus(es
+    ?`${visibleTransactionCount} movimientos · ${adminClothesOperations.length} operaciones de ropa`
+    :`${visibleTransactionCount} moviments · ${adminClothesOperations.length} operacions de roba`);
+}
+
+function appendAdminMovementEmpty(container,message){
+  const empty=document.createElement("p");
+  empty.className="adminMovementEmpty";
+  empty.textContent=message;
+  container.appendChild(empty);
+}
+
+async function carregarTotsElsMoviments(query){
+  const pageSize=500;
+  const records=[];
+  for(let offset=0;;offset+=pageSize){
+    const {data,error}=await query.range(offset,offset+pageSize-1);
+    if(error)throw error;
+    records.push(...(data||[]));
+    if(!data||data.length<pageSize)break;
+  }
+  return records;
+}
+
+async function carregarDetallsOperacionsRoba(operationIds){
+  adminClothesOperationItems=[];
+  adminClothesItemNames=new Map();
+  for(let offset=0;offset<operationIds.length;offset+=100){
+    const ids=operationIds.slice(offset,offset+100);
+    const {data,error}=await supabaseClient.from("ciclik_operation_items")
+      .select("operation_id, item_value_id, quantity, unit_value, subtotal")
+      .in("operation_id",ids);
+    if(error)throw error;
+    adminClothesOperationItems.push(...(data||[]));
+  }
+  const itemIds=[...new Set(adminClothesOperationItems.map(item=>item.item_value_id).filter(Boolean))];
+  for(let offset=0;offset<itemIds.length;offset+=100){
+    const ids=itemIds.slice(offset,offset+100);
+    const {data,error}=await supabaseClient.from("ciclik_item_values")
+      .select("id, code, name_ca, name_es")
+      .in("id",ids);
+    if(error)throw error;
+    (data||[]).forEach(item=>adminClothesItemNames.set(item.id,document.documentElement.lang==="es"?(item.name_es||item.name_ca||item.code):(item.name_ca||item.name_es||item.code)));
+  }
+}
+
+async function carregarMovimentsAdministracio(){
+  const es=document.documentElement.lang==="es";
+  adminMovementTransactions=[];
+  adminClothesOperations=[];
+  adminClothesOperationItems=[];
+  adminClothesItemNames=new Map();
+  adminMovementError="";
+  setAdminMovementsStatus(es?"Cargando movimientos...":"Carregant moviments...");
+  try{
+    const [transactionsResult,operationsResult]=await Promise.allSettled([
+      carregarTotsElsMoviments(supabaseClient.from("ciclik_transactions")
+        .select("id, user_id, amount, transaction_type, description, created_by, created_at")
+        .order("created_at",{ascending:false})),
+      carregarTotsElsMoviments(supabaseClient.from("ciclik_operations")
+        .select("id, user_id, operator_id, operation_type, total_cicliks, created_at")
+        .order("created_at",{ascending:false}))
+    ]);
+    if(transactionsResult.status==="fulfilled")adminMovementTransactions=transactionsResult.value;
+    else adminMovementError=es?"No se pudieron cargar los movimientos de Cicliks.":"No s'han pogut carregar els moviments de Cicliks.";
+    if(operationsResult.status==="fulfilled")adminClothesOperations=operationsResult.value;
+    else adminMovementError=adminMovementError?`${adminMovementError} ${es?"Tampoco se pudieron cargar las operaciones de ropa.":"Tampoc s'han pogut carregar les operacions de roba."}`:(es?"No se pudieron cargar las operaciones de ropa.":"No s'han pogut carregar les operacions de roba.");
+    if(adminClothesOperations.length){
+      try{await carregarDetallsOperacionsRoba(adminClothesOperations.map(operation=>operation.id))}
+      catch(error){adminMovementError=adminMovementError?`${adminMovementError} ${es?"No se pudieron cargar los detalles de ropa.":"No s'han pogut carregar els detalls de roba."}`:(es?"No se pudieron cargar los detalles de ropa.":"No s'han pogut carregar els detalls de roba.")}
+    }
+  }catch(error){
+    adminMovementError=es?`Error al cargar movimientos: ${error.message||error}`:`Error en carregar moviments: ${error.message||error}`;
+  }
+  renderAdminMovements();
+}
+
+async function obrirMovimentsAdministracio(){
+  const es=document.documentElement.lang==="es";
+  const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+  if(userError||!user)return;
+  const {data,error}=await supabaseClient.from("ciclik_users")
+    .select("role")
+    .eq("user_id",user.id)
+    .maybeSingle();
+  if(error||data?.role!=="admin"){
+    document.getElementById("adminMovementsPanel").hidden=true;
+    return;
+  }
+  document.getElementById("personalHub").hidden=true;
+  document.querySelector("#moneder .walletGrid").hidden=true;
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("adminMovementsPanel").hidden=false;
+  translateAdminMovements(es?"es":"ca");
+  document.getElementById("adminMovementsPanel").scrollIntoView({behavior:"smooth",block:"start"});
+  await carregarMovimentsAdministracio();
+}
+
+function tancarMovimentsAdministracio(){
+  document.getElementById("adminMovementsPanel").hidden=true;
+  document.getElementById("adminPanelSection").hidden=false;
+  translateAdminPanel();
+  document.getElementById("adminPanelSection").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function actualitzarAccesAdministracio(role){
   const access=document.getElementById("staffAccess");
   const existingButton=document.getElementById("adminAccessButton");
-  if(role!=="admin"){
+  if(!["admin","operator"].includes(role)){
     existingButton?.remove();
     document.getElementById("adminPanelSection").hidden=true;
     document.getElementById("personalHub").hidden=false;
@@ -2138,7 +2401,7 @@ async function obrirPanellAdministracio(){
     .select("role")
     .eq("user_id",user.id)
     .maybeSingle();
-  if(error||data?.role!=="admin"){
+  if(error||!["admin","operator"].includes(data?.role)){
     actualitzarAccesAdministracio(null);
     document.getElementById("staffAccess").hidden=true;
     document.getElementById("personalHub").hidden=false;
@@ -2165,7 +2428,7 @@ function obrirConversioFisica(){
   if(!clothesOperationUser||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator"))return;
   aturarEscanerQrMembre();
   memberIdentifyReturnView="physicalConversion";
-  identifiedMemberUserId=null;
+  physicalConversionOperatorId=clothesOperationUser.id;
   physicalConversionMemberId=null;
   physicalConversionBusy=false;
   physicalConversionCompleted=false;
@@ -2179,6 +2442,8 @@ function obrirConversioFisica(){
   setMemberIdentifyStatus("");
   setPhysicalConversionStatus("");
   translatePhysicalConversion();
+  document.getElementById("adminIdentifyTitle").textContent=document.documentElement.lang==="es"?"Identificar miembro destinatario":"Identificar membre destinatari";
+  document.getElementById("adminIdentifyText").textContent=document.documentElement.lang==="es"?"Escanea el QR Ciclik o introduce el código del miembro que recibirá los Cicliks digitales.":"Escaneja el QR Ciclik o introdueix el codi del membre que rebrà els Cicliks digitals.";
   document.getElementById("adminIdentifyPlaceholder").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -2218,14 +2483,13 @@ async function continuarIdentificacioAdministracio(){
 }
 
 async function continuarConversioFisica(){
-  if(!identifiedMemberUserId)return;
+  if(!physicalConversionMemberId)return;
   const es=document.documentElement.lang==="es";
   const {data:{user},error}=await supabaseClient.auth.getUser();
-  if(error||!user||user.id!==clothesOperationUser?.id||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator")){
+  if(error||!user||user.id!==physicalConversionOperatorId||!(ciclikStaffRole==="admin"||ciclikStaffRole==="operator")){
     setMemberIdentifyStatus(es?"No tienes permisos para continuar.":"No tens permisos per continuar.","error");
     return;
   }
-  physicalConversionMemberId=identifiedMemberUserId;
   document.getElementById("physicalConversionMember").textContent=es
     ?`Miembro identificado · ${physicalConversionMemberId}`
     :`Membre identificat · ${physicalConversionMemberId}`;
@@ -2243,9 +2507,16 @@ function tancarConversioFisica(){
   document.getElementById("physicalConversionPanel").hidden=true;
   document.getElementById("adminIdentifyPlaceholder").hidden=true;
   document.getElementById("adminPanelSection").hidden=false;
+  physicalConversionOperatorId=null;
   physicalConversionMemberId=null;
-  identifiedMemberUserId=null;
+  document.getElementById("physicalConversionForm").reset();
+  document.getElementById("physicalConversionMember").textContent="";
+  setPhysicalConversionStatus("");
+  physicalConversionBusy=false;
+  physicalConversionCompleted=false;
+  actualitzarPrevisualitzacioConversioFisica();
   memberIdentifyReturnView="admin";
+  translateAdminPanel();
   document.getElementById("adminPanelSection").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -2269,7 +2540,7 @@ async function confirmarConversioFisica(){
   setPhysicalConversionStatus(es?"Registrando conversión...":"Registrant la conversió...");
   try{
     const {data:{user},error:userError}=await supabaseClient.auth.getUser();
-    if(userError||!user||user.id!==clothesOperationUser?.id)throw new Error(es?"No se pudo validar la sesión.":"No s'ha pogut validar la sessió.");
+    if(userError||!user||user.id!==physicalConversionOperatorId)throw new Error(es?"No se pudo validar la sesión.":"No s'ha pogut validar la sessió.");
     const {data:roleData,error:roleError}=await supabaseClient
       .from("ciclik_users")
       .select("role")
@@ -2360,8 +2631,10 @@ async function resoldreMembreEscanejat(qrText){
   const es=document.documentElement.lang==="es";
   const status=document.getElementById("adminIdentifyStatus");
   const continueButton=document.getElementById("adminIdentifyContinue");
+  const operatorId=memberIdentifyReturnView==="physicalConversion"?physicalConversionOperatorId:clothesOperationUser?.id;
   continueButton.hidden=true;
-  identifiedMemberUserId=null;
+  if(memberIdentifyReturnView==="physicalConversion")physicalConversionMemberId=null;
+  else identifiedMemberUserId=null;
   const qrCode=extreureCodiQrMembre(qrText);
   if(!qrCode){
     status.textContent=es?"Código Ciclik no válido":"Codi Ciclik no vàlid";
@@ -2375,7 +2648,7 @@ async function resoldreMembreEscanejat(qrText){
   }
   try{
     const {data:{user},error:userError}=await supabaseClient.auth.getUser();
-    if(userError||!user||user.id!==clothesOperationUser.id){
+    if(userError||!user||user.id!==operatorId){
       status.textContent=es?"No tienes permisos para identificar miembros.":"No tens permisos per identificar membres.";
       return;
     }
@@ -2386,9 +2659,14 @@ async function resoldreMembreEscanejat(qrText){
     if(error)throw error;
     const result=Array.isArray(data)?data[0]:data;
     const memberUserId=typeof result==="string"?result:result?.user_id;
-    identifiedMemberUserId=memberUserId||null;
+    if(memberIdentifyReturnView==="physicalConversion")physicalConversionMemberId=memberUserId||null;
+    else identifiedMemberUserId=memberUserId||null;
     status.textContent=memberUserId?(es?"Miembro identificado":"Membre identificat"):(es?"Código Ciclik no válido":"Codi Ciclik no vàlid");
-    continueButton.hidden=!(memberUserId&&["clothes","physicalConversion"].includes(memberIdentifyReturnView));
+    if(memberUserId&&memberIdentifyReturnView==="physicalConversion"){
+      await continuarConversioFisica();
+      return;
+    }
+    continueButton.hidden=!(memberUserId&&memberIdentifyReturnView==="clothes");
   }catch(error){
     status.textContent=es?"No se pudo validar el código. Inténtalo de nuevo.":"No s'ha pogut validar el codi. Torna-ho a provar.";
   }finally{
