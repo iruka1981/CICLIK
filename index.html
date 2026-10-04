@@ -19,8 +19,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(244,238,226,.94);backdro
 .logo{display:flex;align-items:center;gap:3px;font-size:29px;letter-spacing:.12em;color:var(--olive);font-weight:500}
 .logoImgWrap{display:flex;align-items:center}
 .logoImg{display:block;width:252px;height:auto}
-.footerLogo{width:140px}
-.headerLogoMark{display:block;width:193px;aspect-ratio:1320/408;background-image:url('LOGO CICLIK.png');background-repeat:no-repeat;background-size:130.76% 223.28%;background-position:48.27% 52.5%}
+.footerLogo{width:150px}
+.foot{flex-wrap:wrap}.footerLogoWrap{flex:0 0 100%;justify-content:center}
+.headerLogoMark{display:block;width:150px;height:auto}
 
 .logo-c{width:43px;height:43px;border:3px solid var(--olive);border-right-color:transparent;border-radius:50%;position:relative;display:inline-block}
 .logo-c:after{content:"";position:absolute;right:-2px;top:3px;border-left:9px solid var(--olive);border-top:6px solid transparent;border-bottom:6px solid transparent;transform:rotate(-20deg)}
@@ -256,6 +257,7 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .form button{width:100%;padding:14px;border:0;border-radius:999px;background:var(--cream);color:var(--olive);font-weight:700}
 .note{font-size:11px;opacity:.7;margin-top:10px}
 footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:12px}.footlinks{display:flex;gap:24px}
+.footlinks{width:100%;justify-content:center;flex-wrap:wrap;gap:12px 34px}.footlinks a{font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.03em;color:var(--olive);text-decoration:none}.footlinks a:hover{text-decoration:underline;text-underline-offset:4px}
 
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:#2f3325;color:white;padding:13px 18px;border-radius:999px;z-index:50;transition:.25s;box-shadow:0 10px 30px #0003}.toast.show{transform:translateX(-50%) translateY(0)}
 
@@ -275,7 +277,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  .steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px dotted #c8bda9}
  .walletGrid,.joinGrid{grid-template-columns:1fr}.personalHubCards{grid-template-columns:1fr}.personalHubIntro h2{font-size:39px}.profileTop{grid-template-columns:auto 1fr}.balance{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:20px 0 0}
  .actions{grid-template-columns:1fr 1fr}.activityGrid{grid-template-columns:1fr}.activityItem{border-right:0;border-bottom:1px dotted #c8bda9;padding-bottom:12px}
- .section h2,.walletIntro h2,.join h2{font-size:39px}.foot{flex-direction:column;align-items:flex-start}.footlinks{flex-wrap:wrap}
+ .section h2,.walletIntro h2,.join h2{font-size:39px}.foot{flex-direction:column;align-items:flex-start}.footerLogoWrap{flex:0 0 auto;align-self:stretch}.footlinks{flex-wrap:wrap}
  html[lang="es"] #com-funciona .section-head h2{font-size:34px}
  .proposalCardV2{grid-template-columns:1fr}
  .proposalMediaV2{border-radius:16px 16px 0 0;min-height:180px}
@@ -284,6 +286,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 }
 @media(max-width:700px){
  .nav{height:64px}
+ .headerLogoMark{width:124px}
  .nav.open nav{top:64px}
  .headerLogoMark{width:130px}
  .steps{grid-template-columns:1fr}
@@ -715,7 +718,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 <header>
   <div class="wrap nav" id="nav">
     <a class="logoImgWrap" href="#inici" aria-label="CICLIK">
-      <span class="headerLogoMark" role="img" aria-label="CICLIK"></span>
+      <img class="headerLogoMark" src="logo-ciclik-transparent.png" alt="CICLIK" width="1115" height="408">
     </a>
     <button class="menuBtn" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menú">☰</button>
     <nav>
@@ -1272,8 +1275,8 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 </main>
 
 <footer><div class="wrap foot">
- <a class="logoImgWrap" href="#inici"><img class="logoImg footerLogo" src="LOGO CICLIK.png" alt="CICLIK"></a>
- <div class="footlinks"><span>Sobre Ciclik</span><span>Preguntes freqüents</span><span>Contacte</span><span>Condicions</span><span>Privacitat</span></div>
+ <a class="logoImgWrap footerLogoWrap" href="#inici"><img class="logoImg footerLogo" src="logo-ciclik-transparent.png" alt="CICLIK" width="1115" height="408"></a>
+ <div class="footlinks"><a href="#sobre-ciclik">Sobre Ciclik</a><a href="#preguntes-frequents">Preguntes freqüents</a><a href="#contacte">Contacte</a><a href="#condicions">Condicions</a><a href="#privacitat">Privacitat</a></div>
 </div></footer>
 
 <div class="toast" id="toast"></div>
@@ -1351,7 +1354,7 @@ while(n=walker.nextNode()){
 const style=document.createElement("style");
 style.textContent=`
 #langSwitch{display:flex;align-items:center;gap:4px;margin-left:auto;margin-right:12px}
-#langSwitch button{border:0;background:transparent;color:#4f5633;font-weight:700;font-size:12px;padding:7px 5px;cursor:pointer;opacity:.45}
+#langSwitch button{font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;border:0;background:transparent;color:#4f5633;font-weight:700;font-size:12px;padding:7px 5px;cursor:pointer;opacity:.45}
 #langSwitch button.active{opacity:1;text-decoration:underline;text-underline-offset:4px}
 #langSwitch span{opacity:.3}
 `;
