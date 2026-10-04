@@ -957,6 +957,51 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    </form>
    <p class="physicalConversionStatus" id="physicalConversionStatus" role="status" aria-live="polite"></p>
   </section>
+  <section class="adminPanel" id="memberTransferPanel" aria-labelledby="transferTitle" hidden>
+   <div class="adminPanelHead">
+    <div>
+     <h2 id="transferTitle">Envia Cicliks</h2>
+     <p id="transferSubtitle">Envia Cicliks a un altre membre de la comunitat.</p>
+    </div>
+    <button class="adminPanelBack" id="transferBack" type="button" onclick="tancarEnviamentCiclik()">TORNA A EL MEU CICLIK</button>
+   </div>
+   <div id="transferIdentify">
+    <p id="transferIdentifyText">Escaneja el QR Ciclik del destinatari o introdueix el seu codi.</p>
+    <div class="adminPanelTiles">
+     <button class="adminPanelTile adminPanelTileButton" id="transferScan" type="button" onclick="iniciarEscanerEnviament()">ESCANEJAR QR</button>
+     <button class="adminPanelTile adminPanelTileButton" id="transferManual" type="button" onclick="document.getElementById('transferManualForm').hidden=!document.getElementById('transferManualForm').hidden">INTRODUIR CODI</button>
+    </div>
+    <form class="adminManualQrEntry" id="transferManualForm" onsubmit="event.preventDefault();resoldreDestinatariEnviament(document.getElementById('transferManualCode').value)" hidden>
+     <input id="transferManualCode" type="text" inputmode="url" autocomplete="off" placeholder="URL o codi QR">
+     <button class="memberIdentifyPrimary" id="transferManualSubmit" type="submit">IDENTIFICA</button>
+    </form>
+    <video id="transferVideo" class="adminIdentifyScannerVideo" playsinline muted hidden></video>
+   </div>
+   <form id="transferForm" onsubmit="event.preventDefault();confirmarEnviamentCiclik()" hidden>
+    <p><strong id="transferRecipient"></strong></p>
+    <label class="physicalConversionAmount" for="transferAmount">
+     <span id="transferAmountLabel">Cicliks a enviar</span>
+     <input id="transferAmount" type="number" min="1" max="2147483647" step="1" inputmode="numeric" required oninput="actualitzarEnviamentCiclik()">
+    </label>
+    <p id="transferPreview" aria-live="polite"></p>
+    <div class="physicalConversionActions">
+     <button class="physicalConversionSubmit" id="transferSubmit" type="submit" disabled>CONFIRMAR ENVIAMENT</button>
+     <button class="clothesIdentifyMember" id="transferChange" type="button" onclick="canviarDestinatariEnviament()">CANVIAR DESTINATARI</button>
+    </div>
+   </form>
+   <p class="physicalConversionStatus" id="transferStatus" role="status" aria-live="polite"></p>
+  </section>
+  <section class="adminPanel" id="memberHistoryPanel" aria-labelledby="historyTitle" hidden>
+   <div class="adminPanelHead">
+    <div>
+     <h2 id="historyTitle">Historial de moviments</h2>
+     <p id="historySubtitle">Tots els teus moviments de Cicliks.</p>
+    </div>
+    <button class="adminPanelBack" id="historyBack" type="button" onclick="tancarHistorialMembre()">TORNA A EL MEU CICLIK</button>
+   </div>
+   <p class="adminMovementStatus" id="historyStatus" role="status" aria-live="polite"></p>
+   <div class="adminMovementList" id="historyList" aria-live="polite"></div>
+  </section>
   <div class="walletGrid">
   <div class="walletIntro"><h2>El meu Ciclik</h2><p>El teu moneder, dins del cercle.</p><a id="createProfileLink" class="outline" href="#memberProfileSection" onclick="obrirPerfilMembre(event)">CREAR PERFIL</a></div>
   <div class="card" id="walletDetails">
@@ -966,12 +1011,12 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    <button class="walletQrTrigger" id="walletQrTrigger" type="button" onclick="obrirQrPersonal()" hidden>EL MEU QR</button>
    <div class="actions">
     <button onclick="document.getElementById('guanyaInfo').scrollIntoView({behavior:'smooth'})">＋ Suma Cicliks</button>
-<button onclick="demo('Aquí podràs veure com utilitzar els teus Cicliks')">↻Utilitza Cicliks</button>
-<button onclick="demo('Aquí podràs consultar el teu saldo i els teus moviments')">↕ Moviments</button>
-<button onclick="demo('Aquí podràs enviar Cicliks a una altra persona')">➤ Envia Cicliks</button>
+<button onclick="document.getElementById('descobreixInfo').scrollIntoView({behavior:'smooth'})">⌕ Descobreix</button>
+<button onclick="document.getElementById('intercanviaInfo').scrollIntoView({behavior:'smooth'})">⇄ Intercanvia</button>
+<button onclick="obrirEnviamentCiclik()">➤ Envia</button>
    </div>
    <div class="activity">
-    <div class="activityHead"><span>Activitat recent</span><span>VEURE TOT →</span></div>
+    <div class="activityHead"><span>Activitat recent</span><span role="button" tabindex="0" style="cursor:pointer" onclick="obrirHistorialMembre()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();obrirHistorialMembre()}">VEURE TOT →</span></div>
     <div class="activityGrid" id="recentActivityList"></div>
     <p class="activityEmpty" id="recentActivityEmpty" role="status">Encara no tens moviments.</p>
    </div>
@@ -989,23 +1034,43 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 </section>
 <section id="guanyaInfo" class="guanyaInfo">
   <div class="wrap">
-    <h2>Guanya Cicliks</h2>
-    <h3>Tens alguna cosa per aportar?</h3>
+    <h2 id="guanyaTitle">Guanya Cicliks</h2>
+    <h3 id="guanyaSubtitle">Tens alguna cosa per aportar?</h3>
 
-    <p>
+    <p id="guanyaText1">
       Ciclik creix amb el que cadascú sap, pot o vol compartir.
       Aporta temps, coneixements, habilitats o ajuda a la comunitat
       i rep Cicliks a canvi.
     </p>
 
-    <p>
+    <p id="guanyaText2">
       Pots impartir tallers o cursos, compartir un ofici o una habilitat,
       col·laborar en projectes, ajudar en activitats i esdeveniments,
       aportar coneixements professionals o simplement oferir el teu temps
       i les teves ganes de participar.
     </p>
 
-    <button type="button">VULL APORTAR</button>
+    <button type="button" id="guanyaButton">VULL APORTAR</button>
+  </div>
+</section>
+
+<section id="descobreixInfo" class="guanyaInfo">
+  <div class="wrap">
+    <h2 data-ca="Descobreix" data-es="Descubre">Descobreix</h2>
+    <h3 data-ca="Què pots descobrir a Ciclik?" data-es="¿Qué puedes descubrir en Ciclik?">Què pots descobrir a Ciclik?</h3>
+    <p data-ca="A Ciclik hi ha molt més que objectes. Pots descobrir tallers i activitats, mercats i trobades, propostes de la comunitat i noves maneres de participar." data-es="En Ciclik hay mucho más que objetos. Puedes descubrir talleres y actividades, mercados y encuentros, propuestas de la comunidad y nuevas formas de participar.">A Ciclik hi ha molt més que objectes. Pots descobrir tallers i activitats, mercats i trobades, propostes de la comunitat i noves maneres de participar.</p>
+    <p data-ca="També coneixements, habilitats i experiències compartides per altres persones que, com tu, volen fer circular el que tenen." data-es="También conocimientos, habilidades y experiencias compartidas por otras personas que, como tú, quieren hacer circular lo que tienen.">També coneixements, habilitats i experiències compartides per altres persones que, com tu, volen fer circular el que tenen.</p>
+    <button type="button" data-ca="DESCOBRIR ACTIVITATS" data-es="DESCUBRIR ACTIVIDADES" onclick="document.getElementById('tallers').scrollIntoView({behavior:'smooth',block:'start'})">DESCOBRIR ACTIVITATS</button>
+  </div>
+</section>
+
+<section id="intercanviaInfo" class="guanyaInfo">
+  <div class="wrap">
+    <h2 data-ca="Intercanvia" data-es="Intercambia">Intercanvia</h2>
+    <h3 data-ca="Allò que circula ens connecta." data-es="Lo que circula, conecta.">Allò que circula ens connecta.</h3>
+    <p data-ca="Ciclik no consisteix simplement a comprar i vendre. Les persones aporten coses que tenen valor per a la comunitat —roba, temps, coneixements, habilitats, experiències...— i els Cicliks permeten que aquest valor continuï circulant." data-es="Ciclik no consiste simplemente en comprar y vender. Las personas aportan cosas que tienen valor para la comunidad —ropa, tiempo, conocimientos, habilidades, experiencias...— y los Cicliks permiten que ese valor siga circulando.">Ciclik no consisteix simplement a comprar i vendre. Les persones aporten coses que tenen valor per a la comunitat —roba, temps, coneixements, habilitats, experiències...— i els Cicliks permeten que aquest valor continuï circulant.</p>
+    <p data-ca="Els Cicliks obtinguts es poden utilitzar per participar en altres intercanvis, propostes, activitats i experiències de la comunitat." data-es="Los Cicliks obtenidos pueden utilizarse para participar en otros intercambios, propuestas, actividades y experiencias de la comunidad.">Els Cicliks obtinguts es poden utilitzar per participar en altres intercanvis, propostes, activitats i experiències de la comunitat.</p>
+    <button type="button" data-ca="VEURE ON INTERCANVIAR" data-es="VER DÓNDE INTERCAMBIAR" onclick="const c=document.querySelector('#tallers .proposalCardMarket');(c&&!c.hidden?c:document.getElementById('tallers')).scrollIntoView({behavior:'smooth',block:'start'})">VEURE ON INTERCANVIAR</button>
   </div>
 </section>
 
@@ -1564,6 +1629,7 @@ setLanguage = function(lang){
   fixLang(lang);
   if(typeof translateClothesOperation==="function")translateClothesOperation();
   if(typeof translateAdminPanel==="function")translateAdminPanel(lang);
+  if(typeof translatePhysicalConversion==="function")translatePhysicalConversion();
   if(typeof renderClothesItemValues==="function")renderClothesItemValues();
   if(typeof translateMemberQr==="function")translateMemberQr(lang);
 };
@@ -1732,7 +1798,7 @@ async function registrarUsuario(event) {
     return;
   }
 
-  alert("Registro realizado. Revisa tu correo para confirmar la cuenta.");
+  alert(document.documentElement.lang==="es"?"Registro realizado. Revisa tu correo para confirmar la cuenta.":"Registre fet. Revisa el teu correu per confirmar el compte.");
 }
 async function iniciarSesion() {
   const email = document.getElementById("emailInput").value;
@@ -1740,7 +1806,7 @@ async function iniciarSesion() {
   const remember = document.getElementById("rememberMe").checked;
 localStorage.setItem("ciclikRememberSession", remember ? "true" : "false");
   if (!email || !password) {
-    alert("Escriu el teu correu i la contrasenya.");
+    alert(document.documentElement.lang==="es"?"Escribe tu correo y tu contraseña.":"Escriu el teu correu i la contrasenya.");
     return;
   }
 
@@ -1750,7 +1816,7 @@ localStorage.setItem("ciclikRememberSession", remember ? "true" : "false");
   });
 
   if (error) {
-  alert("No s'ha pogut iniciar sessió: " + error.message);
+  alert((document.documentElement.lang==="es"?"No se ha podido iniciar sesión: ":"No s'ha pogut iniciar sessió: ") + error.message);
   return;
 }
   await cargarUsuarioReal();
@@ -1831,6 +1897,7 @@ function translateMemberQr(lang=document.documentElement.lang){
     :"Mostra aquest codi quan vulguis identificar-te a Ciclik.";
   document.getElementById("memberQrCaption").textContent=es?"Tu código personal Ciclik":"El teu codi personal Ciclik";
   document.querySelector(".walletQrClose").setAttribute("aria-label",es?"Cerrar":"Tanca");
+  document.getElementById("memberQrImage").setAttribute("aria-label",es?"Código QR personal Ciclik":"Codi QR personal Ciclik");
 }
 
 async function carregarQrPersonal(userId){
@@ -1896,6 +1963,25 @@ function tancarQrPersonal(){
 }
 
 let recentCiclikTransactions=[];
+let ciclikCounterparties=new Map();
+async function carregarContraparts(transactions){
+  ciclikCounterparties=new Map();
+  if(!transactions.some(transaction=>transaction.transaction_type==="transfer_out"||transaction.transaction_type==="transfer_in"))return;
+  const {data,error}=await supabaseClient.rpc("ciclik_my_transfer_counterparties");
+  if(!error)(data||[]).forEach(row=>ciclikCounterparties.set(String(row.transaction_id),row.is_admin===true?"Administració Ciclik":(row.display_name||"")));
+}
+function ciclikTransactionLabel(description,es,transaction){
+  const type=transaction?.transaction_type;
+  if(type==="transfer_out"||type==="transfer_in"){
+    const name=ciclikCounterparties.get(String(transaction.id))||(es?"un miembro":"un membre");
+    if(type==="transfer_out")return es?`Envío de Cicliks a ${name}`:`Enviament de Cicliks a ${name}`;
+    return es?`Cicliks recibidos de ${name}`:`Cicliks rebuts de ${name}`;
+  }
+  const text=(description||"").trim();
+  const labels={"benvinguda a ciclik":["Benvinguda a Ciclik","Bienvenida a Ciclik"],"enviament de cicliks":["Enviament de Cicliks","Envío de Cicliks"],"cicliks rebuts":["Cicliks rebuts","Cicliks recibidos"]};
+  const match=labels[text.toLocaleLowerCase()];
+  return match?match[es?1:0]:text;
+}
 function renderRecentCiclikTransactions(){
   const es=document.documentElement.lang==="es";
   const list=document.getElementById("recentActivityList");
@@ -1906,7 +1992,7 @@ function renderRecentCiclikTransactions(){
     item.className="activityItem";
     const concept=document.createElement("b");
     const description=(transaction.description||"").trim();
-    concept.textContent=es&&description.toLocaleLowerCase()==="benvinguda a ciclik"?"Bienvenida a Ciclik":description;
+    concept.textContent=ciclikTransactionLabel(description,es,transaction);
     const amount=document.createElement("span");
     amount.className="delta";
     const value=Number(transaction.amount);
@@ -1921,11 +2007,12 @@ function renderRecentCiclikTransactions(){
 async function carregarActivitatRecent(userId){
   const {data,error}=await supabaseClient
     .from("ciclik_transactions")
-    .select("description, amount, created_at")
+    .select("id, description, amount, transaction_type, created_at")
     .eq("user_id",userId)
     .order("created_at",{ascending:false})
     .limit(3);
   recentCiclikTransactions=error?[]:(data||[]);
+  await carregarContraparts(recentCiclikTransactions);
   renderRecentCiclikTransactions();
 }
 
@@ -2454,6 +2541,7 @@ function translatePhysicalConversion(){
   document.getElementById("physicalConversionPreviewLabel").textContent=es?"Cicliks digitales que recibirá":"Cicliks digitals que rebrà";
   document.getElementById("physicalConversionSubmit").textContent=es?"CONFIRMAR CONVERSIÓN":"CONFIRMAR CONVERSIÓ";
   document.getElementById("physicalConversionBack").textContent=es?"VOLVER A ADMINISTRACIÓN":"TORNAR A ADMINISTRACIÓ";
+  if(physicalConversionMemberId)document.getElementById("physicalConversionMember").textContent=`${es?"Miembro identificado":"Membre identificat"} · ${physicalConversionMemberId}`;
   actualitzarPrevisualitzacioConversioFisica();
 }
 
@@ -2958,6 +3046,8 @@ if (!user) {
   document.getElementById("staffAccess").hidden=true;
   document.getElementById("clothesOperationPanel").hidden=true;
   document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("memberTransferPanel").hidden=true;
+  document.getElementById("memberHistoryPanel").hidden=true;
   document.getElementById("personalHub").hidden=false;
   document.querySelector("#moneder .walletGrid").hidden=false;
   restaurarAcceso();
@@ -2966,7 +3056,7 @@ if (!user) {
 
 const loginBtn = document.getElementById("authButton");
 if (loginBtn) {
-  loginBtn.textContent = "TANCA SESSIÓ";
+  loginBtn.textContent = document.documentElement.lang === "es" ? "CERRAR SESIÓN" : "TANCA SESSIÓ";
   loginBtn.href = "#";
   loginBtn.onclick = cerrarSesion;
 }
@@ -3046,7 +3136,7 @@ async function recuperarContrasena() {
   const email = document.getElementById("emailInput").value.trim();
 
   if (!email) {
-    alert("Escriu primer el teu correu electrònic.");
+    alert(document.documentElement.lang==="es"?"Escribe primero tu correo electrónico.":"Escriu primer el teu correu electrònic.");
     return;
   }
 
@@ -3055,11 +3145,11 @@ async function recuperarContrasena() {
   });
 
   if (error) {
-    alert("No s'ha pogut enviar el correu: " + error.message);
+    alert((document.documentElement.lang==="es"?"No se ha podido enviar el correo: ":"No s'ha pogut enviar el correu: ") + error.message);
     return;
   }
 
-  alert("T'hem enviat un correu per restablir la contrasenya.");
+  alert(document.documentElement.lang==="es"?"Te hemos enviado un correo para restablecer la contraseña.":"T'hem enviat un correu per restablir la contrasenya.");
 }
 function activarRecuperacionPassword() {
   mostrarLogin();
@@ -3135,6 +3225,263 @@ mostrarLogin();
 translateMemberProfile(localStorage.getItem("ciclikLang")||"ca");
 document.getElementById("caBtn").addEventListener("click",()=>translateMemberProfile("ca"));
 document.getElementById("esBtn").addEventListener("click",()=>translateMemberProfile("es"));
+
+function translateGuanyaInfo(lang){
+  const es=lang==="es";
+  document.getElementById("guanyaTitle").textContent=es?"Gana Cicliks":"Guanya Cicliks";
+  document.getElementById("guanyaSubtitle").textContent=es?"¿Tienes algo que aportar?":"Tens alguna cosa per aportar?";
+  document.getElementById("guanyaText1").textContent=es
+    ?"Ciclik crece con lo que cada persona sabe, puede o quiere compartir. Aporta tiempo, conocimientos, habilidades o ayuda a la comunidad y recibe Cicliks a cambio."
+    :"Ciclik creix amb el que cadascú sap, pot o vol compartir. Aporta temps, coneixements, habilitats o ajuda a la comunitat i rep Cicliks a canvi.";
+  document.getElementById("guanyaText2").textContent=es
+    ?"Puedes impartir talleres o cursos, compartir un oficio o una habilidad, colaborar en proyectos, ayudar en actividades y eventos, aportar conocimientos profesionales o simplemente ofrecer tu tiempo y tus ganas de participar."
+    :"Pots impartir tallers o cursos, compartir un ofici o una habilitat, col·laborar en projectes, ajudar en activitats i esdeveniments, aportar coneixements professionals o simplement oferir el teu temps i les teves ganes de participar.";
+  document.getElementById("guanyaButton").textContent=es?"QUIERO APORTAR":"VULL APORTAR";
+  document.querySelectorAll("#descobreixInfo,#intercanviaInfo").forEach(section=>section.querySelectorAll("[data-ca][data-es]").forEach(el=>{el.textContent=es?el.dataset.es:el.dataset.ca}));
+}
+translateGuanyaInfo(localStorage.getItem("ciclikLang")||"ca");
+document.getElementById("caBtn").addEventListener("click",()=>translateGuanyaInfo("ca"));
+document.getElementById("esBtn").addEventListener("click",()=>translateGuanyaInfo("es"));
+
+let transferStream=null,transferFrame=0,transferBusy=false,transferDone=false,transferRecipientId=null,transferRecipientName="",memberHistoryTransactions=[],memberHistoryError=false;
+
+function mostrarVistaMembre(panelId){
+  ["memberTransferPanel","memberHistoryPanel"].forEach(id=>{document.getElementById(id).hidden=id!==panelId});
+  document.getElementById("personalHub").hidden=Boolean(panelId);
+  document.querySelector("#moneder .walletGrid").hidden=Boolean(panelId);
+  document.getElementById(panelId||"moneder").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function translateTransfer(lang=document.documentElement.lang){
+  const es=lang==="es";
+  const set=(id,ca,esText)=>{document.getElementById(id).textContent=es?esText:ca};
+  set("transferTitle","Envia Cicliks","Envía Cicliks");
+  set("transferSubtitle","Envia Cicliks a un altre membre de la comunitat.","Envía Cicliks a otro miembro de la comunidad.");
+  set("transferBack","TORNA A EL MEU CICLIK","VOLVER A MI CICLIK");
+  set("transferIdentifyText","Escaneja el QR Ciclik del destinatari o introdueix el seu codi.","Escanea el QR Ciclik del destinatario o introduce su código.");
+  set("transferScan","ESCANEJAR QR","ESCANEAR QR");
+  set("transferManual","INTRODUIR CODI","INTRODUCIR CÓDIGO");
+  set("transferManualSubmit","IDENTIFICA","IDENTIFICAR");
+  document.getElementById("transferManualCode").placeholder=es?"URL o código QR":"URL o codi QR";
+  set("transferAmountLabel","Cicliks a enviar","Cicliks a enviar");
+  set("transferSubmit","CONFIRMAR ENVIAMENT","CONFIRMAR ENVÍO");
+  set("transferChange","CANVIAR DESTINATARI","CAMBIAR DESTINATARIO");
+  actualitzarEnviamentCiclik();
+  if(transferRecipientId)document.getElementById("transferRecipient").textContent=`${es?"Destinatario":"Destinatari"}: ${transferRecipientName||(es?"Miembro identificado":"Membre identificat")}`;
+  set("historyTitle","Historial de moviments","Historial de movimientos");
+  set("historySubtitle","Tots els teus moviments de Cicliks.","Todos tus movimientos de Cicliks.");
+  set("historyBack","TORNA A EL MEU CICLIK","VOLVER A MI CICLIK");
+  renderHistorialMembre();
+}
+translateTransfer(localStorage.getItem("ciclikLang")||"ca");
+document.getElementById("caBtn").addEventListener("click",()=>translateTransfer("ca"));
+document.getElementById("esBtn").addEventListener("click",()=>translateTransfer("es"));
+
+function setTransferStatus(message,state=""){
+  const status=document.getElementById("transferStatus");
+  status.textContent=message;
+  status.dataset.state=state;
+}
+
+function aturarEscanerEnviament(){
+  if(transferFrame)cancelAnimationFrame(transferFrame);
+  transferFrame=0;
+  if(transferStream){transferStream.getTracks().forEach(track=>track.stop());transferStream=null}
+  const video=document.getElementById("transferVideo");
+  video.pause();video.srcObject=null;video.hidden=true;
+}
+
+function reiniciarEnviament(){
+  aturarEscanerEnviament();
+  transferBusy=false;transferDone=false;transferRecipientId=null;transferRecipientName="";
+  document.getElementById("transferIdentify").hidden=false;
+  document.getElementById("transferForm").hidden=true;
+  document.getElementById("transferForm").reset();
+  document.getElementById("transferManualForm").hidden=true;
+  document.getElementById("transferManualCode").value="";
+  setTransferStatus("");
+  actualitzarEnviamentCiclik();
+}
+
+async function obrirEnviamentCiclik(){
+  const {data:{user}}=await supabaseClient.auth.getUser();
+  if(!user)return;
+  reiniciarEnviament();
+  translateTransfer();
+  mostrarVistaMembre("memberTransferPanel");
+}
+
+function tancarEnviamentCiclik(){
+  reiniciarEnviament();
+  mostrarVistaMembre(null);
+}
+
+function canviarDestinatariEnviament(){
+  reiniciarEnviament();
+}
+
+function enviamentValid(){
+  const input=document.getElementById("transferAmount");
+  const amount=Number(input.value);
+  return {amount,valid:input.value.trim()!==""&&Number.isSafeInteger(amount)&&amount>0&&amount<=2147483647&&input.validity.valid};
+}
+
+function actualitzarEnviamentCiclik(){
+  const {amount,valid}=enviamentValid();
+  const es=document.documentElement.lang==="es";
+  const name=transferRecipientName||(es?"Miembro identificado":"Membre identificat");
+  document.getElementById("transferPreview").textContent=valid&&transferRecipientId&&!transferDone
+    ?(es?`Vas a enviar ${amount} Cicliks a ${name}`:`Enviaràs ${amount} Cicliks a ${name}`):"";
+  document.getElementById("transferSubmit").disabled=!valid||transferBusy||transferDone||!transferRecipientId;
+}
+
+function missatgeErrorEnviament(error,es){
+  const message=String(error?.message||error||"");
+  if(message.includes("ciclik_transfer_self"))return es?"No puedes enviarte Cicliks a ti mismo.":"No pots enviar-te Cicliks a tu mateix.";
+  if(message.includes("ciclik_insufficient_balance"))return es?"No tienes saldo suficiente.":"No tens prou saldo.";
+  if(message.includes("ciclik_invalid_amount"))return es?"Introduce una cantidad entera mayor que cero.":"Introdueix una quantitat entera superior a zero.";
+  if(message.includes("ciclik_invalid_recipient"))return es?"Código Ciclik no válido":"Codi Ciclik no vàlid";
+  return es?"No se pudo completar la operación. Inténtalo de nuevo.":"No s'ha pogut completar l'operació. Torna-ho a provar.";
+}
+
+async function resoldreDestinatariEnviament(qrText){
+  const es=document.documentElement.lang==="es";
+  const qrCode=extreureCodiQrMembre(qrText);
+  if(!qrCode){setTransferStatus(es?"Código Ciclik no válido":"Codi Ciclik no vàlid","error");return}
+  setTransferStatus(es?"Validando código...":"Validant codi...");
+  const {data,error}=await supabaseClient.rpc("ciclik_resolve_transfer_recipient",{p_qr_code:qrCode});
+  const result=Array.isArray(data)?data[0]:data;
+  if(error||!result?.recipient_id){setTransferStatus(missatgeErrorEnviament(error||"ciclik_invalid_recipient",es),"error");return}
+  aturarEscanerEnviament();
+  transferRecipientId=result.recipient_id;
+  transferRecipientName=result.display_name||"";
+  document.getElementById("transferIdentify").hidden=true;
+  document.getElementById("transferForm").hidden=false;
+  setTransferStatus("");
+  translateTransfer();
+  actualitzarEnviamentCiclik();
+}
+
+async function iniciarEscanerEnviament(){
+  const es=document.documentElement.lang==="es";
+  if(!navigator.mediaDevices?.getUserMedia||typeof jsQR!=="function"){
+    setTransferStatus(es?"Cámara no disponible en este dispositivo. Puedes continuar con INTRODUCIR CÓDIGO.":"Càmera no disponible en aquest dispositiu. Pots continuar amb INTRODUIR CODI.","error");
+    return;
+  }
+  aturarEscanerEnviament();
+  setTransferStatus(es?"Apunta la cámara al QR Ciclik del destinatario.":"Apunta la càmera al QR Ciclik del destinatari.");
+  try{
+    transferStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});
+    const video=document.getElementById("transferVideo");
+    video.srcObject=transferStream;
+    video.hidden=false;
+    await video.play();
+    llegirMarcEnviament();
+  }catch(error){
+    aturarEscanerEnviament();
+    setTransferStatus(es?"No se pudo abrir la cámara. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut obrir la càmera. Pots continuar amb INTRODUIR CODI.","error");
+  }
+}
+
+function llegirMarcEnviament(){
+  const video=document.getElementById("transferVideo");
+  if(!transferStream)return;
+  if(video.readyState<2||!video.videoWidth){transferFrame=requestAnimationFrame(llegirMarcEnviament);return}
+  try{
+    const scale=Math.min(1,720/video.videoWidth);
+    const canvas=document.createElement("canvas");
+    canvas.width=Math.round(video.videoWidth*scale);
+    canvas.height=Math.round(video.videoHeight*scale);
+    const context=canvas.getContext("2d",{willReadFrequently:true});
+    context.drawImage(video,0,0,canvas.width,canvas.height);
+    const pixels=context.getImageData(0,0,canvas.width,canvas.height);
+    const result=jsQR(pixels.data,pixels.width,pixels.height,{inversionAttempts:"attemptBoth"});
+    if(result?.data){aturarEscanerEnviament();resoldreDestinatariEnviament(result.data);return}
+  }catch(error){
+    aturarEscanerEnviament();
+    setTransferStatus(document.documentElement.lang==="es"?"No se pudo leer el QR. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut llegir el QR. Pots continuar amb INTRODUIR CODI.","error");
+    return;
+  }
+  transferFrame=requestAnimationFrame(llegirMarcEnviament);
+}
+
+async function confirmarEnviamentCiclik(){
+  if(transferBusy||transferDone||!transferRecipientId)return;
+  const es=document.documentElement.lang==="es";
+  const {amount,valid}=enviamentValid();
+  if(!valid){setTransferStatus(es?"Introduce una cantidad entera mayor que cero.":"Introdueix una quantitat entera superior a zero.","error");return}
+  const name=transferRecipientName||(es?"Miembro identificado":"Membre identificat");
+  const confirmation=es?`Vas a enviar ${amount} Cicliks a ${name}. ¿Confirmas?`:`Enviaràs ${amount} Cicliks a ${name}. Ho confirmes?`;
+  if(!window.confirm(confirmation))return;
+  transferBusy=true;
+  actualitzarEnviamentCiclik();
+  setTransferStatus(es?"Enviando Cicliks...":"Enviant Cicliks...");
+  try{
+    const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+    if(userError||!user)throw new Error("ciclik_not_authenticated");
+    const {error}=await supabaseClient.rpc("ciclik_transfer",{p_recipient_id:transferRecipientId,p_amount:amount});
+    if(error)throw error;
+    transferDone=true;
+    await carregarSaldoCiclik(user.id);
+    await carregarActivitatRecent(user.id);
+    setTransferStatus(es?`Envío realizado: ${amount} Cicliks enviados a ${name}.`:`Enviament fet: ${amount} Cicliks enviats a ${name}.`);
+  }catch(error){
+    setTransferStatus(missatgeErrorEnviament(error,es),"error");
+  }finally{
+    transferBusy=false;
+    actualitzarEnviamentCiclik();
+  }
+}
+
+function renderHistorialMembre(){
+  const es=document.documentElement.lang==="es";
+  const list=document.getElementById("historyList");
+  list.replaceChildren();
+  memberHistoryTransactions.forEach(transaction=>{
+    const row=document.createElement("article");
+    row.className="adminMovementRow";
+    const time=document.createElement("time");
+    time.dateTime=transaction.created_at||"";
+    time.textContent=adminMovementDate(transaction.created_at);
+    const description=document.createElement("div");
+    description.className="adminMovementDescription";
+    description.textContent=ciclikTransactionLabel(transaction.description,es,transaction)||"—";
+    const amount=adminMovementAmount(transaction.amount,Number(transaction.amount)<0);
+    const amountElement=document.createElement("strong");
+    amountElement.className=`adminMovementAmount ${amount.className}`;
+    amountElement.textContent=amount.text;
+    row.append(time,description,amountElement);
+    list.appendChild(row);
+  });
+  const status=document.getElementById("historyStatus");
+  if(memberHistoryError)status.textContent=es?"No se pudo cargar el historial.":"No s'ha pogut carregar l'historial.";
+  else if(memberHistoryTransactions.length)status.textContent="";
+  else if(!document.getElementById("memberHistoryPanel").hidden)status.textContent=es?"Todavía no tienes movimientos.":"Encara no tens moviments.";
+}
+
+async function obrirHistorialMembre(){
+  const {data:{user}}=await supabaseClient.auth.getUser();
+  if(!user)return;
+  memberHistoryTransactions=[];
+  memberHistoryError=false;
+  translateTransfer();
+  document.getElementById("historyStatus").textContent=document.documentElement.lang==="es"?"Cargando movimientos...":"Carregant moviments...";
+  mostrarVistaMembre("memberHistoryPanel");
+  try{
+    memberHistoryTransactions=await carregarTotsElsMoviments(supabaseClient.from("ciclik_transactions")
+      .select("id, amount, transaction_type, description, created_at")
+      .eq("user_id",user.id)
+      .order("created_at",{ascending:false}));
+    await carregarContraparts(memberHistoryTransactions);
+  }catch(error){memberHistoryError=true}
+  renderHistorialMembre();
+}
+
+function tancarHistorialMembre(){
+  memberHistoryTransactions=[];
+  document.getElementById("historyList").replaceChildren();
+  mostrarVistaMembre(null);
+}
 </script> 
 <script>
 document.querySelectorAll("nav a").forEach(link => {
