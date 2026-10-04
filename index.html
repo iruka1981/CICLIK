@@ -68,9 +68,12 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 @media(min-width:701px){
  #com-funciona .section-head{flex-direction:column;align-items:center;text-align:center;gap:12px}
 }
-.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .step{padding:35px 28px;text-align:center;border-right:1px dotted #c8bda9}.step:last-child{border-right:0}
-.step:nth-child(2){border-right:0}
+#com-funciona .section-head{flex-direction:column;align-items:center;text-align:center;gap:12px}
+.howSub{margin:0;font-size:17px;line-height:1.5;color:#565945}
+img,video{max-width:100%}
+@media(min-width:851px){.nav>nav{order:2;margin-left:auto}.nav #langSwitch{order:3;margin-left:0;margin-right:0}}
 .icon{width:70px;height:70px;border:1px solid var(--olive);border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:28px;color:var(--olive)}
 .step h3{font-size:28px;margin-bottom:10px}.step p{line-height:1.5;margin:0;color:#565945;font-size:15px}
 
@@ -264,17 +267,19 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 @media(max-width:850px){
  nav{display:none}.menuBtn{display:block}.nav.open nav{display:flex;position:absolute;top:78px;left:0;right:0;background:var(--cream);padding:20px;flex-direction:column;border-bottom:1px solid var(--line)}
  .headerLogoMark{width:160px}
- .hero{height:auto;aspect-ratio:11/5;max-height:46vh;min-height:160px}
- .heroSlideCopy{padding:0 20px;max-width:100%}
- .heroSlideCopy h1{font-size:clamp(20px,6.4vw,30px);line-height:1.16;margin:0 0 8px}
- .heroSlideCopy p{font-size:13px;line-height:1.4;max-width:100%}
+ .hero{height:70vh;height:min(76svh,640px);aspect-ratio:auto;max-height:none;min-height:420px}
+ .heroSlideOverlay{background:linear-gradient(180deg,rgba(28,24,14,.12) 0%,rgba(28,24,14,.18) 45%,rgba(28,24,14,.62) 100%)}
+ .heroSlideCopy{padding:0 22px 58px;max-width:100%;justify-content:flex-end}
+ .heroSlideCopy h1{font-size:clamp(28px,8.4vw,42px);line-height:1.1;margin:0 0 10px}
+ .heroSlideCopy p{font-size:15px;line-height:1.45;max-width:100%}
+ .heroSlidePortada .heroSlideImg{object-position:58% center}
  .heroSlideRopa .heroSlideImg{object-position:32% center}
  .heroSlideCuina .heroSlideImg{object-position:60% center}
- .heroArrow{width:26px;height:26px;font-size:13px}
+ .heroArrow{width:30px;height:30px;font-size:14px}
  .heroArrowPrev{left:8px}
  .heroArrowNext{right:8px}
- .heroDots{bottom:8px}
- .steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px dotted #c8bda9}
+ .heroDots{bottom:20px}
+ .step{padding:30px 16px}.step h3{font-size:24px}
  .walletGrid,.joinGrid{grid-template-columns:1fr}.personalHubCards{grid-template-columns:1fr}.personalHubIntro h2{font-size:39px}.profileTop{grid-template-columns:auto 1fr}.balance{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:20px 0 0}
  .actions{grid-template-columns:1fr 1fr}.activityGrid{grid-template-columns:1fr}.activityItem{border-right:0;border-bottom:1px dotted #c8bda9;padding-bottom:12px}
  .section h2,.walletIntro h2,.join h2{font-size:39px}.foot{flex-direction:column;align-items:flex-start}.footerLogoWrap{flex:0 0 auto;align-self:stretch}.footlinks{flex-wrap:wrap}
@@ -799,12 +804,11 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 
 <section class="section" id="com-funciona">
  <div class="wrap">
-  <div class="section-head"><h2>Com funciona Ciclik?</h2><a class="smalllink" href="#comunitat">SABER-NE MÉS →</a></div>
+  <div class="section-head"><h2>Com funciona Ciclik?</h2><p class="howSub">Dona, comparteix, rep i connecta.</p></div>
   <div class="steps">
-  <article class="step"><div class="icon">◇</div><h3>APORTA</h3><p>Posa en circulació allò que pots oferir: temps, coneixements, habilitats, objectes, tallers o ajuda.</p></article>
-  <article class="step"><div class="icon">◎</div><h3>SUMA CICLIKS</h3><p>Rep Cicliks quan aportes valor a la comunitat, participes en voluntariats o una altra persona te’ls envia.</p></article>
-  <article class="step"><div class="icon">↻</div><h3>UTILITZA’LS</h3><p>Fes servir els teus Cicliks per participar en tallers, rebre ajuda, accedir a objectes o aprofitar altres aportacions de la comunitat.</p></article>
-  <article class="step"><div class="icon">♧</div><h3>FES-LOS CIRCULAR</h3><p>Els Cicliks passen d’una persona a una altra i fan possible que el valor continuï circulant dins la comunitat.</p></article>
+  <article class="step"><div class="icon">◇</div><h3>Forma’n part</h3><p>Crea gratuïtament el teu perfil i explica què pots aportar o què t’agradaria trobar.</p></article>
+  <article class="step"><div class="icon">◎</div><h3>Aporta i guanya Cicliks</h3><p>Comparteix roba, temps, coneixements, habilitats o experiències i rep Cicliks a canvi.</p></article>
+  <article class="step"><div class="icon">↻</div><h3>Fes-los circular</h3><p>Utilitza els teus Cicliks per intercanviar, descobrir activitats i participar en tallers, mercats i experiències de la comunitat.</p></article>
   </div>
  </div>
 </section>
@@ -1528,30 +1532,26 @@ document.querySelector(".authSignature small").textContent =
   const howItWorksTexts = es
     ? [
         "¿Cómo funciona Ciclik?",
-        "SABER MÁS →",
-        "Da",
-        "Lo que ya no necesitas puede tener valor para otra persona.",
-        "Comparte",
-        "Tu tiempo, conocimiento o una habilidad también pueden circular.",
-        "Recibe",
-        "Participa en intercambios, talleres y experiencias.",
-        "Conecta",
-        "Forma parte de una comunidad consciente y colaborativa."
+        "Da, comparte, recibe y conecta.",
+        "Forma parte",
+        "Crea gratuitamente tu perfil y explica qué puedes aportar o qué te gustaría encontrar.",
+        "Aporta y gana Cicliks",
+        "Comparte ropa, tiempo, conocimientos, habilidades o experiencias y recibe Cicliks a cambio.",
+        "Hazlos circular",
+        "Utiliza tus Cicliks para intercambiar, descubrir actividades y participar en talleres, mercados y experiencias de la comunidad."
       ]
     : [
         "Com funciona Ciclik?",
-        "SABER-NE MÉS →",
-        "Dóna",
-        "Allò que ja no necessites pot tenir valor per algú altre.",
-        "Comparteix",
-        "El teu temps, coneixement o una habilitat també poden circular.",
-        "Rep",
-        "Participa en intercanvis, tallers i experiències.",
-        "Connecta",
-        "Forma part d'una comunitat conscient i col·laborativa."
+        "Dona, comparteix, rep i connecta.",
+        "Forma’n part",
+        "Crea gratuïtament el teu perfil i explica què pots aportar o què t’agradaria trobar.",
+        "Aporta i guanya Cicliks",
+        "Comparteix roba, temps, coneixements, habilitats o experiències i rep Cicliks a canvi.",
+        "Fes-los circular",
+        "Utilitza els teus Cicliks per intercanviar, descobrir activitats i participar en tallers, mercats i experiències de la comunitat."
       ];
   howItWorks.querySelector(".section-head h2").textContent = howItWorksTexts[0];
-  howItWorks.querySelector(".section-head .smalllink").textContent = howItWorksTexts[1];
+  howItWorks.querySelector(".section-head .howSub").textContent = howItWorksTexts[1];
   howItWorks.querySelectorAll(".step").forEach((step, index) => {
     step.querySelector("h3").textContent = howItWorksTexts[index * 2 + 2];
     step.querySelector("p").textContent = howItWorksTexts[index * 2 + 3];
