@@ -1142,7 +1142,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </div>
     <div class="proposalSideV2">
      <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
-    <button class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" type="button" disabled hidden>INSCRIU-TE</button>
+    <button class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" type="button" disabled>INSCRIU-TE</button>
     </div>
    </article>
    <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
@@ -1159,7 +1159,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </div>
     <div class="proposalSideV2">
      <p class="proposalDesc" id="proposalMarketDesc">Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.</p>
-    <a class="proposalCta proposalCtaOlive proposalMemberCta" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer" hidden>INSCRIU-TE</a>
+    <a class="proposalCta proposalCtaOlive proposalMemberCta" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer">INSCRIU-TE</a>
     </div>
    </article>
   </div>
@@ -1879,7 +1879,6 @@ function restaurarAcceso(){
 
 function actualizarAccesoActividades(hasSession){
   document.getElementById("activityJoinCta").hidden=hasSession;
-  document.querySelectorAll(".proposalMemberCta").forEach(button=>{button.hidden=!hasSession});
 }
 
 async function cerrarSesion(event){
