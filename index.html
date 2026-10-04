@@ -59,12 +59,12 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.93;max-width:580px}
 .section{padding:80px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:38px}
 .hero,.section,.walletSection,.join{scroll-margin-top:78px}
 .section h2{font-size:48px}.smalllink{font-size:12px;font-weight:700;letter-spacing:.08em}
-.membershipCta{padding:26px 0 78px}
+.membershipCta{padding:70px 0 74px;background:var(--olive);color:var(--white)}
 .membershipCta .wrap{max-width:760px;text-align:center}
-.membershipCta h2{font-size:42px;margin-bottom:18px}
-.membershipCta p{max-width:650px;margin:0 auto 14px;line-height:1.6;color:#565945}
+.membershipCta h2{font-size:42px;margin-bottom:18px;color:var(--white)}
+.membershipCta p{max-width:650px;margin:0 auto 14px;line-height:1.6;color:rgba(247,242,232,.92)}
 .membershipCta p:last-of-type{margin-bottom:28px}
-.membershipCta a{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--olive);border-radius:999px;padding:14px 22px;color:var(--olive);font-size:12px;font-weight:700;letter-spacing:.04em}
+.membershipCta a{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--cream);background:var(--cream);border-radius:999px;padding:14px 22px;color:var(--olive);font-size:12px;font-weight:700;letter-spacing:.04em}
 @media(min-width:701px){
  #com-funciona .section-head{flex-direction:column;align-items:center;text-align:center;gap:12px}
 }
@@ -76,6 +76,29 @@ img,video{max-width:100%}
 @media(min-width:851px){.nav>nav{order:2;margin-left:auto}.nav #langSwitch{order:3;margin-left:0;margin-right:0}}
 header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-content:space-between}
 @media(max-width:850px){header .wrap.nav{padding:0 20px}}
+.guanyaInfo{scroll-margin-top:96px}
+#tallers .section-head{justify-content:center}
+.infoBand{background:var(--cream);border-top:1px solid var(--line);padding:52px 0}
+.infoGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;width:min(1200px,calc(100% - 48px));margin:0 auto}
+.infoBand .guanyaInfo{display:flex;padding:0;background:transparent;border-top:0}
+.infoBand .guanyaInfo .wrap{display:flex;flex-direction:column;align-items:stretch;text-align:left;width:100%;max-width:none;margin:0}
+.infoBand .guanyaInfo h2,.infoBand .guanyaInfo h3{text-align:center}
+.infoBand .guanyaInfo button{align-self:center}
+.infoBand .guanyaInfo h2{font-size:30px;margin-bottom:8px}
+.infoBand .guanyaInfo h3{font-size:18px;margin:0 0 16px}
+.infoBand .guanyaInfo p{font-size:15px;line-height:1.55;margin:0 0 12px}
+.infoBand .guanyaInfo button{margin-top:auto;padding:12px 20px;font-size:12px;letter-spacing:.04em}
+@media(max-width:768px){.infoBand{padding:40px 0}.infoGrid{grid-template-columns:1fr;gap:0}.infoBand .guanyaInfo{padding:22px 0;border-top:1px dotted #c8bda9}.infoBand .guanyaInfo:first-child{border-top:0;padding-top:0}.infoBand .guanyaInfo:last-child{padding-bottom:0}.infoBand .guanyaInfo h2,.infoBand .guanyaInfo h3{text-align:left}.infoBand .guanyaInfo button{align-self:flex-start;margin-top:8px}}
+#tallers h2{text-align:center}
+#tallers .lead{margin:18px auto 30px;text-align:center}
+#tallers{background:var(--olive)}
+#tallers h2{color:var(--white)}
+#tallers .lead,#tallers .proposalEmpty{color:rgba(247,242,232,.92)}
+#tallers .proposalCardV2{background:var(--cream);border-color:transparent}
+.activityBand{background:var(--cream);padding:56px 0}.activityBand .activityJoinCta{margin-top:0}.activityBand:has(.activityJoinCta[hidden]){display:none}
+.proposalFilters{justify-content:center}
+.join .authIntro{text-align:center}.join .authIntro p{margin:0 auto}
+.join .authSignature{text-align:center;margin-top:28px}
 .icon{width:70px;height:70px;border:1px solid var(--olive);border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:28px;color:var(--olive)}
 .step h3{font-size:28px;margin-bottom:10px}.step p{line-height:1.5;margin:0;color:#565945;font-size:15px}
 
@@ -310,7 +333,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
  .step .icon{margin-bottom:14px}
  .step h3{margin-bottom:8px}
  .step:last-child{border-bottom:0}
- .membershipCta{padding:12px 0 58px}
+ .membershipCta{padding:48px 0 52px}
  .membershipCta .wrap{width:min(100% - 40px,760px)}
  .membershipCta h2{font-size:36px;line-height:1.05}
  .membershipCta p{font-size:16px;line-height:1.5}
@@ -1050,6 +1073,8 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
   <p class="walletQrStatus" id="memberQrStatus" role="status" aria-live="polite"></p>
  </dialog>
 </section>
+<section class="infoBand">
+<div class="wrap infoGrid">
 <section id="guanyaInfo" class="guanyaInfo">
   <div class="wrap">
     <h2 id="guanyaTitle">Guanya Cicliks</h2>
@@ -1062,10 +1087,8 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </p>
 
     <p id="guanyaText2">
-      Pots impartir tallers o cursos, compartir un ofici o una habilitat,
-      col·laborar en projectes, ajudar en activitats i esdeveniments,
-      aportar coneixements professionals o simplement oferir el teu temps
-      i les teves ganes de participar.
+      Pots impartir tallers, compartir un ofici o una habilitat,
+      col·laborar en projectes o simplement oferir el teu temps.
     </p>
 
     <button type="button" id="guanyaButton">VULL APORTAR</button>
@@ -1086,12 +1109,75 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
   <div class="wrap">
     <h2 data-ca="Intercanvia" data-es="Intercambia">Intercanvia</h2>
     <h3 data-ca="Allò que circula ens connecta." data-es="Lo que circula, conecta.">Allò que circula ens connecta.</h3>
-    <p data-ca="Ciclik no consisteix simplement a comprar i vendre. Les persones aporten coses que tenen valor per a la comunitat —roba, temps, coneixements, habilitats, experiències...— i els Cicliks permeten que aquest valor continuï circulant." data-es="Ciclik no consiste simplemente en comprar y vender. Las personas aportan cosas que tienen valor para la comunidad —ropa, tiempo, conocimientos, habilidades, experiencias...— y los Cicliks permiten que ese valor siga circulando.">Ciclik no consisteix simplement a comprar i vendre. Les persones aporten coses que tenen valor per a la comunitat —roba, temps, coneixements, habilitats, experiències...— i els Cicliks permeten que aquest valor continuï circulant.</p>
+    <p data-ca="Ciclik no consisteix a comprar i vendre. Les persones aporten allò que té valor per a la comunitat —roba, temps, coneixements, habilitats— i els Cicliks fan que aquest valor continuï circulant." data-es="Ciclik no consiste en comprar y vender. Las personas aportan lo que tiene valor para la comunidad —ropa, tiempo, conocimientos, habilidades— y los Cicliks hacen que ese valor siga circulando.">Ciclik no consisteix a comprar i vendre. Les persones aporten allò que té valor per a la comunitat —roba, temps, coneixements, habilitats— i els Cicliks fan que aquest valor continuï circulant.</p>
     <p data-ca="Els Cicliks obtinguts es poden utilitzar per participar en altres intercanvis, propostes, activitats i experiències de la comunitat." data-es="Los Cicliks obtenidos pueden utilizarse para participar en otros intercambios, propuestas, actividades y experiencias de la comunidad.">Els Cicliks obtinguts es poden utilitzar per participar en altres intercanvis, propostes, activitats i experiències de la comunitat.</p>
     <button type="button" data-ca="VEURE ON INTERCANVIAR" data-es="VER DÓNDE INTERCAMBIAR" onclick="const c=document.querySelector('#tallers .proposalCardMarket');(c&&!c.hidden?c:document.getElementById('tallers')).scrollIntoView({behavior:'smooth',block:'start'})">VEURE ON INTERCANVIAR</button>
   </div>
 </section>
+</div>
+</section>
 
+<section class="section" id="tallers">
+ <div class="wrap">
+  <div class="section-head"><h2>Tallers i experiències</h2></div>
+  <p class="lead">Cuina, costura, artesania, coneixements i experiències compartides. Ciclik posa en circulació molt més que objectes.</p>
+  <div class="proposalFilters" role="group" aria-label="Filtra les propostes">
+   <button class="proposalFilter" type="button" data-proposal-filter="workshops" aria-pressed="false" onclick="filtrarPropostesCiclik('workshops')">Tallers i experiències</button>
+   <button class="proposalFilter" type="button" data-proposal-filter="objects" aria-pressed="false" onclick="filtrarPropostesCiclik('objects')">Objectes</button>
+   <button class="proposalFilter" type="button" data-proposal-filter="help" aria-pressed="false" onclick="filtrarPropostesCiclik('help')">Ajuda i habilitats</button>
+   <button class="proposalFilter" type="button" data-proposal-filter="activities" aria-pressed="false" onclick="filtrarPropostesCiclik('activities')">Activitats</button>
+  </div>
+  <div class="proposalList" id="proposalList">
+   <article class="proposalCardV2 proposalCardWorkshop" data-proposal-category="workshops">
+    <div class="proposalMediaV2" style="background-image:url('TALLER CUINA PALESTINA.png')" aria-hidden="true"></div>
+    <div class="proposalMainV2">
+     <span class="proposalTag" id="proposalCookingTag">TALLER</span>
+     <h3 id="proposalCookingTitle">Cuina palestina</h3>
+     <p class="proposalSubtitle" id="proposalCookingByline">amb Mazeed Khalilia</p>
+     <ul class="proposalMeta">
+      <li id="proposalCookingMeta1">Properament</li>
+      <li id="proposalCookingMeta2">Terrassa</li>
+      <li id="proposalCookingMeta3">Places limitades</li>
+     </ul>
+    </div>
+    <div class="proposalSideV2">
+     <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
+    <button class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" type="button" disabled hidden>INSCRIU-TE</button>
+    </div>
+   </article>
+   <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
+    <div class="proposalMediaV2" style="background-image:url('MERCAT CIRCULAR SEGONA EDICIO.png')" aria-hidden="true"></div>
+    <div class="proposalMainV2">
+     <span class="proposalTag" id="proposalMarketTag">MERCAT</span>
+     <h3 id="proposalMarketTitle">Mercat Circular de roba</h3>
+     <p class="proposalSubtitle" id="proposalMarketEdition">2a edició</p>
+     <ul class="proposalMeta">
+      <li id="proposalMarketMeta1">Diumenge 18 d'octubre 2026</li>
+      <li id="proposalMarketMeta2">Terrassa</li>
+      <li id="proposalMarketMeta3">Entrada: 6 €</li>
+     </ul>
+    </div>
+    <div class="proposalSideV2">
+     <p class="proposalDesc" id="proposalMarketDesc">Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.</p>
+    <a class="proposalCta proposalCtaOlive proposalMemberCta" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer" hidden>INSCRIU-TE</a>
+    </div>
+   </article>
+  </div>
+    <p class="proposalEmpty" id="proposalEmpty" role="status">Encara no hi ha propostes en aquesta categoria.</p>
+ </div>
+</section>
+<section class="activityBand">
+ <div class="wrap">
+  <aside class="activityJoinCta" id="activityJoinCta">
+   <h3 id="activityJoinTitle">Vols gaudir de les activitats de Ciclik?</h3>
+   <p id="activityJoinText">Registra't a Ciclik i forma part de la comunitat per participar en tallers, mercats i experiències.</p>
+   <div class="activityJoinActions">
+    <a class="activityJoinPrimary" id="activityJoinRegister" href="#comunitat" onclick="mostrarRegistro();document.getElementById('comunitat').scrollIntoView({behavior:'smooth'})">CREA EL TEU COMPTE</a>
+    <a class="activityJoinSecondary" id="activityJoinLogin" href="#comunitat" onclick="mostrarLogin();document.getElementById('comunitat').scrollIntoView({behavior:'smooth'})">Ja tens compte? Inicia sessió</a>
+   </div>
+  </aside>
+ </div>
+</section>
 <section class="join authSection" id="comunitat">
   <div class="wrap authWrap">
 
@@ -1224,68 +1310,10 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </section>
 
     <div class="authSignature">
-      <div>⌁</div>
       <small>DEIXAR ANAR · FER ESPAI · FER CIRCULAR</small>
     </div>
 
   </div>
-</section>
-<section class="section" id="tallers">
- <div class="wrap">
-  <div class="section-head"><h2>Tallers i experiències</h2></div>
-  <p class="lead">Cuina, costura, artesania, coneixements i experiències compartides. Ciclik posa en circulació molt més que objectes.</p>
-  <div class="proposalFilters" role="group" aria-label="Filtra les propostes">
-   <button class="proposalFilter" type="button" data-proposal-filter="workshops" aria-pressed="false" onclick="filtrarPropostesCiclik('workshops')">Tallers i experiències</button>
-   <button class="proposalFilter" type="button" data-proposal-filter="objects" aria-pressed="false" onclick="filtrarPropostesCiclik('objects')">Objectes</button>
-   <button class="proposalFilter" type="button" data-proposal-filter="help" aria-pressed="false" onclick="filtrarPropostesCiclik('help')">Ajuda i habilitats</button>
-   <button class="proposalFilter" type="button" data-proposal-filter="activities" aria-pressed="false" onclick="filtrarPropostesCiclik('activities')">Activitats</button>
-  </div>
-  <div class="proposalList" id="proposalList">
-   <article class="proposalCardV2 proposalCardWorkshop" data-proposal-category="workshops">
-    <div class="proposalMediaV2" style="background-image:url('TALLER CUINA PALESTINA.png')" aria-hidden="true"></div>
-    <div class="proposalMainV2">
-     <span class="proposalTag" id="proposalCookingTag">TALLER</span>
-     <h3 id="proposalCookingTitle">Cuina palestina</h3>
-     <p class="proposalSubtitle" id="proposalCookingByline">amb Mazeed Khalilia</p>
-     <ul class="proposalMeta">
-      <li id="proposalCookingMeta1">Properament</li>
-      <li id="proposalCookingMeta2">Terrassa</li>
-      <li id="proposalCookingMeta3">Places limitades</li>
-     </ul>
-    </div>
-    <div class="proposalSideV2">
-     <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
-    <button class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" type="button" disabled hidden>INSCRIU-TE</button>
-    </div>
-   </article>
-   <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
-    <div class="proposalMediaV2" style="background-image:url('MERCAT CIRCULAR SEGONA EDICIO.png')" aria-hidden="true"></div>
-    <div class="proposalMainV2">
-     <span class="proposalTag" id="proposalMarketTag">MERCAT</span>
-     <h3 id="proposalMarketTitle">Mercat Circular de roba</h3>
-     <p class="proposalSubtitle" id="proposalMarketEdition">2a edició</p>
-     <ul class="proposalMeta">
-      <li id="proposalMarketMeta1">Diumenge 18 d'octubre 2026</li>
-      <li id="proposalMarketMeta2">Terrassa</li>
-      <li id="proposalMarketMeta3">Entrada: 6 €</li>
-     </ul>
-    </div>
-    <div class="proposalSideV2">
-     <p class="proposalDesc" id="proposalMarketDesc">Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.</p>
-    <a class="proposalCta proposalCtaOlive proposalMemberCta" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer" hidden>INSCRIU-TE</a>
-    </div>
-   </article>
-  </div>
-    <p class="proposalEmpty" id="proposalEmpty" role="status">Encara no hi ha propostes en aquesta categoria.</p>
-  <aside class="activityJoinCta" id="activityJoinCta">
-   <h3 id="activityJoinTitle">Vols gaudir de les activitats de Ciclik?</h3>
-   <p id="activityJoinText">Registra't a Ciclik i forma part de la comunitat per participar en tallers, mercats i experiències.</p>
-   <div class="activityJoinActions">
-    <a class="activityJoinPrimary" id="activityJoinRegister" href="#comunitat" onclick="mostrarRegistro();document.getElementById('comunitat').scrollIntoView({behavior:'smooth'})">CREA EL TEU COMPTE</a>
-    <a class="activityJoinSecondary" id="activityJoinLogin" href="#comunitat" onclick="mostrarLogin();document.getElementById('comunitat').scrollIntoView({behavior:'smooth'})">Ja tens compte? Inicia sessió</a>
-   </div>
-  </aside>
- </div>
 </section>
 </main>
 
@@ -3248,8 +3276,8 @@ function translateGuanyaInfo(lang){
     ?"Ciclik crece con lo que cada persona sabe, puede o quiere compartir. Aporta tiempo, conocimientos, habilidades o ayuda a la comunidad y recibe Cicliks a cambio."
     :"Ciclik creix amb el que cadascú sap, pot o vol compartir. Aporta temps, coneixements, habilitats o ajuda a la comunitat i rep Cicliks a canvi.";
   document.getElementById("guanyaText2").textContent=es
-    ?"Puedes impartir talleres o cursos, compartir un oficio o una habilidad, colaborar en proyectos, ayudar en actividades y eventos, aportar conocimientos profesionales o simplemente ofrecer tu tiempo y tus ganas de participar."
-    :"Pots impartir tallers o cursos, compartir un ofici o una habilitat, col·laborar en projectes, ajudar en activitats i esdeveniments, aportar coneixements professionals o simplement oferir el teu temps i les teves ganes de participar.";
+    ?"Puedes impartir talleres, compartir un oficio o una habilidad, colaborar en proyectos o simplemente ofrecer tu tiempo."
+    :"Pots impartir tallers, compartir un ofici o una habilitat, col·laborar en projectes o simplement oferir el teu temps.";
   document.getElementById("guanyaButton").textContent=es?"QUIERO APORTAR":"VULL APORTAR";
   document.querySelectorAll("#descobreixInfo,#intercanviaInfo").forEach(section=>section.querySelectorAll("[data-ca][data-es]").forEach(el=>{el.textContent=es?el.dataset.es:el.dataset.ca}));
 }
