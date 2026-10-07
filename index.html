@@ -272,6 +272,113 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .personalNews{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:34px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .personalNews h3{font-size:27px}
 .personalNews .personalHubSoon{margin:0}
+.personalHubLegacy[hidden]{display:none}
+.dashHome{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.dashHeader{display:flex;align-items:center;gap:16px}
+.dashHeader .avatar{width:68px;height:68px;flex:0 0 68px;font-size:28px;box-shadow:0 0 0 4px var(--cream),0 0 0 5px var(--line)}
+.dashGreeting{min-width:0}
+.dashHello{font-size:30px;line-height:1.1;overflow-wrap:anywhere}
+.dashHelloText{margin-right:.3em}
+.dashArrow{margin-left:.35em}
+.dashProfileLink{display:inline-block;margin-top:6px;color:#6b6f55;font-size:13px;font-weight:700}
+.dashProfileLink:hover{color:var(--olive);text-decoration:underline;text-underline-offset:3px}
+.dashWallet{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:24px 22px 24px 26px;background:rgba(255,250,241,.92);border:1px solid var(--line);border-radius:26px;color:var(--olive);font-family:inherit;text-align:left;cursor:pointer;box-shadow:0 14px 30px -22px rgba(79,86,51,.55);transition:border-color .15s,transform .15s}
+.dashWallet:hover{border-color:var(--olive2)}
+.dashWallet:active{transform:scale(.99)}
+.dashWalletBody{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.dashWalletLabel{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6b6f55}
+.dashWalletAmount{display:flex;align-items:flex-start;gap:4px;margin-top:10px}
+.dashWalletAmount strong{font:400 clamp(44px,13vw,56px)/1 Georgia,"Times New Roman",serif}
+.dashLeaf{width:24px;height:30px;flex:0 0 24px;margin-top:2px;color:var(--olive2);fill:currentColor;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.dashWalletUnit{margin-top:6px;font:18px Georgia,"Times New Roman",serif;color:#6b6f55}
+.dashNotice{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border:1px dashed #bfb299;border-radius:16px;background:rgba(255,250,241,.5);color:var(--rust);font-size:14px;font-weight:700}
+.dashNotice[hidden]{display:none}
+.dashMenu{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.dashRow{display:flex;align-items:center;gap:16px;width:100%;min-height:68px;padding:12px 18px;background:rgba(255,250,241,.85);border:1px solid var(--line);border-radius:20px;color:var(--ink);font:inherit;font-size:17px;text-align:left;cursor:pointer;transition:border-color .15s,transform .15s}
+.dashRow:hover{border-color:var(--olive2)}
+.dashRow:active{transform:scale(.99)}
+.dashRow:focus-visible,.dashWallet:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
+.dashIcon{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border-radius:14px;background:var(--cream2);color:var(--olive)}
+.dashIcon svg{width:22px;height:22px}
+.dashIcon svg,.dashChevron{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dashRowLabel{flex:1;min-width:0}
+.dashChevron{width:20px;height:20px;flex:0 0 20px;color:#8b8a6f}
+.dashRowSoon{opacity:.6;cursor:default}
+.dashRowSoon:hover{border-color:var(--line)}
+.dashSoon{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#827c69}
+.dashBack{display:inline-flex;align-items:center;margin:0 0 18px;padding:6px 0;border:0;background:none;color:var(--olive);font:700 13px Arial,Helvetica,sans-serif;cursor:pointer}
+.dashBack:hover{text-decoration:underline;text-underline-offset:3px}
+.walletGrid[hidden]{display:none!important}
+#moneder:not([data-view="wallet"]):not([data-view="circular"]) .walletGrid{display:none!important}
+#moneder[data-view]:not([data-view="home"]) :is(.dashHome,.staffAccess){display:none}
+#moneder[data-view]:not([data-view="home"]) .personalHub{margin-bottom:0}
+.dashViewTitle,.dashCommunity,.dashWalletRows{display:none}
+#moneder:is([data-view="wallet"],[data-view="circular"]) .walletIntro :is(h2:not(.dashViewTitle),p,.outline){display:none}
+#moneder[data-view="circular"] .dashCircularTitle,#moneder[data-view="wallet"] .dashWalletTitle{display:block}
+#walletDetails .walletQrTrigger,#walletDetails .balance small{display:none}
+#moneder[data-view="wallet"] #walletDetails :is(.actions,.activity),#moneder[data-view="circular"] #walletDetails :is(.walletBalanceTop,.activity){display:none}
+#moneder[data-view="wallet"] #walletDetails .dashWalletRows{display:flex}
+#moneder[data-view="circular"] #walletDetails .actions{margin-top:0;grid-template-columns:repeat(3,1fr)}
+#moneder[data-view="circular"] #walletDetails .actions button:nth-child(2){display:none}
+.dashWalletRows{flex-direction:column;gap:12px;margin-top:22px}
+.dashBalanceLabel{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6b6f55}
+#walletDetails .balance{border-top:0;padding-top:0}
+.balance .dashBalanceLine{display:flex;align-items:flex-start;gap:4px;margin-top:10px;font:400 clamp(44px,13vw,56px)/1 Georgia,"Times New Roman",serif}
+.dashCommunity{max-width:560px;margin:0 auto}
+#moneder[data-view="community"] .dashCommunity{display:block}
+.dashCommunityBody{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:28px 24px;background:rgba(255,250,241,.85);border:1px solid var(--line);border-radius:24px}
+.dashCommunityBody h2{font-size:34px;line-height:1.1}
+.dashCommunityBody p{margin:0;color:#565945;font-size:16px;line-height:1.55}
+.dashCommunitySoon{display:inline-flex;align-items:center;gap:6px;margin-top:6px;color:#827c69;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.dashCommunitySoon .dashLeaf{width:16px;height:20px;flex-basis:16px;margin:0}
+.dashProfileCard{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:24px;padding:22px 16px 18px;background:var(--cream2);border-radius:18px;text-align:center}
+.dashProfileCard .avatar{width:96px;height:96px;flex:0 0 96px;font-size:40px}
+.dashAvatarWrap{position:relative;display:block;flex:0 0 auto;border-radius:50%}
+.dashHeader .dashAvatarWrap{width:68px;height:68px;flex:0 0 68px}
+.dashProfileCard .dashAvatarWrap{width:96px;height:96px}
+.dashAvatarImg{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;border-radius:50%}
+.dashAvatarImg[hidden]{display:none}
+.dashPhotoBtn{padding:8px 14px;border:0;background:none;color:var(--olive);font:700 13px Arial,Helvetica,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.dashPhotoBtn:disabled{opacity:.5;cursor:default}
+.dashPhotoStatus{min-height:0;margin:0;color:#565945;font-size:13px;line-height:1.4}
+.dashPhotoStatus:empty{display:none}
+.dashPhotoStatus.isError,.dashCropStatus.isError{color:var(--rust)}
+.dashProfileInfo{display:flex;flex-direction:column;gap:2px;min-width:0;margin-top:6px}
+.dashCropStage{display:grid;place-items:center;margin:0 auto 14px}
+.dashCropStage canvas{display:block;width:min(76vw,300px);aspect-ratio:1;border-radius:12px;background:#e8e0cf;touch-action:none;cursor:grab}
+.dashCropStage canvas:active{cursor:grabbing}
+.dashZoom{display:flex;align-items:center;gap:12px;margin:0 auto 12px;max-width:300px;color:#565945;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dashZoom input{flex:1;min-width:0;accent-color:var(--olive)}
+.dashCropStatus{min-height:18px;margin:0 auto 12px!important;font-size:13px!important;color:#565945!important}
+.dashCropStatus.isError{color:var(--rust)!important}
+.dashPhotoActions{display:flex;gap:10px;justify-content:center}
+.dashPhotoActions button{flex:1;max-width:160px;padding:13px 14px;border-radius:999px;font:700 12px Arial,Helvetica,sans-serif;letter-spacing:.04em;cursor:pointer}
+.dashPhotoActions button:disabled{opacity:.5;cursor:default}
+.dashPhotoCancel{border:1px solid var(--olive);background:transparent;color:var(--olive)}
+.dashPhotoSave{border:1px solid var(--olive);background:var(--olive);color:var(--white)}
+.dashProfileInfo strong{font:400 20px Georgia,"Times New Roman",serif;color:var(--olive);overflow-wrap:anywhere}
+.dashProfileInfo span{color:#6b6f55;font-size:13px;overflow-wrap:anywhere}
+.dashPrefsLabel{display:block;margin-bottom:8px;color:#6b6f55;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+#moneder .memberProfileSection .dashRowSoon{margin-top:24px}
+#moneder .staffAccess{max-width:560px;margin:24px auto 0}
+#moneder:has(#memberProfileSection[style*="display: block"]) :is(#personalHub,.walletGrid){display:none!important}
+#moneder .memberProfileSection{max-width:620px;margin:0 auto;padding:28px 24px 26px;scroll-margin-top:94px;background:rgba(255,250,241,.85);border:1px solid var(--line);border-radius:24px}
+#moneder .memberProfileSection h3{color:var(--olive)}
+#moneder .memberProfileSection>p{color:#565945}
+#moneder .memberProfileGroup legend{color:var(--olive)}
+#moneder .memberProfileOption{color:var(--ink)}
+#moneder .memberProfileOption input{accent-color:var(--olive)}
+#moneder .memberProfileForm textarea{border-color:var(--line);background:#fffdf8;color:var(--ink)}
+#moneder .memberProfileForm textarea::placeholder{color:#8b866f}
+#moneder .memberProfileForm button{background:var(--olive);color:var(--white)}
+#moneder .memberProfileStatus{color:#565945}
+@media(max-width:700px){
+ #moneder{padding:36px 0 56px}
+ .dashHello{font-size:27px}
+ #moneder .memberProfileSection{padding:22px 16px 20px}
+ #moneder[data-view="circular"] #walletDetails .actions{grid-template-columns:1fr}
+ #moneder[data-view="circular"] #walletDetails .actions button{padding:16px}
+}
 .walletGrid{display:grid;grid-template-columns:280px 1fr;gap:35px;align-items:start}
 .walletIntro h2{font-size:50px}.walletIntro p{margin:10px 0 25px;color:#5b5e4b}
 .outline{display:inline-block;border:1px solid var(--olive);border-radius:999px;padding:13px 22px;font-size:12px;font-weight:700}
@@ -922,14 +1029,46 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 <section class="walletSection" id="moneder" style="display:none;">
  <div class="wrap">
   <div class="personalHub" id="personalHub">
-   <div class="personalHubIntro">
-    <h2 id="personalWelcomeTitle">Benvinguda al teu espai Ciclik</h2>
-    <p id="personalWelcomeText">Aquí pots veure els teus Cicliks, les teves aportacions i tot el que està passant a la comunitat.</p>
+   <div class="dashHome">
+    <div class="dashHeader">
+     <div class="dashAvatarWrap"><div class="avatar" id="avatar">C</div><img class="dashAvatarImg" alt="" hidden></div>
+     <div class="dashGreeting">
+      <h2 class="dashHello"><span class="dashHelloText">Hola,</span><span id="profileName">El teu perfil</span></h2>
+      <a class="dashProfileLink" id="editProfileButton" href="#memberProfileSection" onclick="obrirPerfilMembre(event)"><span data-dash-ca="Veure el meu perfil" data-dash-es="Ver mi perfil">Veure el meu perfil</span><span class="dashArrow" aria-hidden="true">→</span></a>
+     </div>
+    </div>
+    <button class="dashWallet" type="button" onclick="mostrarVistaDashboard('wallet')">
+     <span class="dashWalletBody">
+      <span class="dashWalletLabel" data-dash-ca="El meu moneder" data-dash-es="Mi monedero">El meu moneder</span>
+      <span class="dashWalletAmount"><strong id="personalBalance">0</strong><svg class="dashLeaf" viewBox="0 0 24 30" aria-hidden="true"><path d="M5 29C7 20 11 12 19 3" fill="none"/><path d="M10 17C3 16 2 9 3 6c6 1 9 5 7 11z"/><path d="M14 11c4 1 8 3 8 9-6 0-9-4-8-9z"/></svg></span>
+      <span class="dashWalletUnit">Cicliks</span>
+     </span>
+     <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
+    <a class="dashNotice" id="profileCompleteNotice" href="#memberProfileSection" onclick="obrirPerfilMembre(event)" hidden><span data-dash-ca="Completa el teu perfil" data-dash-es="Completa tu perfil">Completa el teu perfil</span><span class="dashArrow" aria-hidden="true">→</span></a>
+        <div class="dashMenu" role="navigation" aria-label="Menú">
+     <button class="dashRow" type="button" onclick="mostrarVistaDashboard('community')">
+      <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.1 2 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M16.5 14.2c2.3.1 3.8 1.6 4.2 4.3"/></svg></span>
+      <span class="dashRowLabel" data-dash-ca="Comunitat" data-dash-es="Comunidad">Comunitat</span>
+      <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+     </button>
+     <button class="dashRow" type="button" onclick="mostrarVistaDashboard('circular')">
+      <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/></svg></span>
+      <span class="dashRowLabel" data-dash-ca="Fes circular" data-dash-es="Haz circular">Fes circular</span>
+      <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+     </button>
+     <a class="dashRow" href="#tallers">
+      <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>
+      <span class="dashRowLabel" data-dash-ca="Esdeveniments" data-dash-es="Eventos">Esdeveniments</span>
+      <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+     </a>
+     <button class="dashRow" type="button" onclick="obrirQrPersonal()">
+      <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2.5v2.5M20 14v.01M14 20h.01M17 20h3v-3"/></svg></span>
+      <span class="dashRowLabel" data-dash-ca="El meu QR" data-dash-es="Mi QR">El meu QR</span>
+      <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+     </button>
+    </div>
    </div>
-  <div class="personalIdentity">
-   <div class="avatar" id="avatar">C</div>
-   <div class="name"><h3 id="profileName">El teu perfil</h3><p>Membre de la comunitat Ciclik</p><span id="editProfileButton" class="edit" role="button" tabindex="0" onclick="obrirPerfilMembre(event)">Editar perfil</span></div>
-  </div>
   <div class="staffAccess" id="staffAccess" hidden>
   <button type="button" id="staffAccessButton" onclick="obrirPanellAdministracio()">Administració</button>
   </div>
@@ -962,10 +1101,15 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    <p class="clothesOperationStatus" id="clothesOperationStatus" role="status" aria-live="polite"></p>
   </div>
   </section>
+   <div class="personalHubLegacy" hidden aria-hidden="true">
+   <div class="personalHubIntro">
+    <h2 id="personalWelcomeTitle">Benvinguda al teu espai Ciclik</h2>
+    <p id="personalWelcomeText">Aquí pots veure els teus Cicliks, les teves aportacions i tot el que està passant a la comunitat.</p>
+   </div>
+   <div class="name"><p>Membre de la comunitat Ciclik</p><span class="edit">Editar perfil</span></div>
    <div class="personalHubCards">
     <article class="personalHubCard personalHubWallet">
      <span class="personalHubLabel" id="personalWalletLabel">MONEDER</span>
-    <strong class="personalHubBalance"><span id="personalBalance">0</span> Cicliks</strong>
      <p id="personalWalletText">Consulta el teu saldo i els teus moviments.</p>
     <a href="#walletDetails" id="personalWalletLink" onclick="event.preventDefault();history.replaceState(null,'','#walletDetails');requestAnimationFrame(()=>document.getElementById('walletDetails').scrollIntoView({behavior:'smooth',block:'start'}))">VEURE MONEDER →</a>
     </article>
@@ -984,6 +1128,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     <h3 id="personalNewsTitle">Novetats a Ciclik</h3>
     <span class="personalHubSoon" id="personalNewsSoon">PROPERAMENT</span>
    </section>
+   </div>
   </div>
   <section class="adminPanel" id="adminPanelSection" aria-labelledby="adminPanelTitle" hidden>
    <div class="adminPanelHead">
@@ -1067,7 +1212,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
      <h2 id="transferTitle">Envia Cicliks</h2>
      <p id="transferSubtitle">Envia Cicliks a un altre membre de la comunitat.</p>
     </div>
-    <button class="adminPanelBack" id="transferBack" type="button" onclick="tancarEnviamentCiclik()">TORNA A EL MEU CICLIK</button>
+    <button class="adminPanelBack" id="transferBack" type="button" onclick="tancarEnviamentCiclik()">TORNA</button>
    </div>
    <div id="transferIdentify">
     <p id="transferIdentifyText">Escaneja el QR Ciclik del destinatari o introdueix el seu codi.</p>
@@ -1101,16 +1246,37 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
      <h2 id="historyTitle">Historial de moviments</h2>
      <p id="historySubtitle">Tots els teus moviments de Cicliks.</p>
     </div>
-    <button class="adminPanelBack" id="historyBack" type="button" onclick="tancarHistorialMembre()">TORNA A EL MEU CICLIK</button>
+    <button class="adminPanelBack" id="historyBack" type="button" onclick="tancarHistorialMembre()">TORNA</button>
    </div>
    <p class="adminMovementStatus" id="historyStatus" role="status" aria-live="polite"></p>
    <div class="adminMovementList" id="historyList" aria-live="polite"></div>
   </section>
+  <section class="dashCommunity" id="dashCommunityPanel" aria-labelledby="dashCommunityTitle">
+   <button class="dashBack" type="button" onclick="mostrarVistaDashboard('home')" data-dash-ca="← Torna" data-dash-es="← Volver">← Torna</button>
+   <div class="dashCommunityBody">
+    <span class="dashIcon dashCommunityIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.1 2 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M16.5 14.2c2.3.1 3.8 1.6 4.2 4.3"/></svg></span>
+    <h2 id="dashCommunityTitle" data-dash-ca="Comunitat" data-dash-es="Comunidad">Comunitat</h2>
+    <p data-dash-ca="Aquí podràs descobrir altres persones de Ciclik, veure què ofereixen i què busquen, i generar intercanvis amb Cicliks." data-dash-es="Aquí podrás descubrir a otras personas de Ciclik, ver qué ofrecen y qué buscan, y generar intercambios con Cicliks.">Aquí podràs descobrir altres persones de Ciclik, veure què ofereixen i què busquen, i generar intercanvis amb Cicliks.</p>
+    <span class="dashCommunitySoon"><svg class="dashLeaf" viewBox="0 0 24 30" aria-hidden="true"><path d="M5 29C7 20 11 12 19 3" fill="none"/><path d="M10 17C3 16 2 9 3 6c6 1 9 5 7 11z"/><path d="M14 11c4 1 8 3 8 9-6 0-9-4-8-9z"/></svg><span data-dash-ca="Properament" data-dash-es="Próximamente">Properament</span></span>
+   </div>
+  </section>
   <div class="walletGrid">
-  <div class="walletIntro"><h2>El meu Ciclik</h2><p>El teu moneder, dins del cercle.</p><a id="createProfileLink" class="outline" href="#memberProfileSection" onclick="obrirPerfilMembre(event)">CREAR PERFIL</a></div>
+  <div class="walletIntro"><button class="dashBack" type="button" onclick="mostrarVistaDashboard('home')" data-dash-ca="← Torna" data-dash-es="← Volver">← Torna</button><h2>El meu Ciclik</h2><h2 class="dashViewTitle dashCircularTitle" data-dash-ca="Fes circular" data-dash-es="Haz circular">Fes circular</h2><h2 class="dashViewTitle dashWalletTitle" data-dash-ca="El meu moneder" data-dash-es="Mi monedero">El meu moneder</h2><p>El teu moneder, dins del cercle.</p><a id="createProfileLink" class="outline" href="#memberProfileSection" onclick="obrirPerfilMembre(event)">CREAR PERFIL</a></div>
   <div class="card" id="walletDetails">
   <div class="profileTop walletBalanceTop">
-    <div class="balance"><small>EL TEU MONEDER</small><strong><span id="balance">0</span> Cicliks</strong></div>
+    <div class="balance"><small>EL TEU MONEDER</small><span class="dashBalanceLabel" data-dash-ca="Saldo actual" data-dash-es="Saldo actual">Saldo actual</span><strong class="dashBalanceLine"><span id="balance">0</span><svg class="dashLeaf" viewBox="0 0 24 30" aria-hidden="true"><path d="M5 29C7 20 11 12 19 3" fill="none"/><path d="M10 17C3 16 2 9 3 6c6 1 9 5 7 11z"/><path d="M14 11c4 1 8 3 8 9-6 0-9-4-8-9z"/></svg></strong><span class="dashWalletUnit">Cicliks</span></div>
+   </div>
+   <div class="dashWalletRows">
+    <button class="dashRow" type="button" onclick="obrirMovimentsMembre()">
+     <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg></span>
+     <span class="dashRowLabel" data-dash-ca="Moviments" data-dash-es="Movimientos">Moviments</span>
+     <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
+    <button class="dashRow" type="button" onclick="obrirHistorialIntercanvis()">
+     <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h13l-3.5-3.5"/><path d="M19 16H6l3.5 3.5"/></svg></span>
+     <span class="dashRowLabel" data-dash-ca="Historial d'intercanvis" data-dash-es="Historial de intercambios">Historial d'intercanvis</span>
+     <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
    </div>
    <button class="walletQrTrigger" id="walletQrTrigger" type="button" onclick="obrirQrPersonal()" hidden>EL MEU QR</button>
    <div class="actions">
@@ -1126,6 +1292,58 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    </div>
   </div>
  </div>
+    <section id="memberProfileSection" class="memberProfileSection" aria-labelledby="memberProfileTitle">
+      <button class="dashBack" type="button" onclick="tancarPerfilMembre()" data-dash-ca="← Torna" data-dash-es="← Volver">← Torna</button>
+      <div class="dashProfileCard">
+       <div class="dashAvatarWrap"><div class="avatar" id="dashProfileAvatar" aria-hidden="true">C</div><img class="dashAvatarImg" alt="" hidden></div>
+       <button class="dashPhotoBtn" id="dashPhotoBtn" type="button" data-dash-ca="Canvia la foto" data-dash-es="Cambiar foto">Canvia la foto</button>
+       <input id="dashPhotoInput" type="file" accept="image/*" hidden>
+       <p class="dashPhotoStatus" id="dashPhotoStatus" role="status" aria-live="polite"></p>
+       <div class="dashProfileInfo">
+        <strong id="dashProfileName"></strong>
+        <span id="dashProfileEmail"></span>
+       </div>
+      </div>
+      <span class="dashPrefsLabel" data-dash-ca="Les meves preferències" data-dash-es="Mis preferencias">Les meves preferències</span>
+      <h3 id="memberProfileTitle">Completa el teu perfil</h3>
+      <p id="memberProfileIntro">Explica'ns què pots aportar i què t'interessa trobar a Ciclik.</p>
+      <form id="memberProfileForm" class="memberProfileForm" onsubmit="guardarPerfilMembre(event)">
+        <fieldset class="memberProfileGroup">
+          <legend id="contributionTitle">QUÈ POTS APORTAR?</legend>
+          <div class="memberProfileOptions">
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="knowledge"><span data-ca="Coneixements" data-es="Conocimientos">Coneixements</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="skills"><span data-ca="Habilitats o oficis" data-es="Habilidades u oficios">Habilitats o oficis</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="help_time"><span data-ca="Ajuda o temps" data-es="Ayuda o tiempo">Ajuda o temps</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="objects"><span data-ca="Objectes" data-es="Objetos">Objectes</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="workshops"><span data-ca="Tallers o activitats" data-es="Talleres o actividades">Tallers o activitats</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="volunteering"><span data-ca="Voluntariat" data-es="Voluntariado">Voluntariat</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="other"><span data-ca="Altres" data-es="Otros">Altres</span></label>
+          </div>
+          <textarea id="contributionNotes" placeholder="Explica'ns una mica què podries aportar"></textarea>
+        </fieldset>
+        <fieldset class="memberProfileGroup">
+          <legend id="interestTitle">QUÈ T'INTERESSA?</legend>
+          <div class="memberProfileOptions">
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="learn"><span data-ca="Aprendre" data-es="Aprender">Aprendre</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="workshops"><span data-ca="Participar en tallers" data-es="Participar en talleres">Participar en tallers</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="exchange_objects"><span data-ca="Intercanviar objectes" data-es="Intercambiar objetos">Intercanviar objectes</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="help"><span data-ca="Oferir o rebre ajuda" data-es="Ofrecer o recibir ayuda">Oferir o rebre ajuda</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="meet_people"><span data-ca="Conèixer persones" data-es="Conocer personas">Conèixer persones</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="volunteering"><span data-ca="Participar en voluntariats" data-es="Participar en voluntariados">Participar en voluntariats</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="share_knowledge"><span data-ca="Compartir coneixements" data-es="Compartir conocimientos">Compartir coneixements</span></label>
+            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="other"><span data-ca="Altres" data-es="Otros">Altres</span></label>
+          </div>
+          <textarea id="interestNotes" placeholder="Hi ha alguna cosa que t'agradaria trobar a Ciclik?"></textarea>
+        </fieldset>
+        <button id="memberProfileSubmit" type="submit">COMPLETA EL MEU PERFIL</button>
+        <p id="memberProfileStatus" class="memberProfileStatus" role="status"></p>
+      </form>
+      <div class="dashRow dashRowSoon" aria-disabled="true">
+       <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></span>
+       <span class="dashRowLabel" data-dash-ca="Configuració" data-dash-es="Configuración">Configuració</span>
+       <span class="dashSoon" data-dash-ca="Aviat" data-dash-es="Pronto">Aviat</span>
+      </div>
+    </section>
  </div>
  <dialog class="walletQrDialog" id="memberQrDialog" aria-labelledby="memberQrTitle">
   <div class="walletQrDialogHead"><button class="walletQrClose" type="button" onclick="tancarQrPersonal()" aria-label="Tanca">×</button></div>
@@ -1135,6 +1353,17 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
   <p class="walletQrCaption" id="memberQrCaption">El teu codi personal Ciclik</p>
   <p class="walletQrStatus" id="memberQrStatus" role="status" aria-live="polite"></p>
  </dialog>
+  <dialog class="walletQrDialog" id="dashPhotoDialog" aria-labelledby="dashPhotoTitle">
+   <h2 id="dashPhotoTitle" data-dash-ca="Ajusta la foto" data-dash-es="Ajusta la foto">Ajusta la foto</h2>
+   <p data-dash-ca="Arrossega la imatge i fes servir el zoom per encaixar-la dins del cercle." data-dash-es="Arrastra la imagen y usa el zoom para encajarla dentro del círculo.">Arrossega la imatge i fes servir el zoom per encaixar-la dins del cercle.</p>
+   <div class="dashCropStage"><canvas id="dashCropCanvas" width="300" height="300" role="img" aria-label="Previsualització"></canvas></div>
+   <label class="dashZoom"><span>Zoom</span><input id="dashCropZoom" type="range" min="1" max="4" step="0.01" value="1"></label>
+   <p class="dashCropStatus" id="dashCropStatus" role="status" aria-live="polite"></p>
+   <div class="dashPhotoActions">
+    <button class="dashPhotoCancel" id="dashPhotoCancel" type="button" data-dash-ca="Cancel·la" data-dash-es="Cancelar">Cancel·la</button>
+    <button class="dashPhotoSave" id="dashPhotoSave" type="button" data-dash-ca="Desa la foto" data-dash-es="Guardar foto">Desa la foto</button>
+   </div>
+  </dialog>
 </section>
 <section class="infoBand">
 <div class="wrap infoGrid">
@@ -1336,42 +1565,6 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
       </form>
     </div>
 
-    <section id="memberProfileSection" class="memberProfileSection" aria-labelledby="memberProfileTitle">
-      <h3 id="memberProfileTitle">Completa el teu perfil</h3>
-      <p id="memberProfileIntro">Explica'ns què pots aportar i què t'interessa trobar a Ciclik.</p>
-      <form id="memberProfileForm" class="memberProfileForm" onsubmit="guardarPerfilMembre(event)">
-        <fieldset class="memberProfileGroup">
-          <legend id="contributionTitle">QUÈ POTS APORTAR?</legend>
-          <div class="memberProfileOptions">
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="knowledge"><span data-ca="Coneixements" data-es="Conocimientos">Coneixements</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="skills"><span data-ca="Habilitats o oficis" data-es="Habilidades u oficios">Habilitats o oficis</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="help_time"><span data-ca="Ajuda o temps" data-es="Ayuda o tiempo">Ajuda o temps</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="objects"><span data-ca="Objectes" data-es="Objetos">Objectes</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="workshops"><span data-ca="Tallers o activitats" data-es="Talleres o actividades">Tallers o activitats</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="volunteering"><span data-ca="Voluntariat" data-es="Voluntariado">Voluntariat</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="contribution_types" value="other"><span data-ca="Altres" data-es="Otros">Altres</span></label>
-          </div>
-          <textarea id="contributionNotes" placeholder="Explica'ns una mica què podries aportar"></textarea>
-        </fieldset>
-        <fieldset class="memberProfileGroup">
-          <legend id="interestTitle">QUÈ T'INTERESSA?</legend>
-          <div class="memberProfileOptions">
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="learn"><span data-ca="Aprendre" data-es="Aprender">Aprendre</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="workshops"><span data-ca="Participar en tallers" data-es="Participar en talleres">Participar en tallers</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="exchange_objects"><span data-ca="Intercanviar objectes" data-es="Intercambiar objetos">Intercanviar objectes</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="help"><span data-ca="Oferir o rebre ajuda" data-es="Ofrecer o recibir ayuda">Oferir o rebre ajuda</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="meet_people"><span data-ca="Conèixer persones" data-es="Conocer personas">Conèixer persones</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="volunteering"><span data-ca="Participar en voluntariats" data-es="Participar en voluntariados">Participar en voluntariats</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="share_knowledge"><span data-ca="Compartir coneixements" data-es="Compartir conocimientos">Compartir coneixements</span></label>
-            <label class="memberProfileOption"><input type="checkbox" name="interest_types" value="other"><span data-ca="Altres" data-es="Otros">Altres</span></label>
-          </div>
-          <textarea id="interestNotes" placeholder="Hi ha alguna cosa que t'agradaria trobar a Ciclik?"></textarea>
-        </fieldset>
-        <button id="memberProfileSubmit" type="submit">COMPLETA EL MEU PERFIL</button>
-        <p id="memberProfileStatus" class="memberProfileStatus" role="status"></p>
-      </form>
-    </section>
-
     <div class="authSignature">
       <small>DEIXAR ANAR · FER ESPAI · FER CIRCULAR</small>
     </div>
@@ -1542,7 +1735,7 @@ const fixLang = (lang) => {
   document.querySelector(".walletIntro .outline").textContent =
     es ? "CREAR PERFIL" : "CREAR PERFIL";
 
-  if (!profile) {
+  if (!profile && ["El teu perfil","Tu perfil"].includes(document.getElementById("profileName").textContent)) {
     document.getElementById("profileName").textContent =
       es ? "Tu perfil" : "El teu perfil";
   }
@@ -1836,19 +2029,22 @@ async function actualitzarFluxPerfil(user){
   const createProfileLink=document.getElementById("createProfileLink");
   const profileSection=document.getElementById("memberProfileSection");
   const profile=await cargarPerfilMembre(user.id);
+  const profileNotice=document.getElementById("profileCompleteNotice");
 
   if(profile){
     profileSection.style.display="none";
     walletSection.style.display="block";
     createProfileLink.style.display="none";
+    profileNotice.hidden=true;
     document.getElementById("personalBalance").textContent=document.getElementById("balance").textContent;
     personalSection.scrollIntoView({behavior:"smooth",block:"start"});
     return true;
   }
 
-  walletSection.style.display="none";
+  walletSection.style.display="block";
   createProfileLink.style.display="none";
-  mostrarPerfilMembre();
+  profileNotice.hidden=false;
+  personalSection.scrollIntoView({behavior:"smooth",block:"start"});
   return false;
 }
 
@@ -1874,6 +2070,7 @@ async function guardarPerfilMembre(event){
   status.textContent=document.documentElement.lang==="es"?"Perfil guardado correctamente.":"Perfil desat correctament.";
   document.getElementById("memberProfileSection").style.display="none";
   document.getElementById("moneder").style.display="block";
+  document.getElementById("profileCompleteNotice").hidden=true;
   document.getElementById("personalBalance").textContent=document.getElementById("balance").textContent;
   document.getElementById("createProfileLink").style.display="none";
   document.getElementById("moneder").scrollIntoView({behavior:"smooth"});
@@ -3365,7 +3562,7 @@ function translateTransfer(lang=document.documentElement.lang){
   const set=(id,ca,esText)=>{document.getElementById(id).textContent=es?esText:ca};
   set("transferTitle","Envia Cicliks","Envía Cicliks");
   set("transferSubtitle","Envia Cicliks a un altre membre de la comunitat.","Envía Cicliks a otro miembro de la comunidad.");
-  set("transferBack","TORNA A EL MEU CICLIK","VOLVER A MI CICLIK");
+  set("transferBack","TORNA","VOLVER");
   set("transferIdentifyText","Escaneja el QR Ciclik del destinatari o introdueix el seu codi.","Escanea el QR Ciclik del destinatario o introduce su código.");
   set("transferScan","ESCANEJAR QR","ESCANEAR QR");
   set("transferManual","INTRODUIR CODI","INTRODUCIR CÓDIGO");
@@ -3378,7 +3575,7 @@ function translateTransfer(lang=document.documentElement.lang){
   if(transferRecipientId)document.getElementById("transferRecipient").textContent=`${es?"Destinatario":"Destinatari"}: ${transferRecipientName||(es?"Miembro identificado":"Membre identificat")}`;
   set("historyTitle","Historial de moviments","Historial de movimientos");
   set("historySubtitle","Tots els teus moviments de Cicliks.","Todos tus movimientos de Cicliks.");
-  set("historyBack","TORNA A EL MEU CICLIK","VOLVER A MI CICLIK");
+  set("historyBack","TORNA","VOLVER");
   renderHistorialMembre();
 }
 translateTransfer(localStorage.getItem("ciclikLang")||"ca");
@@ -3650,6 +3847,298 @@ if (isStandalone) {
     installSection.style.display = "none";
   });
 }
+</script>
+<script>
+function translateDashboard(lang=document.documentElement.lang){
+  const es=lang==="es";
+  document.querySelectorAll("[data-dash-ca]").forEach(el=>{el.textContent=es?el.dataset.dashEs:el.dataset.dashCa});
+}
+
+function mostrarVistaDashboard(view){
+  const section=document.getElementById("moneder");
+  section.dataset.view=["wallet","circular","community"].includes(view)?view:"home";
+  section.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+let dashHistoryMode="all";
+const dashExchangeTypes=["clothing_contribution","market_purchase","transfer_in","transfer_out"];
+const dashRenderHistory=renderHistorialMembre;
+renderHistorialMembre=function(){
+  if(dashHistoryMode==="exchanges")memberHistoryTransactions=memberHistoryTransactions.filter(transaction=>dashExchangeTypes.includes(transaction.transaction_type));
+  dashRenderHistory();
+  const es=document.documentElement.lang==="es";
+  const exchanges=dashHistoryMode==="exchanges";
+  document.getElementById("historyTitle").textContent=exchanges?(es?"Historial de intercambios":"Historial d'intercanvis"):(es?"Movimientos":"Moviments");
+  document.getElementById("historySubtitle").textContent=exchanges
+    ?(es?"Intercambios, aportaciones y envíos entre miembros.":"Intercanvis, aportacions i enviaments entre membres.")
+    :(es?"Entradas y salidas de Cicliks.":"Entrades i sortides de Cicliks.");
+};
+function obrirMovimentsMembre(){dashHistoryMode="all";obrirHistorialMembre();}
+function obrirHistorialIntercanvis(){dashHistoryMode="exchanges";obrirHistorialMembre();}
+
+async function omplirDadesPerfil(){
+  document.getElementById("dashProfileName").textContent=document.getElementById("profileName").textContent;
+  document.getElementById("dashProfileAvatar").textContent=document.getElementById("avatar").textContent;
+  const {data:{user}}=await supabaseClient.auth.getUser();
+  document.getElementById("dashProfileEmail").textContent=user?.email||"";
+}
+
+const dashShowProfile=mostrarPerfilMembre;
+mostrarPerfilMembre=function(scroll=true){
+  omplirDadesPerfil();
+  dashShowProfile(false);
+  if(scroll)requestAnimationFrame(()=>document.getElementById("memberProfileSection").scrollIntoView({behavior:"smooth",block:"start"}));
+};
+
+function tancarPerfilMembre(){
+  document.getElementById("memberProfileSection").style.display="none";
+  document.getElementById("moneder").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+translateDashboard(localStorage.getItem("ciclikLang")||"ca");
+document.getElementById("caBtn").addEventListener("click",()=>translateDashboard("ca"));
+document.getElementById("esBtn").addEventListener("click",()=>translateDashboard("es"));
+supabaseClient.auth.onAuthStateChange(event=>{
+  if(event==="SIGNED_OUT"){
+    document.getElementById("moneder").dataset.view="home";
+    dashAvatarUserId=null;
+    mostrarAvatarMembre(null);
+    return;
+  }
+  setTimeout(()=>carregarAvatarMembre(false),0);
+});
+
+// Foto de perfil: bucket "avatars", un unic fitxer per usuari a <user_id>/avatar
+let dashAvatarUserId=null;
+const DASH_AVATAR_BUCKET="avatars";
+const DASH_AVATAR_MAX_INPUT=30*1024*1024;
+const DASH_AVATAR_TARGET=250*1024;
+const DASH_AVATAR_LIMIT=500*1024;
+const dashCrop={bitmap:null,width:0,height:0,zoom:1,x:0,y:0,size:300,drag:null,busy:false};
+
+function dashText(ca,es){return document.documentElement.lang==="es"?es:ca}
+
+function mostrarAvatarMembre(url){
+  document.querySelectorAll(".dashAvatarImg").forEach(img=>{
+    if(!url){img.hidden=true;img.removeAttribute("src");return}
+    img.onload=()=>{img.hidden=false};
+    img.onerror=()=>{img.hidden=true};
+    img.src=url;
+  });
+}
+
+async function carregarAvatarMembre(force){
+  const {data:{user}}=await supabaseClient.auth.getUser();
+  if(!user){dashAvatarUserId=null;mostrarAvatarMembre(null);return}
+  if(!force&&dashAvatarUserId===user.id)return;
+  dashAvatarUserId=user.id;
+  const {data,error}=await supabaseClient.storage.from(DASH_AVATAR_BUCKET).list(user.id,{limit:1,search:"avatar"});
+  const file=error?null:(data||[]).find(item=>item.name==="avatar");
+  if(error)dashAvatarUserId=null;
+  if(!file){mostrarAvatarMembre(null);return}
+  const {data:{publicUrl}}=supabaseClient.storage.from(DASH_AVATAR_BUCKET).getPublicUrl(`${user.id}/avatar`);
+  mostrarAvatarMembre(`${publicUrl}?v=${encodeURIComponent(file.updated_at||file.created_at||Date.now())}`);
+}
+
+function dashPhotoStatus(text,isError){
+  const status=document.getElementById("dashPhotoStatus");
+  status.textContent=text||"";
+  status.classList.toggle("isError",Boolean(isError));
+}
+
+function dashCropStatus(text,isError){
+  const status=document.getElementById("dashCropStatus");
+  status.textContent=text||"";
+  status.classList.toggle("isError",Boolean(isError));
+}
+
+async function dashDecodeImage(file){
+  try{return await createImageBitmap(file,{imageOrientation:"from-image"})}catch(error){}
+  return new Promise((resolve,reject)=>{
+    const url=URL.createObjectURL(file);
+    const image=new Image();
+    image.onload=()=>{URL.revokeObjectURL(url);resolve(image)};
+    image.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("decode"))};
+    image.src=url;
+  });
+}
+
+function dashCropScale(){return Math.max(dashCrop.size/dashCrop.width,dashCrop.size/dashCrop.height)*dashCrop.zoom}
+
+function dashCropClamp(){
+  const scale=dashCropScale();
+  dashCrop.x=Math.min(0,Math.max(dashCrop.size-dashCrop.width*scale,dashCrop.x));
+  dashCrop.y=Math.min(0,Math.max(dashCrop.size-dashCrop.height*scale,dashCrop.y));
+}
+
+function dashCropDraw(){
+  const canvas=document.getElementById("dashCropCanvas");
+  const size=dashCrop.size;
+  const ratio=Math.min(2,window.devicePixelRatio||1);
+  if(canvas.width!==size*ratio){canvas.width=size*ratio;canvas.height=size*ratio}
+  const ctx=canvas.getContext("2d");
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+  ctx.clearRect(0,0,size,size);
+  if(!dashCrop.bitmap)return;
+  const scale=dashCropScale();
+  ctx.drawImage(dashCrop.bitmap,dashCrop.x,dashCrop.y,dashCrop.width*scale,dashCrop.height*scale);
+  ctx.fillStyle="rgba(31,34,25,.55)";
+  ctx.beginPath();
+  ctx.rect(0,0,size,size);
+  ctx.arc(size/2,size/2,size/2-1,0,Math.PI*2,true);
+  ctx.fill("evenodd");
+  ctx.strokeStyle="rgba(255,250,241,.9)";
+  ctx.lineWidth=2;
+  ctx.beginPath();
+  ctx.arc(size/2,size/2,size/2-1,0,Math.PI*2);
+  ctx.stroke();
+}
+
+function dashCropSetZoom(zoom){
+  const size=dashCrop.size;
+  const before=dashCropScale();
+  const centerX=(size/2-dashCrop.x)/before;
+  const centerY=(size/2-dashCrop.y)/before;
+  dashCrop.zoom=Math.min(4,Math.max(1,zoom));
+  const after=dashCropScale();
+  dashCrop.x=size/2-centerX*after;
+  dashCrop.y=size/2-centerY*after;
+  dashCropClamp();
+  document.getElementById("dashCropZoom").value=String(dashCrop.zoom);
+  dashCropDraw();
+}
+
+function dashCropClose(){
+  const dialog=document.getElementById("dashPhotoDialog");
+  if(dialog.open)dialog.close();
+  if(dashCrop.bitmap&&typeof dashCrop.bitmap.close==="function")dashCrop.bitmap.close();
+  dashCrop.bitmap=null;
+  dashCrop.drag=null;
+}
+
+async function dashPhotoSelected(){
+  const input=document.getElementById("dashPhotoInput");
+  const file=input.files&&input.files[0];
+  input.value="";
+  if(!file)return;
+  dashPhotoStatus("");
+  if(file.type&&!file.type.startsWith("image/")){
+    dashPhotoStatus(dashText("El fitxer no és una imatge vàlida.","El archivo no es una imagen válida."),true);
+    return;
+  }
+  if(file.size>DASH_AVATAR_MAX_INPUT){
+    dashPhotoStatus(dashText("La imatge és massa gran. Tria'n una de menys de 30 MB.","La imagen es demasiado grande. Elige una de menos de 30 MB."),true);
+    return;
+  }
+  let bitmap;
+  try{bitmap=await dashDecodeImage(file)}catch(error){
+    dashPhotoStatus(dashText("No s'ha pogut llegir la imatge. Prova amb una altra foto.","No se ha podido leer la imagen. Prueba con otra foto."),true);
+    return;
+  }
+  const width=bitmap.naturalWidth||bitmap.width;
+  const height=bitmap.naturalHeight||bitmap.height;
+  if(!width||!height){
+    dashPhotoStatus(dashText("La imatge no és vàlida.","La imagen no es válida."),true);
+    return;
+  }
+  dashCrop.bitmap=bitmap;
+  dashCrop.width=width;
+  dashCrop.height=height;
+  dashCrop.zoom=1;
+  const scale=dashCropScale();
+  dashCrop.x=(dashCrop.size-width*scale)/2;
+  dashCrop.y=(dashCrop.size-height*scale)/2;
+  document.getElementById("dashCropZoom").value="1";
+  dashCropStatus("");
+  document.getElementById("dashPhotoSave").disabled=false;
+  document.getElementById("dashPhotoCancel").disabled=false;
+  document.getElementById("dashPhotoDialog").showModal();
+  dashCropDraw();
+}
+
+async function dashEncodeAvatar(){
+  let best=null;
+  for(const outputSize of [512,384]){
+    const output=document.createElement("canvas");
+    output.width=output.height=outputSize;
+    const ctx=output.getContext("2d");
+    ctx.imageSmoothingQuality="high";
+    const ratio=outputSize/dashCrop.size;
+    const scale=dashCropScale();
+    ctx.drawImage(dashCrop.bitmap,dashCrop.x*ratio,dashCrop.y*ratio,dashCrop.width*scale*ratio,dashCrop.height*scale*ratio);
+    const toBlob=(type,quality)=>new Promise(resolve=>output.toBlob(resolve,type,quality));
+    let type="image/webp";
+    for(const quality of [0.85,0.75,0.65,0.55]){
+      let blob=await toBlob(type,quality);
+      if(blob&&blob.type!==type){type="image/jpeg";blob=await toBlob(type,quality)}
+      if(!blob)continue;
+      if(!best||blob.size<best.size)best=blob;
+      if(blob.size<=DASH_AVATAR_TARGET)return blob;
+    }
+    if(best&&best.size<=DASH_AVATAR_LIMIT)return best;
+  }
+  if(!best||best.size>DASH_AVATAR_LIMIT)throw new Error("too_large");
+  return best;
+}
+
+async function dashSavePhoto(){
+  if(!dashCrop.bitmap||dashCrop.busy)return;
+  const saveButton=document.getElementById("dashPhotoSave");
+  const cancelButton=document.getElementById("dashPhotoCancel");
+  dashCrop.busy=true;
+  saveButton.disabled=true;
+  cancelButton.disabled=true;
+  dashCropStatus(dashText("Desant la foto...","Guardando la foto..."));
+  try{
+    const {data:{user}}=await supabaseClient.auth.getUser();
+    if(!user)throw new Error("no_user");
+    const blob=await dashEncodeAvatar();
+    const {error}=await supabaseClient.storage.from(DASH_AVATAR_BUCKET).upload(`${user.id}/avatar`,blob,{upsert:true,contentType:blob.type,cacheControl:"3600"});
+    if(error)throw error;
+    await carregarAvatarMembre(true);
+    dashCropClose();
+    dashPhotoStatus(dashText("Foto actualitzada.","Foto actualizada."));
+  }catch(error){
+    dashCropStatus(dashText("No s'ha pogut desar la foto. Torna-ho a provar.","No se ha podido guardar la foto. Inténtalo de nuevo."),true);
+    saveButton.disabled=false;
+    cancelButton.disabled=false;
+  }finally{
+    dashCrop.busy=false;
+  }
+}
+
+(function initDashPhoto(){
+  const canvas=document.getElementById("dashCropCanvas");
+  const dialog=document.getElementById("dashPhotoDialog");
+  document.getElementById("dashPhotoBtn").addEventListener("click",()=>{dashPhotoStatus("");document.getElementById("dashPhotoInput").click()});
+  document.getElementById("dashPhotoInput").addEventListener("change",dashPhotoSelected);
+  document.getElementById("dashPhotoCancel").addEventListener("click",dashCropClose);
+  document.getElementById("dashPhotoSave").addEventListener("click",dashSavePhoto);
+  dialog.addEventListener("cancel",event=>{if(dashCrop.busy)event.preventDefault()});
+  dialog.addEventListener("close",()=>{if(dashCrop.bitmap&&!dashCrop.busy)dashCropClose()});
+  document.getElementById("dashCropZoom").addEventListener("input",event=>dashCropSetZoom(Number(event.target.value)));
+  canvas.addEventListener("pointerdown",event=>{
+    if(!dashCrop.bitmap)return;
+    canvas.setPointerCapture(event.pointerId);
+    dashCrop.drag={x:event.clientX,y:event.clientY,startX:dashCrop.x,startY:dashCrop.y};
+  });
+  canvas.addEventListener("pointermove",event=>{
+    if(!dashCrop.drag)return;
+    const ratio=dashCrop.size/canvas.getBoundingClientRect().width;
+    dashCrop.x=dashCrop.drag.startX+(event.clientX-dashCrop.drag.x)*ratio;
+    dashCrop.y=dashCrop.drag.startY+(event.clientY-dashCrop.drag.y)*ratio;
+    dashCropClamp();
+    dashCropDraw();
+  });
+  ["pointerup","pointercancel"].forEach(name=>canvas.addEventListener(name,()=>{dashCrop.drag=null}));
+  canvas.addEventListener("wheel",event=>{
+    if(!dashCrop.bitmap)return;
+    event.preventDefault();
+    dashCropSetZoom(dashCrop.zoom*(event.deltaY<0?1.06:1/1.06));
+  },{passive:false});
+})();
+
+carregarAvatarMembre(false);
 </script>
 </body>
 </html>
