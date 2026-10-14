@@ -12,7 +12,59 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Ciclik">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>CICLIK · Tot pot tornar a circular</title>
+<title>Ciclik Terrassa | Intercanvi de roba i mercats circulars</title>
+<meta name="description" content="Ciclik és la comunitat d’economia circular de Terrassa per intercanviar roba, participar en mercats circulars, tallers i experiències compartides.">
+<link rel="canonical" href="https://www.ciclik.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:title" content="Ciclik Terrassa | Economia circular i comunitat">
+<meta property="og:description" content="Intercanvi de roba, mercats circulars, tallers i experiències compartides a Terrassa.">
+<meta property="og:url" content="https://www.ciclik.com/">
+<meta property="og:image" content="https://www.ciclik.com/SLIDE%20PORTADA.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.ciclik.com/#organization",
+      "name": "Ciclik",
+      "url": "https://www.ciclik.com/",
+      "logo": "https://www.ciclik.com/logo-ciclik-transparent.png",
+      "description": "Comunitat d’economia circular de Terrassa que promou l’intercanvi de roba, els mercats circulars, els tallers i les experiències compartides.",
+      "areaServed": {
+        "@type": "City",
+        "name": "Terrassa",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Barcelona"
+        }
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://www.ciclik.com/#mercat-circular-roba-2026",
+      "name": "Mercat Circular de roba",
+      "description": "Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.",
+      "startDate": "2026-10-18",
+      "location": {
+        "@type": "Place",
+        "name": "Terrassa"
+      },
+      "organizer": {
+        "@id": "https://www.ciclik.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "6",
+        "priceCurrency": "EUR",
+        "url": "https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa"
+      }
+    }
+  ]
+}
+</script>
 <style>
 :root{
   --cream:#f4eee2;--cream2:#efe6d6;--olive:#4f5633;--olive2:#68704a;
@@ -1062,6 +1114,11 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
       <span class="dashRowLabel" data-dash-ca="Esdeveniments" data-dash-es="Eventos">Esdeveniments</span>
       <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
      </a>
+     <button class="dashRow" type="button" onclick="obrirEnviamentCiclik()">
+      <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg></span>
+      <span class="dashRowLabel" data-dash-ca="Envia Cicliks (escanejar QR)" data-dash-es="Envía Cicliks (escanear QR)">Envia Cicliks (escanejar QR)</span>
+      <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+     </button>
      <button class="dashRow" type="button" onclick="obrirQrPersonal()">
       <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2.5v2.5M20 14v.01M14 20h.01M17 20h3v-3"/></svg></span>
       <span class="dashRowLabel" data-dash-ca="El meu QR" data-dash-es="Mi QR">El meu QR</span>
@@ -1228,14 +1285,24 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    </div>
    <form id="transferForm" onsubmit="event.preventDefault();confirmarEnviamentCiclik()" hidden>
     <p><strong id="transferRecipient"></strong></p>
-    <label class="physicalConversionAmount" for="transferAmount">
-     <span id="transferAmountLabel">Cicliks a enviar</span>
-     <input id="transferAmount" type="number" min="1" max="2147483647" step="1" inputmode="numeric" required oninput="actualitzarEnviamentCiclik()">
-    </label>
-    <p id="transferPreview" aria-live="polite"></p>
-    <div class="physicalConversionActions">
-     <button class="physicalConversionSubmit" id="transferSubmit" type="submit" disabled>CONFIRMAR ENVIAMENT</button>
-     <button class="clothesIdentifyMember" id="transferChange" type="button" onclick="canviarDestinatariEnviament()">CANVIAR DESTINATARI</button>
+    <div id="transferEntry">
+     <label class="physicalConversionAmount" for="transferAmount">
+      <span id="transferAmountLabel">Cicliks a enviar</span>
+      <input id="transferAmount" type="number" min="1" max="2147483647" step="1" inputmode="numeric" required oninput="actualitzarEnviamentCiclik()">
+     </label>
+     <p id="transferPreview" aria-live="polite"></p>
+     <div class="physicalConversionActions">
+      <button class="physicalConversionSubmit" id="transferSubmit" type="submit" disabled>CONTINUA</button>
+      <button class="clothesIdentifyMember" id="transferChange" type="button" onclick="canviarDestinatariEnviament()">CANVIAR DESTINATARI</button>
+     </div>
+    </div>
+    <div id="transferConfirm" hidden>
+     <h3 id="transferConfirmTitle">Confirma l'enviament</h3>
+     <p id="transferConfirmText" aria-live="polite"></p>
+     <div class="physicalConversionActions">
+      <button class="physicalConversionSubmit" id="transferConfirmSend" type="submit">CONFIRMA I ENVIA</button>
+      <button class="clothesIdentifyMember" id="transferConfirmBack" type="button" onclick="tornarEdicioEnviament()">ENRERE</button>
+     </div>
     </div>
    </form>
    <p class="physicalConversionStatus" id="transferStatus" role="status" aria-live="polite"></p>
@@ -2277,9 +2344,9 @@ async function carregarContraparts(transactions){
 function ciclikTransactionLabel(description,es,transaction){
   const type=transaction?.transaction_type;
   if(type==="transfer_out"||type==="transfer_in"){
-    const name=ciclikCounterparties.get(String(transaction.id))||(es?"un miembro":"un membre");
-    if(type==="transfer_out")return es?`Envío de Cicliks a ${name}`:`Enviament de Cicliks a ${name}`;
-    return es?`Cicliks recibidos de ${name}`:`Cicliks rebuts de ${name}`;
+    const name=ciclikCounterparties.get(String(transaction.id));
+    if(type==="transfer_out")return es?`Enviados a ${name||"un miembro"}`:`Enviats a ${name||"un membre"}`;
+    return es?`Recibidos de ${name||"un miembro"}`:`Rebuts ${name?`de ${name}`:"d'un membre"}`;
   }
   const text=(description||"").trim();
   const labels={"benvinguda a ciclik":["Benvinguda a Ciclik","Bienvenida a Ciclik"],"enviament de cicliks":["Enviament de Cicliks","Envío de Cicliks"],"cicliks rebuts":["Cicliks rebuts","Cicliks recibidos"]};
@@ -3005,7 +3072,7 @@ function extreureCodiQrMembre(qrText){
   if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawCode))return rawCode;
   try{
     const url=new URL(rawCode);
-    if(url.protocol!=="https:"||url.hostname!=="cik1.vercel.app")return null;
+    if(url.protocol!=="https:"||!["cik1.vercel.app","www.ciclik.com","ciclik.com"].includes(url.hostname))return null;
     const qrCode=url.searchParams.get("member");
     return qrCode&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(qrCode)?qrCode:null;
   }catch{return null}
@@ -3547,7 +3614,7 @@ translateGuanyaInfo(localStorage.getItem("ciclikLang")||"ca");
 document.getElementById("caBtn").addEventListener("click",()=>translateGuanyaInfo("ca"));
 document.getElementById("esBtn").addEventListener("click",()=>translateGuanyaInfo("es"));
 
-let transferStream=null,transferFrame=0,transferBusy=false,transferDone=false,transferRecipientId=null,transferRecipientName="",memberHistoryTransactions=[],memberHistoryError=false;
+let transferStream=null,transferFrame=0,transferBusy=false,transferDone=false,transferRecipientId=null,transferRecipientName="",transferRequestKey="",transferConfirming=false,transferResolving=false,memberHistoryTransactions=[],memberHistoryError=false;
 
 function mostrarVistaMembre(panelId){
   ["memberTransferPanel","memberHistoryPanel"].forEach(id=>{document.getElementById(id).hidden=id!==panelId});
@@ -3566,10 +3633,14 @@ function translateTransfer(lang=document.documentElement.lang){
   set("transferScan","ESCANEJAR QR","ESCANEAR QR");
   set("transferManual","INTRODUIR CODI","INTRODUCIR CÓDIGO");
   set("transferManualSubmit","IDENTIFICA","IDENTIFICAR");
-  document.getElementById("transferManualCode").placeholder=es?"URL o código QR":"URL o codi QR";
   set("transferAmountLabel","Cicliks a enviar","Cicliks a enviar");
-  set("transferSubmit","CONFIRMAR ENVIAMENT","CONFIRMAR ENVÍO");
+  set("transferSubmit","CONTINUA","CONTINUAR");
   set("transferChange","CANVIAR DESTINATARI","CAMBIAR DESTINATARIO");
+  set("transferConfirmTitle","Confirma l'enviament","Confirma el envío");
+  set("transferConfirmSend","CONFIRMA I ENVIA","CONFIRMAR Y ENVIAR");
+  set("transferConfirmBack","ENRERE","ATRÁS");
+  set("transferManualSubmit","IDENTIFICA","IDENTIFICAR");
+  document.getElementById("transferManualCode").placeholder=es?"Pega aquí el código personal o el enlace del QR":"Enganxa aquí el codi personal o l'enllaç del QR";
   actualitzarEnviamentCiclik();
   if(transferRecipientId)document.getElementById("transferRecipient").textContent=`${es?"Destinatario":"Destinatari"}: ${transferRecipientName||(es?"Miembro identificado":"Membre identificat")}`;
   set("historyTitle","Historial de moviments","Historial de movimientos");
@@ -3597,10 +3668,12 @@ function aturarEscanerEnviament(){
 
 function reiniciarEnviament(){
   aturarEscanerEnviament();
-  transferBusy=false;transferDone=false;transferRecipientId=null;transferRecipientName="";
+  transferBusy=false;transferDone=false;transferRecipientId=null;transferRecipientName="";transferRequestKey="";transferConfirming=false;transferResolving=false;
   document.getElementById("transferIdentify").hidden=false;
   document.getElementById("transferForm").hidden=true;
   document.getElementById("transferForm").reset();
+  document.getElementById("transferEntry").hidden=false;
+  document.getElementById("transferConfirm").hidden=true;
   document.getElementById("transferManualForm").hidden=true;
   document.getElementById("transferManualCode").value="";
   setTransferStatus("");
@@ -3644,63 +3717,107 @@ function missatgeErrorEnviament(error,es){
   if(message.includes("ciclik_transfer_self"))return es?"No puedes enviarte Cicliks a ti mismo.":"No pots enviar-te Cicliks a tu mateix.";
   if(message.includes("ciclik_insufficient_balance"))return es?"No tienes saldo suficiente.":"No tens prou saldo.";
   if(message.includes("ciclik_invalid_amount"))return es?"Introduce una cantidad entera mayor que cero.":"Introdueix una quantitat entera superior a zero.";
-  if(message.includes("ciclik_invalid_recipient"))return es?"Código Ciclik no válido":"Codi Ciclik no vàlid";
-  return es?"No se pudo completar la operación. Inténtalo de nuevo.":"No s'ha pogut completar l'operació. Torna-ho a provar.";
+  if(message.includes("ciclik_invalid_recipient"))return es?"Código Ciclik no válido.":"Codi Ciclik no vàlid.";
+  if(message.includes("ciclik_not_authenticated"))return es?"Tu sesión ha caducado. Vuelve a iniciar sesión.":"La teva sessió ha caducat. Torna a iniciar sessió.";
+  if(/Failed to fetch|NetworkError|network/i.test(message))return es?"Sin conexión. Comprueba internet e inténtalo de nuevo.":"Sense connexió. Comprova internet i torna-ho a provar.";
+  return es?"No se pudo completar la transferencia. Inténtalo de nuevo.":"No s'ha pogut completar la transferència. Torna-ho a provar.";
+}
+
+function missatgeErrorCamera(error,es){
+  const name=error?.name||"";
+  if(!window.isSecureContext)return es?"La cámara solo funciona con conexión segura (HTTPS). Usa INTRODUCIR CÓDIGO.":"La càmera només funciona amb connexió segura (HTTPS). Usa INTRODUIR CODI.";
+  if(name==="NotAllowedError"||name==="SecurityError"||name==="PermissionDeniedError")return es?"La cámara está bloqueada. Permite el acceso a la cámara en los ajustes del navegador o usa INTRODUCIR CÓDIGO.":"La càmera està bloquejada. Permet l'accés a la càmera als ajustos del navegador o usa INTRODUIR CODI.";
+  if(name==="NotFoundError"||name==="OverconstrainedError"||name==="DevicesNotFoundError")return es?"No se ha encontrado ninguna cámara. Usa INTRODUCIR CÓDIGO.":"No s'ha trobat cap càmera. Usa INTRODUIR CODI.";
+  if(name==="NotReadableError"||name==="AbortError")return es?"La cámara está en uso por otra aplicación. Ciérrala o usa INTRODUCIR CÓDIGO.":"La càmera està en ús per una altra aplicació. Tanca-la o usa INTRODUIR CODI.";
+  return es?"No se pudo abrir la cámara. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut obrir la càmera. Pots continuar amb INTRODUIR CODI.";
 }
 
 async function resoldreDestinatariEnviament(qrText){
+  if(transferResolving)return;
   const es=document.documentElement.lang==="es";
   const qrCode=extreureCodiQrMembre(qrText);
-  if(!qrCode){setTransferStatus(es?"Código Ciclik no válido":"Codi Ciclik no vàlid","error");return}
+  if(!qrCode){setTransferStatus(es?"El QR no es un código Ciclik válido.":"El QR no és un codi Ciclik vàlid.","error");return}
+  transferResolving=true;
   setTransferStatus(es?"Validando código...":"Validant codi...");
-  const {data,error}=await supabaseClient.rpc("ciclik_resolve_transfer_recipient",{p_qr_code:qrCode});
-  const result=Array.isArray(data)?data[0]:data;
-  if(error||!result?.recipient_id){setTransferStatus(missatgeErrorEnviament(error||"ciclik_invalid_recipient",es),"error");return}
-  aturarEscanerEnviament();
-  transferRecipientId=result.recipient_id;
-  transferRecipientName=result.display_name||"";
-  document.getElementById("transferIdentify").hidden=true;
-  document.getElementById("transferForm").hidden=false;
-  setTransferStatus("");
-  translateTransfer();
-  actualitzarEnviamentCiclik();
+  try{
+    const {data,error}=await supabaseClient.rpc("ciclik_resolve_transfer_recipient",{p_qr_code:qrCode});
+    const result=Array.isArray(data)?data[0]:data;
+    if(error||!result?.display_name){setTransferStatus(missatgeErrorEnviament(error||"ciclik_invalid_recipient",es),"error");return}
+    if(result.is_self){setTransferStatus(missatgeErrorEnviament("ciclik_transfer_self",es),"error");return}
+    aturarEscanerEnviament();
+    transferRecipientId=qrCode;
+    transferRecipientName=result.display_name;
+    transferRequestKey=crypto.randomUUID();
+    document.getElementById("transferIdentify").hidden=true;
+    document.getElementById("transferForm").hidden=false;
+    setTransferStatus("");
+    translateTransfer();
+    actualitzarEnviamentCiclik();
+    document.getElementById("transferAmount").focus();
+  }catch(error){
+    setTransferStatus(missatgeErrorEnviament(error,es),"error");
+  }finally{
+    transferResolving=false;
+  }
 }
 
 async function iniciarEscanerEnviament(){
   const es=document.documentElement.lang==="es";
-  if(!navigator.mediaDevices?.getUserMedia||typeof jsQR!=="function"){
-    setTransferStatus(es?"Cámara no disponible en este dispositivo. Puedes continuar con INTRODUCIR CÓDIGO.":"Càmera no disponible en aquest dispositiu. Pots continuar amb INTRODUIR CODI.","error");
+  if(!navigator.mediaDevices?.getUserMedia){
+    setTransferStatus(missatgeErrorCamera({name:"NotSupported"},es),"error");
+    return;
+  }
+  if(typeof jsQR!=="function"&&!("BarcodeDetector" in window)){
+    setTransferStatus(es?"No se pudo cargar el lector de QR. Comprueba la conexión o usa INTRODUCIR CÓDIGO.":"No s'ha pogut carregar el lector de QR. Comprova la connexió o usa INTRODUIR CODI.","error");
     return;
   }
   aturarEscanerEnviament();
-  setTransferStatus(es?"Apunta la cámara al QR Ciclik del destinatario.":"Apunta la càmera al QR Ciclik del destinatari.");
+  setTransferStatus(es?"Permite el acceso a la cámara y apunta al QR Ciclik del destinatario.":"Permet l'accés a la càmera i apunta al QR Ciclik del destinatari.");
   try{
-    transferStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});
+    try{
+      transferStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});
+    }catch(firstError){
+      if(firstError?.name!=="OverconstrainedError")throw firstError;
+      transferStream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});
+    }
     const video=document.getElementById("transferVideo");
+    video.muted=true;
     video.srcObject=transferStream;
     video.hidden=false;
     await video.play();
     llegirMarcEnviament();
   }catch(error){
     aturarEscanerEnviament();
-    setTransferStatus(es?"No se pudo abrir la cámara. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut obrir la càmera. Pots continuar amb INTRODUIR CODI.","error");
+    setTransferStatus(missatgeErrorCamera(error,es),"error");
   }
 }
 
-function llegirMarcEnviament(){
+let transferDetector=null;
+async function llegirMarcEnviament(){
   const video=document.getElementById("transferVideo");
   if(!transferStream)return;
   if(video.readyState<2||!video.videoWidth){transferFrame=requestAnimationFrame(llegirMarcEnviament);return}
   try{
-    const scale=Math.min(1,720/video.videoWidth);
-    const canvas=document.createElement("canvas");
-    canvas.width=Math.round(video.videoWidth*scale);
-    canvas.height=Math.round(video.videoHeight*scale);
-    const context=canvas.getContext("2d",{willReadFrequently:true});
-    context.drawImage(video,0,0,canvas.width,canvas.height);
-    const pixels=context.getImageData(0,0,canvas.width,canvas.height);
-    const result=jsQR(pixels.data,pixels.width,pixels.height,{inversionAttempts:"attemptBoth"});
-    if(result?.data){aturarEscanerEnviament();resoldreDestinatariEnviament(result.data);return}
+    let text="";
+    if(typeof jsQR==="function"){
+      const scale=Math.min(1,720/video.videoWidth);
+      const canvas=document.createElement("canvas");
+      canvas.width=Math.round(video.videoWidth*scale);
+      canvas.height=Math.round(video.videoHeight*scale);
+      const context=canvas.getContext("2d",{willReadFrequently:true});
+      context.drawImage(video,0,0,canvas.width,canvas.height);
+      const pixels=context.getImageData(0,0,canvas.width,canvas.height);
+      text=jsQR(pixels.data,pixels.width,pixels.height,{inversionAttempts:"attemptBoth"})?.data||"";
+    }else{
+      transferDetector=transferDetector||new BarcodeDetector({formats:["qr_code"]});
+      text=(await transferDetector.detect(video))[0]?.rawValue||"";
+    }
+    if(!transferStream)return;
+    if(text){
+      aturarEscanerEnviament();
+      resoldreDestinatariEnviament(text);
+      return;
+    }
   }catch(error){
     aturarEscanerEnviament();
     setTransferStatus(document.documentElement.lang==="es"?"No se pudo leer el QR. Puedes continuar con INTRODUCIR CÓDIGO.":"No s'ha pogut llegir el QR. Pots continuar amb INTRODUIR CODI.","error");
@@ -3709,30 +3826,49 @@ function llegirMarcEnviament(){
   transferFrame=requestAnimationFrame(llegirMarcEnviament);
 }
 
+function tornarEdicioEnviament(){
+  if(transferBusy)return;
+  transferConfirming=false;
+  document.getElementById("transferEntry").hidden=false;
+  document.getElementById("transferConfirm").hidden=true;
+  setTransferStatus("");
+}
+
 async function confirmarEnviamentCiclik(){
   if(transferBusy||transferDone||!transferRecipientId)return;
   const es=document.documentElement.lang==="es";
   const {amount,valid}=enviamentValid();
   if(!valid){setTransferStatus(es?"Introduce una cantidad entera mayor que cero.":"Introdueix una quantitat entera superior a zero.","error");return}
   const name=transferRecipientName||(es?"Miembro identificado":"Membre identificat");
-  const confirmation=es?`Vas a enviar ${amount} Cicliks a ${name}. ¿Confirmas?`:`Enviaràs ${amount} Cicliks a ${name}. Ho confirmes?`;
-  if(!window.confirm(confirmation))return;
+  if(!transferConfirming){
+    transferConfirming=true;
+    document.getElementById("transferEntry").hidden=true;
+    document.getElementById("transferConfirm").hidden=false;
+    document.getElementById("transferConfirmText").textContent=es?`Vas a enviar ${amount} Cicliks a ${name}. Esta operación no se puede deshacer.`:`Enviaràs ${amount} Cicliks a ${name}. Aquesta operació no es pot desfer.`;
+    setTransferStatus("");
+    return;
+  }
   transferBusy=true;
+  document.getElementById("transferConfirmSend").disabled=true;
+  document.getElementById("transferConfirmBack").disabled=true;
   actualitzarEnviamentCiclik();
   setTransferStatus(es?"Enviando Cicliks...":"Enviant Cicliks...");
   try{
     const {data:{user},error:userError}=await supabaseClient.auth.getUser();
     if(userError||!user)throw new Error("ciclik_not_authenticated");
-    const {error}=await supabaseClient.rpc("ciclik_transfer",{p_recipient_id:transferRecipientId,p_amount:amount});
+    const {error}=await supabaseClient.rpc("ciclik_transfer",{p_qr_code:transferRecipientId,p_amount:amount,p_request_id:transferRequestKey});
     if(error)throw error;
     transferDone=true;
+    document.getElementById("transferConfirm").hidden=true;
+    setTransferStatus(es?`Envío realizado: ${amount} Cicliks enviados a ${name}.`:`Enviament fet: ${amount} Cicliks enviats a ${name}.`);
     await carregarSaldoCiclik(user.id);
     await carregarActivitatRecent(user.id);
-    setTransferStatus(es?`Envío realizado: ${amount} Cicliks enviados a ${name}.`:`Enviament fet: ${amount} Cicliks enviats a ${name}.`);
   }catch(error){
-    setTransferStatus(missatgeErrorEnviament(error,es),"error");
+    if(!transferDone)setTransferStatus(missatgeErrorEnviament(error,es),"error");
   }finally{
     transferBusy=false;
+    document.getElementById("transferConfirmSend").disabled=false;
+    document.getElementById("transferConfirmBack").disabled=false;
     actualitzarEnviamentCiclik();
   }
 }
