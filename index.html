@@ -61,6 +61,31 @@
         "priceCurrency": "EUR",
         "url": "https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa"
       }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://www.ciclik.com/#taller-cuina-palestina-2026",
+      "name": "Taller de cuina palestina",
+      "description": "Taller de cuina palestina amb Mazeed Khalilia per descobrir sabors, històries i tradicions. Places limitades.",
+      "startDate": "2026-10-25",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Terrassa"
+      },
+      "performer": {
+        "@type": "Person",
+        "name": "Mazeed Khalilia"
+      },
+      "organizer": {
+        "@id": "https://www.ciclik.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "12",
+        "priceCurrency": "EUR",
+        "url": "https://entradium.com/events/taller-matinal-cuina-palestina"
+      }
     }
   ]
 }
@@ -378,11 +403,69 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .balance .dashBalanceLine{display:flex;align-items:flex-start;gap:4px;margin-top:10px;font:400 clamp(44px,13vw,56px)/1 Georgia,"Times New Roman",serif}
 .dashCommunity{max-width:560px;margin:0 auto}
 #moneder[data-view="community"] .dashCommunity{display:block}
+#dashCommunityPanel[hidden]{display:none!important}
 .dashCommunityBody{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:28px 24px;background:rgba(255,250,241,.85);border:1px solid var(--line);border-radius:24px}
 .dashCommunityBody h2{font-size:34px;line-height:1.1}
 .dashCommunityBody p{margin:0;color:#565945;font-size:16px;line-height:1.55}
 .dashCommunitySoon{display:inline-flex;align-items:center;gap:6px;margin-top:6px;color:#827c69;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .dashCommunitySoon .dashLeaf{width:16px;height:20px;flex-basis:16px;margin:0}
+.dashCommunity{max-width:680px}
+.commMain,.commProfile{display:flex;flex-direction:column;gap:14px;width:100%;min-width:0;max-width:100%}
+.dashCommunity,.dashCommunityBody{box-sizing:border-box;max-width:100%;min-width:0}
+.dashCommunityBody{overflow-wrap:anywhere}
+.commCard,.commForm,.commList,.commToolbar{box-sizing:border-box;min-width:0;max-width:100%}
+.commCard h3,.commAuthorName,#commProfileName{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.commAuthor{max-width:100%;min-width:0}
+.commField,.commField input,.commField select,.commField textarea{min-width:0;max-width:100%;box-sizing:border-box}
+.commSelect{max-width:100%;box-sizing:border-box}
+.commProfileHead{min-width:0}
+.commProfileHead h3{min-width:0;flex:1}
+.commClosedTag{color:#6b6f55;font-size:13px;font-weight:700}
+.commMain[hidden],.commProfile[hidden],.commForm[hidden],.commMore[hidden]{display:none}
+.commToolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.commFilters{display:flex;flex-wrap:wrap;gap:8px}
+.commFilter{padding:9px 16px;border:1px solid var(--line);border-radius:999px;background:var(--white);color:var(--olive);font:700 12px Arial,Helvetica,sans-serif;letter-spacing:.04em;cursor:pointer}
+.commFilter[aria-pressed="true"]{background:var(--olive);border-color:var(--olive);color:var(--white)}
+.commSelect,.commField input,.commField select,.commField textarea{width:100%;min-height:46px;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:#fffdf8;color:var(--ink);font:16px Arial,Helvetica,sans-serif}
+.commSelect{width:auto;min-width:0;flex:1 1 180px}
+.commField textarea{min-height:92px;resize:vertical}
+.commField{display:grid;gap:6px;color:var(--olive);font-size:13px;font-weight:700}
+.commPrimary{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:14px 20px;border:0;border-radius:999px;background:var(--olive);color:var(--white);font:700 12px Arial,Helvetica,sans-serif;letter-spacing:.04em;cursor:pointer}
+.commPrimary:disabled{opacity:.55;cursor:not-allowed}
+.commGhost{padding:12px 20px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--olive);font:700 12px Arial,Helvetica,sans-serif;cursor:pointer}
+.commGhost[hidden]{display:none}
+.commForm{display:flex;flex-direction:column;gap:14px;padding:20px 18px;background:var(--cream2);border-radius:18px}
+.commKindGroup{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0;padding:0;border:0}
+.commKindGroup legend{margin-bottom:8px;padding:0;color:var(--olive);font-size:13px;font-weight:700}
+.commRadio{display:flex;align-items:center;gap:8px;font-size:15px}
+.commRadio input{accent-color:var(--olive);width:18px;height:18px}
+.commHint{margin:0;color:#6b6f55;font-size:13px;line-height:1.45}
+.commFormActions{display:flex;flex-wrap:wrap;gap:10px}
+.commFormActions .commPrimary{width:auto;flex:1 1 160px}
+.commStatus{min-height:18px;margin:0;color:#565945;font-size:14px}
+.commStatus.isError{color:var(--rust)}
+.commList{display:flex;flex-direction:column;gap:12px}
+.commCard{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--white);border:1px solid var(--line);border-radius:18px}
+.commCardTop{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.commBadge{padding:4px 10px;border-radius:999px;background:var(--olive);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.commBadge.isNeed{background:var(--rust)}
+.commCategory{color:#6b6f55;font-size:12px}
+.commCard h3{font-size:22px;line-height:1.2}
+.commCard p{margin:0;color:#565945;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.commCiclik{color:var(--olive);font-size:13px;font-weight:700}
+.commAuthor{display:flex;align-items:center;gap:10px;padding:0;border:0;background:none;color:var(--ink);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.commAuthor .avatar,.commAuthor .dashAvatarWrap{width:36px;height:36px;flex:0 0 36px;font-size:15px}
+.commAuthor:hover .commAuthorName{text-decoration:underline;text-underline-offset:3px}
+.commAuthorName{font-weight:700;color:var(--olive)}
+.commMine{color:#6b6f55;font-size:13px}
+.commCardActions{display:flex;gap:8px;flex-wrap:wrap}
+.commProfileHead{display:flex;align-items:center;gap:16px}
+.commProfileHead .avatar{width:72px;height:72px;flex:0 0 72px;font-size:30px}
+.commProfileHead .dashAvatarWrap{width:72px;height:72px;flex:0 0 72px}
+.commProfileBody h4,#commProfileBody h4{margin:18px 0 6px;color:var(--olive);font:400 20px Georgia,"Times New Roman",serif}
+#commProfileBody ul{margin:0;padding-left:18px;color:#565945;font-size:14px;line-height:1.6}
+#commProfileBody p{margin:6px 0 0}
+@media(max-width:700px){.dashCommunityBody{padding:22px 16px}.dashCommunityBody h2{font-size:30px}}
 .dashProfileCard{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:24px;padding:22px 16px 18px;background:var(--cream2);border-radius:18px;text-align:center}
 .dashProfileCard .avatar{width:96px;height:96px;flex:0 0 96px;font-size:40px}
 .dashAvatarWrap{position:relative;display:block;flex:0 0 auto;border-radius:50%}
@@ -478,10 +561,12 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .proposalSubtitle{margin:0 0 12px;color:#68634f;font-size:14px}
 .proposalMeta{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px;color:#565945}
 .proposalDesc{margin:0;font-size:14px;line-height:1.5;color:#565945}
+.proposalPrice{font-weight:700}
 .proposalCta{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:12px 20px;font-size:12px;font-weight:700;letter-spacing:.04em;border:1px solid transparent;width:max-content}
 .proposalCtaRust{background:var(--rust);color:var(--white)}
 .proposalCtaRust:disabled{opacity:.55;cursor:not-allowed}
 .proposalCtaOlive{background:var(--olive2);color:var(--white)}
+.proposalCtaEnded{cursor:default;pointer-events:none;user-select:none}
 .proposalEmpty{display:none;margin:12px 0;color:#68634f;font-size:14px}
 .proposalMemberCta[hidden],.activityJoinCta[hidden]{display:none}
 .activityJoinCta{margin-top:34px;padding:26px 30px;background:var(--cream2);border:1px solid var(--line);border-radius:12px;color:var(--ink)}
@@ -499,6 +584,23 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .form button{width:100%;padding:14px;border:0;border-radius:999px;background:var(--cream);color:var(--olive);font-weight:700}
 .note{font-size:11px;opacity:.7;margin-top:10px}
 footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:12px}.footlinks{display:flex;gap:24px}
+.legalDoc{display:none;padding:56px 0;background:var(--cream2);border-top:1px solid var(--line);scroll-margin-top:90px}
+.legalDoc:target{display:block}
+.legalWrap{max-width:760px}
+.legalDoc h2{margin:0 0 16px;color:var(--olive);font-weight:500;overflow-wrap:anywhere}
+.legalDoc p{line-height:1.6;overflow-wrap:anywhere}
+.legalDoc h3{margin:26px 0 8px;color:var(--olive);font-size:18px;font-weight:700;overflow-wrap:anywhere}
+.legalDoc ul{margin:0 0 12px;padding-left:20px;line-height:1.6;overflow-wrap:anywhere}
+.legalDoc li{margin:0 0 6px}
+.legalDoc details{margin:0 0 10px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.legalDoc summary{cursor:pointer;font-weight:700;color:var(--olive);overflow-wrap:anywhere}
+.legalDoc details p{margin:10px 0 0}
+.legalDoc a:not(.dashBack){color:var(--olive);text-decoration:underline;text-underline-offset:3px}
+html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
+.registerLegalInfo{display:none;margin:4px 0 0;font-size:13px;line-height:1.5;color:#5d604a;text-align:left;overflow-wrap:anywhere}
+.registerLegalInfo a{color:var(--olive);text-decoration:underline;text-underline-offset:3px}
+.legalAcceptWrap{display:none;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5;text-align:left}
+.legalAcceptWrap input{margin-top:3px}
 .footlinks{width:100%;justify-content:center;flex-wrap:wrap;gap:12px 34px}.footlinks a{font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.03em;color:var(--olive);text-decoration:none}.footlinks a:hover{text-decoration:underline;text-underline-offset:4px}
 
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:#2f3325;color:white;padding:13px 18px;border-radius:999px;z-index:50;transition:.25s;box-shadow:0 10px 30px #0003}.toast.show{transform:translateX(-50%) translateY(0)}
@@ -1099,7 +1201,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </button>
     <a class="dashNotice" id="profileCompleteNotice" href="#memberProfileSection" onclick="obrirPerfilMembre(event)" hidden><span data-dash-ca="Completa el teu perfil" data-dash-es="Completa tu perfil">Completa el teu perfil</span><span class="dashArrow" aria-hidden="true">→</span></a>
         <div class="dashMenu" role="navigation" aria-label="Menú">
-     <button class="dashRow" type="button" onclick="mostrarVistaDashboard('community')">
+     <button class="dashRow" id="dashCommunityRow" type="button" onclick="mostrarVistaDashboard('community')">
       <span class="dashIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.1 2 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M16.5 14.2c2.3.1 3.8 1.6 4.2 4.3"/></svg></span>
       <span class="dashRowLabel" data-dash-ca="Comunitat" data-dash-es="Comunidad">Comunitat</span>
       <svg class="dashChevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
@@ -1323,8 +1425,47 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
    <div class="dashCommunityBody">
     <span class="dashIcon dashCommunityIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.1 2 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M16.5 14.2c2.3.1 3.8 1.6 4.2 4.3"/></svg></span>
     <h2 id="dashCommunityTitle" data-dash-ca="Comunitat" data-dash-es="Comunidad">Comunitat</h2>
-    <p data-dash-ca="Aquí podràs descobrir altres persones de Ciclik, veure què ofereixen i què busquen, i generar intercanvis amb Cicliks." data-dash-es="Aquí podrás descubrir a otras personas de Ciclik, ver qué ofrecen y qué buscan, y generar intercambios con Cicliks.">Aquí podràs descobrir altres persones de Ciclik, veure què ofereixen i què busquen, i generar intercanvis amb Cicliks.</p>
-    <span class="dashCommunitySoon"><svg class="dashLeaf" viewBox="0 0 24 30" aria-hidden="true"><path d="M5 29C7 20 11 12 19 3" fill="none"/><path d="M10 17C3 16 2 9 3 6c6 1 9 5 7 11z"/><path d="M14 11c4 1 8 3 8 9-6 0-9-4-8-9z"/></svg><span data-dash-ca="Properament" data-dash-es="Próximamente">Properament</span></span>
+    <div class="commMain" id="commMain">
+     <p id="commIntro">Descobreix què ofereixen i què busquen altres persones de Ciclik, o publica el que tu pots aportar.</p>
+     <div class="commToolbar">
+      <div class="commFilters" role="group" aria-label="Filtra per tipus">
+       <button class="commFilter" type="button" data-comm-kind="" aria-pressed="true">Tot</button>
+       <button class="commFilter" type="button" data-comm-kind="offer" aria-pressed="false">Ofereixo</button>
+       <button class="commFilter" type="button" data-comm-kind="need" aria-pressed="false">Busco</button>
+       <button class="commFilter" type="button" data-comm-kind="mine" aria-pressed="false">Les meves</button>
+      </div>
+      <select class="commSelect" id="commCategoryFilter" aria-label="Filtra per categoria"></select>
+     </div>
+     <button class="commPrimary" id="commNewButton" type="button">PUBLICA ALGUNA COSA</button>
+     <form class="commForm" id="commForm" hidden>
+      <fieldset class="commKindGroup">
+       <legend id="commFormKindLegend">Què vols publicar?</legend>
+       <label class="commRadio"><input type="radio" name="commKind" value="offer" checked><span>Ofereixo</span></label>
+       <label class="commRadio"><input type="radio" name="commKind" value="need"><span>Busco</span></label>
+      </fieldset>
+      <label class="commField"><span id="commFormCategoryLabel">Categoria</span><select id="commFormCategory" required></select></label>
+      <label class="commField"><span id="commFormTitleLabel">Títol</span><input id="commFormTitle" type="text" minlength="3" maxlength="80" required></label>
+      <label class="commField"><span id="commFormDescLabel">Descripció (opcional)</span><textarea id="commFormDesc" maxlength="600"></textarea></label>
+      <label class="commField"><span id="commFormCiclikLabel">Cicliks orientatius (opcional)</span><input id="commFormCiclik" type="number" min="0" max="10000" step="1" inputmode="numeric"></label>
+      <p class="commHint" id="commFormHint">Els Cicliks són només una referència. Encara no es fa cap pagament des d'aquí.</p>
+      <div class="commFormActions">
+       <button class="commPrimary" id="commFormSubmit" type="submit">PUBLICA</button>
+       <button class="commGhost" id="commFormCancel" type="button">Cancel·la</button>
+      </div>
+     </form>
+     <p class="commStatus" id="commStatus" role="status" aria-live="polite"></p>
+     <div class="commList" id="commList" aria-live="polite"></div>
+     <button class="commGhost" id="commMore" type="button" hidden>Carrega'n més</button>
+    </div>
+    <div class="commProfile" id="commProfile" hidden>
+     <button class="dashBack" id="commProfileBack" type="button">← Torna a la comunitat</button>
+     <div class="commProfileHead">
+      <div class="dashAvatarWrap"><div class="avatar" id="commProfileAvatar" aria-hidden="true">C</div><img class="dashAvatarImg" id="commProfileImg" alt="" hidden></div>
+      <h3 id="commProfileName"></h3>
+     </div>
+     <p class="commStatus" id="commProfileStatus" role="status" aria-live="polite"></p>
+     <div id="commProfileBody"></div>
+    </div>
    </div>
   </section>
   <div class="walletGrid">
@@ -1494,14 +1635,16 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
      <h3 id="proposalCookingTitle">Cuina palestina</h3>
      <p class="proposalSubtitle" id="proposalCookingByline">amb Mazeed Khalilia</p>
      <ul class="proposalMeta">
-      <li id="proposalCookingMeta1">Properament</li>
+      <li id="proposalCookingMeta1">Diumenge 25 d'octubre de 2026</li>
       <li id="proposalCookingMeta2">Terrassa</li>
       <li id="proposalCookingMeta3">Places limitades</li>
      </ul>
     </div>
     <div class="proposalSideV2">
      <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
-    <button class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" type="button" disabled>INSCRIU-TE</button>
+     <p class="proposalDesc proposalPrice"      id="proposalCookingPrice">Preu: 12 € + 30 Cicliks</p>
+          <p class="proposalDesc" id="proposalCookingCiclikNote">Els Cicliks ajuden a mantenir viva l'economia circular. Si encara no en tens, registra't a la comunitat i rebràs 30 Cicliks de benvinguda per participar en el taller.</p>
+    <a class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" href="https://entradium.com/events/taller-matinal-cuina-palestina" target="_blank" rel="noopener noreferrer">INSCRIU-TE</a>
     </div>
    </article>
    <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
@@ -1518,7 +1661,7 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
     </div>
     <div class="proposalSideV2">
      <p class="proposalDesc" id="proposalMarketDesc">Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.</p>
-    <a class="proposalCta proposalCtaOlive proposalMemberCta" id="proposalMarketCta" href="https://entradium.com/es/events/segona-edicio-mercat-circular-de-roba-ciclik-terrassa" target="_blank" rel="noopener noreferrer">INSCRIU-TE</a>
+    <span class="proposalCta proposalCtaOlive proposalMemberCta proposalCtaEnded" id="proposalMarketCta" role="link" aria-disabled="true">FINALITZAT</span>
     </div>
    </article>
   </div>
@@ -1604,6 +1747,16 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
           INICIA SESSIÓ
         </button>
 
+        <p class="registerLegalInfo" id="registerLegalInfo">
+          <span class="lgCa"><strong>Responsable:</strong> Raquel González (persona física), titular de CICLIK. <strong>Finalitat:</strong> gestionar el teu compte, el teu perfil i el monedero de Cicliks amb el nom, el correu electrònic i la contrasenya que facilites. Cal ser major de 18 anys. <strong>Destinataris:</strong> proveïdors tècnics (Supabase, Resend i Vercel); no venem les teves dades. Les conservem mentre el compte estigui actiu. <strong>Drets:</strong> accés, rectificació, supressió, oposició, limitació i portabilitat, o baixa del compte, escrivint a <a href="mailto:info@ciclik.com">info@ciclik.com</a>; també pots reclamar davant l'Agència Espanyola de Protecció de Dades (aepd.es).</span>
+          <span class="lgEs"><strong>Responsable:</strong> Raquel González (persona física), titular de CICLIK. <strong>Finalidad:</strong> gestionar tu cuenta, tu perfil y el monedero de Cicliks con el nombre, el correo electrónico y la contraseña que facilitas. Hay que ser mayor de 18 años. <strong>Destinatarios:</strong> proveedores técnicos (Supabase, Resend y Vercel); no vendemos tus datos. Los conservamos mientras la cuenta esté activa. <strong>Derechos:</strong> acceso, rectificación, supresión, oposición, limitación y portabilidad, o baja de la cuenta, escribiendo a <a href="mailto:info@ciclik.com">info@ciclik.com</a>; también puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</span>
+        </p>
+
+        <label class="legalAcceptWrap" id="legalAcceptWrap">
+          <input type="checkbox" id="legalAccept" required>
+          <span><span class="lgCa">Confirmo que sóc major de 18 anys.</span><span class="lgEs">Confirmo que soy mayor de 18 años.</span></span>
+        </label>
+
         <button
           id="registerSubmit"
           class="authPrimary"
@@ -1640,9 +1793,77 @@ footer{padding:35px 0;border-top:1px solid var(--line)}.foot{display:flex;justif
 </section>
 </main>
 
+<section class="legalDoc" id="sobre-ciclik" aria-labelledby="sobreTitle"><div class="wrap legalWrap">
+ <a class="dashBack" href="#inici"><span class="lgCa">← Torna</span><span class="lgEs">← Volver</span></a>
+ <h2 id="sobreTitle"><span class="lgCa">Sobre Ciclik</span><span class="lgEs">Sobre Ciclik</span></h2>
+ <div class="lgCa">
+  <h3>Què és Ciclik</h3>
+  <p>Ciclik és una comunitat d'economia circular de Terrassa que promou l'intercanvi de roba, els mercats circulars, els tallers i les experiències compartides.</p>
+  <h3>La nostra filosofia</h3>
+  <p>Tot pot tornar a circular: objectes, coneixements, temps, habilitats i experiències. Allò que pots aportar també té valor. Ciclik no consisteix a comprar i vendre: les persones aporten allò que té valor per a la comunitat i els Cicliks fan que aquest valor continuï circulant.</p>
+  <h3>Com funciona</h3>
+  <ul>
+   <li><strong>Forma'n part:</strong> crea gratuïtament el teu perfil i explica què pots aportar o què t'agradaria trobar.</li>
+   <li><strong>Aporta i guanya Cicliks:</strong> comparteix roba, temps, coneixements, habilitats o experiències i rep Cicliks a canvi.</li>
+   <li><strong>Fes-los circular:</strong> utilitza els teus Cicliks per intercanviar, descobrir activitats i participar en tallers, mercats i experiències de la comunitat.</li>
+  </ul>
+  <p>El projecte el gestiona Raquel González. Per a qualsevol consulta, escriu a <a href="mailto:info@ciclik.com">info@ciclik.com</a>.</p>
+ </div>
+ <div class="lgEs">
+  <h3>Qué es Ciclik</h3>
+  <p>Ciclik es una comunidad de economía circular de Terrassa que promueve el intercambio de ropa, los mercados circulares, los talleres y las experiencias compartidas.</p>
+  <h3>Nuestra filosofía</h3>
+  <p>Todo puede volver a circular: objetos, conocimientos, tiempo, habilidades y experiencias. Lo que puedes aportar también tiene valor. Ciclik no consiste en comprar y vender: las personas aportan lo que tiene valor para la comunidad y los Cicliks hacen que ese valor siga circulando.</p>
+  <h3>Cómo funciona</h3>
+  <ul>
+   <li><strong>Forma parte:</strong> crea gratuitamente tu perfil y cuéntanos qué puedes aportar o qué te gustaría encontrar.</li>
+   <li><strong>Aporta y gana Cicliks:</strong> comparte ropa, tiempo, conocimientos, habilidades o experiencias y recibe Cicliks a cambio.</li>
+   <li><strong>Hazlos circular:</strong> utiliza tus Cicliks para intercambiar, descubrir actividades y participar en talleres, mercados y experiencias de la comunidad.</li>
+  </ul>
+  <p>El proyecto lo gestiona Raquel González. Para cualquier consulta, escribe a <a href="mailto:info@ciclik.com">info@ciclik.com</a>.</p>
+ </div>
+</div></section>
+
+<section class="legalDoc" id="preguntes-frequents" aria-labelledby="faqTitle"><div class="wrap legalWrap">
+ <a class="dashBack" href="#inici"><span class="lgCa">← Torna</span><span class="lgEs">← Volver</span></a>
+ <h2 id="faqTitle"><span class="lgCa">Preguntes freqüents</span><span class="lgEs">Preguntas frecuentes</span></h2>
+ <div class="lgCa">
+  <details><summary>Com em registro?</summary><p>Des de l'apartat de registre del web, amb el teu nom, el correu electrònic i una contrasenya. Rebràs un correu per confirmar el compte. L'espai de membres és només per a persones majors de 18 anys.</p></details>
+  <details><summary>Registrar-me té cost?</summary><p>No. Pots crear gratuïtament el teu perfil.</p></details>
+  <details><summary>Què són els Cicliks?</summary><p>Són la unitat interna de la comunitat: reconeixen el valor que les persones aporten (roba, temps, coneixements, habilitats o experiències) i fan que continuï circulant.</p></details>
+  <details><summary>Com aconsegueixo Cicliks?</summary><p>Aportant a la comunitat: comparteix roba, temps, coneixements, habilitats o experiències i rep Cicliks a canvi.</p></details>
+  <details><summary>Per a què serveixen els Cicliks?</summary><p>Per participar en altres intercanvis, propostes, activitats i experiències de la comunitat. Pots veure els teus Cicliks al teu espai de membre.</p></details>
+  <details><summary>Què són els mercats circulars?</summary><p>Són trobades per intercanviar, renovar i donar una segona vida a la roba. Les noves edicions s'anuncien a la secció d'activitats del web.</p></details>
+  <details><summary>Com m'apunto a un taller o a un mercat?</summary><p>Les entrades es compren a Entradium: el botó «Inscriu-te» de cada activitat t'hi porta. La compra es fa sota les condicions d'Entradium i CICLIK no rep les dades de pagament. Les places poden ser limitades.</p></details>
+  <details><summary>Puc publicar el que ofereixo o necessito?</summary><p>La comunitat d'intercanvis entre persones encara no està oberta. T'avisarem quan ho estigui.</p></details>
+  <details><summary>Com demano la baixa del compte o exerceixo els meus drets sobre les meves dades?</summary><p>Escrivint a <a href="mailto:info@ciclik.com">info@ciclik.com</a>.</p></details>
+ </div>
+ <div class="lgEs">
+  <details><summary>¿Cómo me registro?</summary><p>Desde el apartado de registro de la web, con tu nombre, correo electrónico y una contraseña. Recibirás un correo para confirmar la cuenta. El espacio de miembros es solo para personas mayores de 18 años.</p></details>
+  <details><summary>¿Registrarme tiene coste?</summary><p>No. Puedes crear gratuitamente tu perfil.</p></details>
+  <details><summary>¿Qué son los Cicliks?</summary><p>Son la unidad interna de la comunidad: reconocen el valor que las personas aportan (ropa, tiempo, conocimientos, habilidades o experiencias) y hacen que siga circulando.</p></details>
+  <details><summary>¿Cómo consigo Cicliks?</summary><p>Aportando a la comunidad: comparte ropa, tiempo, conocimientos, habilidades o experiencias y recibe Cicliks a cambio.</p></details>
+  <details><summary>¿Para qué sirven los Cicliks?</summary><p>Para participar en otros intercambios, propuestas, actividades y experiencias de la comunidad. Puedes ver tus Cicliks en tu espacio de miembro.</p></details>
+  <details><summary>¿Qué son los mercados circulares?</summary><p>Son encuentros para intercambiar, renovar y dar una segunda vida a la ropa. Las nuevas ediciones se anuncian en la sección de actividades de la web.</p></details>
+  <details><summary>¿Cómo me apunto a un taller o a un mercado?</summary><p>Las entradas se compran en Entradium: el botón «Inscriu-te» de cada actividad te lleva allí. La compra se rige por las condiciones de Entradium y CICLIK no recibe los datos de pago. Las plazas pueden ser limitadas.</p></details>
+  <details><summary>¿Puedo publicar lo que ofrezco o necesito?</summary><p>La comunidad de intercambios entre personas aún no está abierta. Te avisaremos cuando lo esté.</p></details>
+  <details><summary>¿Cómo solicito la baja de la cuenta o ejerzo mis derechos sobre mis datos?</summary><p>Escribiendo a <a href="mailto:info@ciclik.com">info@ciclik.com</a>.</p></details>
+ </div>
+</div></section>
+
+<section class="legalDoc" id="contacte" aria-labelledby="contacteTitle"><div class="wrap legalWrap">
+ <a class="dashBack" href="#inici"><span class="lgCa">← Torna</span><span class="lgEs">← Volver</span></a>
+ <h2 id="contacteTitle"><span class="lgCa">Contacte</span><span class="lgEs">Contacto</span></h2>
+ <p class="lgCa">Per a consultes, suggeriments, sol·licituds de baixa del compte o exercici de drets de protecció de dades, escriu-nos a:</p>
+ <p class="lgEs">Para consultas, sugerencias, solicitudes de baja de la cuenta o ejercicio de derechos de protección de datos, escríbenos a:</p>
+ <p><a href="mailto:info@ciclik.com">info@ciclik.com</a></p>
+ <p class="lgCa">Responsable: Raquel González, titular del projecte CICLIK.</p>
+ <p class="lgEs">Responsable: Raquel González, titular del proyecto CICLIK.</p>
+</div></section>
+
 <footer><div class="wrap foot">
  <a class="logoImgWrap footerLogoWrap" href="#inici"><img class="logoImg footerLogo" src="logo-ciclik-transparent.png" alt="CICLIK" width="1115" height="408"></a>
- <div class="footlinks"><a href="#sobre-ciclik">Sobre Ciclik</a><a href="#preguntes-frequents">Preguntes freqüents</a><a href="#contacte">Contacte</a><a href="#condicions">Condicions</a><a href="#privacitat">Privacitat</a></div>
+ <div class="footlinks"><a href="#sobre-ciclik">Sobre Ciclik</a><a href="#preguntes-frequents">Preguntes freqüents</a><a href="#contacte">Contacte</a></div>
 </div></footer>
 
 <div class="toast" id="toast"></div>
@@ -1684,7 +1905,7 @@ const TR={
 "Tallers i experiències":"Tallers i experiències",
 "PROPERAMENT":"PROPERAMENT",
 "Forma part del cercle.":"Forma part del cercle.",
-"Preguntes freqüents":"Preguntes freqüents","Contacte":"Contacte","Condicions":"Condicions","Privacitat":"Privacitat"
+"Preguntes freqüents":"Preguntes freqüents","Contacte":"Contacte"
 },
 "es":{
 "Inici":"Inicio","Com funciona":"Cómo funciona","Tallers":"Talleres","Comunitat":"Comunidad","El meu Ciclik":"Mi Ciclik","Inicia sessió":"Iniciar sesión",
@@ -1704,7 +1925,7 @@ const TR={
 "Tallers i experiències":"Talleres y experiencias",
 "PROPERAMENT":"PRÓXIMAMENTE",
 "Forma part del cercle.":"Forma parte del círculo.",
-"Preguntes freqüents":"Preguntas frecuentes","Contacte":"Contacto","Condicions":"Condiciones","Privacitat":"Privacidad"
+"Preguntes freqüents":"Preguntas frecuentes","Contacte":"Contacto"
 }};
 
 const originals=new Map();
@@ -1927,12 +2148,16 @@ document.querySelector(".authSignature small").textContent =
   });
   document.getElementById("proposalCookingTitle").textContent = es ? "Cocina palestina" : "Cuina palestina";
   document.getElementById("proposalCookingByline").textContent = es ? "con Mazeed Khalilia" : "amb Mazeed Khalilia";
-  document.getElementById("proposalCookingMeta1").textContent = es ? "Próximamente" : "Properament";
+  document.getElementById("proposalCookingMeta1").textContent = es ? "Domingo 25 de octubre de 2026" : "Diumenge 25 d'octubre de 2026";
   document.getElementById("proposalCookingMeta2").textContent = "Terrassa";
   document.getElementById("proposalCookingMeta3").textContent = es ? "Plazas limitadas" : "Places limitades";
   document.getElementById("proposalCookingDesc").textContent = es
     ? "Descubre sabores, historias y tradiciones en un taller de cocina palestina para compartir, aprender y conectar."
     : "Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.";
+  document.getElementById("proposalCookingPrice").textContent = es ? "Precio: 12 € + 30 Cicliks" : "Preu: 12 € + 30 Cicliks";
+  document.getElementById("proposalCookingCiclikNote").textContent = es
+    ? "Los Cicliks ayudan a mantener viva la economía circular. Si todavía no tienes, regístrate en la comunidad y recibirás 30 Cicliks de bienvenida para participar en el taller."
+    : "Els Cicliks ajuden a mantenir viva l'economia circular. Si encara no en tens, registra't a la comunitat i rebràs 30 Cicliks de benvinguda per participar en el taller.";
   document.getElementById("proposalCookingCta").textContent = es ? "INSCRÍBETE" : "INSCRIU-TE";
   document.getElementById("proposalMarketTag").textContent = es ? "MERCADO" : "MERCAT";
   document.getElementById("proposalMarketTitle").textContent = es ? "Mercado Circular de ropa" : "Mercat Circular de roba";
@@ -1943,7 +2168,7 @@ document.querySelector(".authSignature small").textContent =
   document.getElementById("proposalMarketDesc").textContent = es
     ? "Intercambia, renueva y da una segunda vida a la ropa. Moda más consciente, comunidad más viva."
     : "Intercanvia, renova i dona una segona vida a la roba. Moda més conscient, comunitat més viva.";
-  document.getElementById("proposalMarketCta").textContent = es ? "INSCRÍBETE" : "INSCRIU-TE";
+  document.getElementById("proposalMarketCta").textContent = es ? "FINALIZADO" : "FINALITZAT";
   document.getElementById("proposalEmpty").textContent = es
     ? "Todavía no hay propuestas en esta categoría."
     : "Encara no hi ha propostes en aquesta categoria.";
@@ -2145,6 +2370,11 @@ async function guardarPerfilMembre(event){
 
 async function registrarUsuario(event) {
   event.preventDefault();
+
+  if (!document.getElementById("legalAccept").checked) {
+    alert(document.documentElement.lang==="es"?"Debes confirmar que eres mayor de 18 años para registrarte.":"Has de confirmar que ets major de 18 anys per registrar-te.");
+    return;
+  }
 
   const nombre = document.getElementById("nameInput").value;
   const email = document.getElementById("emailInput").value;
@@ -3475,6 +3705,8 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
   document.getElementById("loginFooter").style.display = "none";
 
   document.getElementById("nameInput").required = false;
+  document.getElementById("registerLegalInfo").style.display = "none";
+  document.getElementById("legalAcceptWrap").style.display = "none";
 }
 
 function mostrarRegistro() {
@@ -3491,6 +3723,8 @@ function mostrarRegistro() {
   document.getElementById("loginFooter").style.display = "block";
 
   document.getElementById("nameInput").required = true;
+  document.getElementById("registerLegalInfo").style.display = "block";
+  document.getElementById("legalAcceptWrap").style.display = "flex";
 }
 
 function mostrarPassword() {
@@ -4271,6 +4505,413 @@ async function dashSavePhoto(){
     event.preventDefault();
     dashCropSetZoom(dashCrop.zoom*(event.deltaY<0?1.06:1/1.06));
   },{passive:false});
+})();
+
+// Comunitat · Fase 1: tauler d'ofertes i necessitats + perfil públic (taules community_*)
+(function(){
+  const PAGE=20;
+  const state={kind:"",category:"",offset:0,seq:0,busy:false,hasMore:false,editingId:null,profile:null};
+  const CATEGORIES={
+    knowledge:["Coneixements","Conocimientos"],
+    skills:["Habilitats o oficis","Habilidades u oficios"],
+    help_time:["Ajuda o temps","Ayuda o tiempo"],
+    objects:["Objectes","Objetos"],
+    workshops:["Tallers o activitats","Talleres o actividades"],
+    volunteering:["Voluntariat","Voluntariado"],
+    other:["Altres","Otros"]
+  };
+  const $=id=>document.getElementById(id);
+  const t=(ca,es)=>dashText(ca,es);
+  const label=(map,key)=>map[key]?t(map[key][0],map[key][1]):key;
+
+  function setStatus(id,text,isError){
+    const el=$(id);
+    el.textContent=text||"";
+    el.classList.toggle("isError",Boolean(isError));
+  }
+
+  function errorText(error){
+    const code=String(error?.code||"");
+    const message=String(error?.message||"");
+    if(code==="PGRST202"||code==="PGRST205"||code==="42P01"||/schema cache|Could not find/i.test(message))
+      return t("La comunitat encara no està activada. Torna-ho a provar aviat.","La comunidad todavía no está activada. Vuelve a probar pronto.");
+    if(message.includes("community_too_many_active_posts"))
+      return t("Ja tens 20 publicacions actives. Tanca'n alguna per poder-ne publicar de noves.","Ya tienes 20 publicaciones activas. Cierra alguna para poder publicar nuevas.");
+    if(message.includes("community_invalid_member"))
+      return t("Aquest perfil no està disponible.","Este perfil no está disponible.");
+    if(message.includes("community_not_found"))
+      return t("No s'ha trobat la publicació. Pot haver estat esborrada.","No se ha encontrado la publicación. Puede haber sido borrada.");
+    if(code==="42501")
+      return t("No tens permís per fer aquesta acció.","No tienes permiso para hacer esta acción.");
+    return t("Hi ha hagut un error. Torna-ho a provar.","Ha habido un error. Inténtalo de nuevo.");
+  }
+
+  function fillCategories(select,withAll){
+    const current=select.value;
+    select.replaceChildren();
+    if(withAll){
+      const all=document.createElement("option");
+      all.value="";
+      all.textContent=t("Totes les categories","Todas las categorías");
+      select.append(all);
+    }
+    Object.keys(CATEGORIES).forEach(key=>{
+      const option=document.createElement("option");
+      option.value=key;
+      option.textContent=label(CATEGORIES,key);
+      select.append(option);
+    });
+    select.value=current&&[...select.options].some(o=>o.value===current)?current:(withAll?"":"knowledge");
+  }
+
+  function applyLabels(){
+    $("commIntro").textContent=t("Descobreix què ofereixen i què busquen altres persones de Ciclik, o publica el que tu pots aportar.","Descubre qué ofrecen y qué buscan otras personas de Ciclik, o publica lo que tú puedes aportar.");
+    const filters=document.querySelectorAll(".commFilter");
+    const names=[["Tot","Todo"],["Ofereixo","Ofrezco"],["Busco","Busco"],["Les meves","Las mías"]];
+    filters.forEach((button,index)=>{button.textContent=t(names[index][0],names[index][1])});
+    $("commNewButton").textContent=t("PUBLICA ALGUNA COSA","PUBLICA ALGO");
+    $("commFormKindLegend").textContent=t("Què vols publicar?","¿Qué quieres publicar?");
+    const radios=document.querySelectorAll(".commRadio span");
+    radios[0].textContent=t("Ofereixo","Ofrezco");
+    radios[1].textContent=t("Busco","Busco");
+    $("commFormCategoryLabel").textContent=t("Categoria","Categoría");
+    $("commFormTitleLabel").textContent=t("Títol","Título");
+    $("commFormDescLabel").textContent=t("Descripció (opcional)","Descripción (opcional)");
+    $("commFormCiclikLabel").textContent=t("Cicliks orientatius (opcional)","Cicliks orientativos (opcional)");
+    $("commFormHint").textContent=t("Els Cicliks són només una referència. Encara no es fa cap pagament des d'aquí.","Los Cicliks son solo una referencia. Todavía no se realiza ningún pago desde aquí.");
+    $("commFormSubmit").textContent=state.editingId?t("DESA ELS CANVIS","GUARDAR CAMBIOS"):t("PUBLICA","PUBLICA");
+    $("commFormCancel").textContent=t("Cancel·la","Cancelar");
+    $("commMore").textContent=t("Carrega'n més","Cargar más");
+    $("commProfileBack").textContent=t("← Torna a la comunitat","← Volver a la comunidad");
+    fillCategories($("commCategoryFilter"),true);
+    fillCategories($("commFormCategory"),false);
+  }
+
+  function avatarNode(authorId,name){
+    const wrap=document.createElement("span");
+    wrap.className="dashAvatarWrap";
+    const initial=document.createElement("span");
+    initial.className="avatar";
+    initial.setAttribute("aria-hidden","true");
+    initial.textContent=(name||"C").trim().charAt(0).toUpperCase()||"C";
+    const img=document.createElement("img");
+    img.className="dashAvatarImg";
+    img.alt="";
+    img.hidden=true;
+    img.loading="lazy";
+    img.onload=()=>{img.hidden=false};
+    img.onerror=()=>{img.hidden=true};
+    img.src=supabaseClient.storage.from(DASH_AVATAR_BUCKET).getPublicUrl(`${authorId}/avatar`).data.publicUrl;
+    wrap.append(initial,img);
+    return wrap;
+  }
+
+  function postNode(post,onChange,mode="feed"){
+    const card=document.createElement("article");
+    card.className="commCard";
+    const top=document.createElement("div");
+    top.className="commCardTop";
+    const badge=document.createElement("span");
+    badge.className="commBadge"+(post.kind==="need"?" isNeed":"");
+    badge.textContent=post.kind==="need"?t("Busco","Busco"):t("Ofereixo","Ofrezco");
+    const category=document.createElement("span");
+    category.className="commCategory";
+    category.textContent=label(CATEGORIES,post.category);
+    top.append(badge,category);
+    const title=document.createElement("h3");
+    title.textContent=post.title;
+    card.append(top,title);
+    if(post.description){
+      const description=document.createElement("p");
+      description.textContent=post.description;
+      card.append(description);
+    }
+    if(post.suggested_ciclik!==null&&post.suggested_ciclik!==undefined){
+      const ciclik=document.createElement("span");
+      ciclik.className="commCiclik";
+      ciclik.textContent=t(`Orientatiu: ${post.suggested_ciclik} Cicliks`,`Orientativo: ${post.suggested_ciclik} Cicliks`);
+      card.append(ciclik);
+    }
+    const manage=mode==="mine"||(mode==="feed"&&post.is_mine);
+    if(manage){
+      const closed=post.status==="closed";
+      const mine=document.createElement("span");
+      mine.className=closed?"commClosedTag":"commMine";
+      mine.textContent=closed?t("Finalitzada","Finalizada"):t("Publicació teva","Publicación tuya");
+      const actions=document.createElement("div");
+      actions.className="commCardActions";
+      if(!closed){
+        const edit=document.createElement("button");
+        edit.type="button";edit.className="commGhost";
+        edit.textContent=t("Edita","Editar");
+        edit.onclick=()=>editarPublicacio(post);
+        const finish=document.createElement("button");
+        finish.type="button";finish.className="commGhost";
+        finish.textContent=t("Finalitza","Finalizar");
+        finish.onclick=()=>canviarPublicacio(post.id,"close",finish,onChange);
+        actions.append(edit,finish);
+      }
+      const remove=document.createElement("button");
+      remove.type="button";remove.className="commGhost";
+      remove.textContent=t("Esborra","Borrar");
+      remove.onclick=()=>canviarPublicacio(post.id,"delete",remove,onChange);
+      actions.append(remove);
+      card.append(mine,actions);
+    }else if(mode==="feed"&&post.author_name!==undefined){
+      const author=document.createElement("button");
+      author.type="button";author.className="commAuthor";
+      author.setAttribute("aria-label",t(`Veure el perfil de ${post.author_name}`,`Ver el perfil de ${post.author_name}`));
+      const name=document.createElement("span");
+      name.className="commAuthorName";
+      name.textContent=post.author_name;
+      author.append(avatarNode(post.author_id,post.author_name),name);
+      author.onclick=()=>obrirPerfil(post.author_id,post.author_name);
+      card.append(author);
+    }
+    return card;
+  }
+
+  function editarPublicacio(post){
+    state.editingId=post.id;
+    document.querySelector(`input[name="commKind"][value="${post.kind}"]`).checked=true;
+    $("commFormCategory").value=post.category;
+    $("commFormTitle").value=post.title;
+    $("commFormDesc").value=post.description||"";
+    $("commFormCiclik").value=post.suggested_ciclik===null||post.suggested_ciclik===undefined?"":post.suggested_ciclik;
+    $("commFormSubmit").textContent=t("DESA ELS CANVIS","GUARDAR CAMBIOS");
+    $("commForm").hidden=false;
+    $("commNewButton").hidden=true;
+    setStatus("commStatus","");
+    $("commForm").scrollIntoView({behavior:"smooth",block:"center"});
+    $("commFormTitle").focus();
+  }
+
+  async function canviarPublicacio(id,action,button,onChange){
+    if(action==="delete"&&!confirm(t("Vols esborrar aquesta publicació?","¿Quieres borrar esta publicación?")))return;
+    if(action==="close"&&!confirm(t("Vols finalitzar aquesta publicació? Deixarà de ser visible per a la resta de persones.","¿Quieres finalizar esta publicación? Dejará de ser visible para el resto de personas.")))return;
+    button.disabled=true;
+    const query=action==="delete"
+      ?supabaseClient.from("community_posts").delete().eq("id",id).select("id")
+      :supabaseClient.from("community_posts").update({status:"closed"}).eq("id",id).select("id");
+    const {data,error}=await query;
+    button.disabled=false;
+    if(error){setStatus("commStatus",errorText(error),true);return}
+    if(!data||!data.length){setStatus("commStatus",errorText({message:"community_not_found"}),true);onChange();return}
+    if(state.editingId===id){$("commForm").reset();tancarFormulari()}
+    onChange();
+  }
+
+  async function carregar(reset){
+    const seq=++state.seq;
+    if(reset){state.offset=0;$("commList").replaceChildren()}
+    setStatus("commStatus",t("Carregant...","Cargando..."));
+    $("commMore").hidden=true;
+    try{
+      let rows,mode="feed";
+      if(state.kind==="mine"){
+        mode="mine";
+        const {data:{user}}=await supabaseClient.auth.getUser();
+        if(seq!==state.seq)return;
+        if(!user){setStatus("commStatus",t("Cal iniciar sessió.","Hay que iniciar sesión."),true);return}
+        let query=supabaseClient.from("community_posts").select("id,kind,category,title,description,suggested_ciclik,status,created_at").eq("author_id",user.id).order("created_at",{ascending:false}).range(state.offset,state.offset+PAGE-1);
+        if(state.category)query=query.eq("category",state.category);
+        const result=await query;
+        if(seq!==state.seq)return;
+        if(result.error){setStatus("commStatus",errorText(result.error),true);return}
+        rows=result.data||[];
+      }else{
+        const {data,error}=await supabaseClient.rpc("community_list_posts",{
+          p_kind:state.kind||null,
+          p_category:state.category||null,
+          p_limit:PAGE,
+          p_offset:state.offset
+        });
+        if(seq!==state.seq)return;
+        if(error){setStatus("commStatus",errorText(error),true);return}
+        rows=data||[];
+      }
+      rows.forEach(post=>$("commList").append(postNode(post,()=>carregar(true),mode)));
+      state.offset+=rows.length;
+      state.hasMore=rows.length===PAGE;
+      $("commMore").hidden=!state.hasMore;
+      setStatus("commStatus",$("commList").children.length?"":(mode==="mine"?t("Encara no has publicat res.","Todavía no has publicado nada."):t("Encara no hi ha publicacions. Sigues la primera persona en publicar!","Todavía no hay publicaciones. ¡Sé la primera persona en publicar!")));
+    }catch(error){
+      if(seq===state.seq)setStatus("commStatus",errorText(error),true);
+    }
+  }
+
+  function tancarFormulari(){
+    state.editingId=null;
+    $("commFormSubmit").textContent=t("PUBLICA","PUBLICA");
+    $("commForm").hidden=true;
+    $("commNewButton").hidden=false;
+  }
+
+  async function publicar(event){
+    event.preventDefault();
+    if(state.busy)return;
+    const title=$("commFormTitle").value.trim();
+    if(title.length<3){setStatus("commStatus",t("El títol ha de tenir almenys 3 caràcters.","El título debe tener al menos 3 caracteres."),true);return}
+    const rawCiclik=$("commFormCiclik").value.trim();
+    const ciclik=rawCiclik===""?null:Number(rawCiclik);
+    if(ciclik!==null&&(!Number.isInteger(ciclik)||ciclik<0||ciclik>10000)){setStatus("commStatus",t("Introdueix un nombre enter de Cicliks entre 0 i 10000.","Introduce un número entero de Cicliks entre 0 y 10000."),true);return}
+    state.busy=true;
+    $("commFormSubmit").disabled=true;
+    setStatus("commStatus",state.editingId?t("Desant...","Guardando..."):t("Publicant...","Publicando..."));
+    try{
+      const {data:{user}}=await supabaseClient.auth.getUser();
+      if(!user){setStatus("commStatus",t("Cal iniciar sessió.","Hay que iniciar sesión."),true);return}
+      const fields={
+        kind:document.querySelector('input[name="commKind"]:checked').value,
+        category:$("commFormCategory").value,
+        title,
+        description:$("commFormDesc").value.trim()||null,
+        suggested_ciclik:ciclik
+      };
+      const editing=state.editingId;
+      const {data:saved,error}=editing
+        ?await supabaseClient.from("community_posts").update(fields).eq("id",editing).eq("author_id",user.id).select("id")
+        :await supabaseClient.from("community_posts").insert({author_id:user.id,...fields}).select("id");
+      if(error){setStatus("commStatus",errorText(error),true);return}
+      if(editing&&!(saved&&saved.length)){setStatus("commStatus",errorText({message:"community_not_found"}),true);return}
+      $("commForm").reset();
+      tancarFormulari();
+      await carregar(true);
+      if($("commList").children.length)setStatus("commStatus",editing?t("Canvis desats.","Cambios guardados."):t("Publicació creada.","Publicación creada."));
+    }catch(error){
+      setStatus("commStatus",errorText(error),true);
+    }finally{
+      state.busy=false;
+      $("commFormSubmit").disabled=false;
+    }
+  }
+
+  function llistaCategories(titleCa,titleEs,types,notes,map){
+    const frag=document.createDocumentFragment();
+    if(!(types&&types.length)&&!notes)return frag;
+    const heading=document.createElement("h4");
+    heading.textContent=t(titleCa,titleEs);
+    frag.append(heading);
+    if(types&&types.length){
+      const list=document.createElement("ul");
+      types.forEach(type=>{const li=document.createElement("li");li.textContent=label(map,type);list.append(li)});
+      frag.append(list);
+    }
+    if(notes){
+      const p=document.createElement("p");
+      p.textContent=notes;
+      frag.append(p);
+    }
+    return frag;
+  }
+
+  async function obrirPerfil(authorId,knownName){
+    state.profile={id:authorId,name:knownName};
+    $("commMain").hidden=true;
+    $("commProfile").hidden=false;
+    $("commProfileName").textContent=knownName||"";
+    $("commProfileBody").replaceChildren();
+    document.querySelector(".commProfileHead .dashAvatarWrap").replaceWith(avatarNode(authorId,knownName));
+    setStatus("commProfileStatus",t("Carregant perfil...","Cargando perfil..."));
+    $("dashCommunityPanel").scrollIntoView({behavior:"smooth",block:"start"});
+    try{
+      const [profileResult,postsResult]=await Promise.all([
+        supabaseClient.rpc("community_get_member_profile",{p_author_id:authorId}),
+        supabaseClient.from("community_posts").select("id,kind,category,title,description,suggested_ciclik,created_at").eq("author_id",authorId).eq("status","active").order("created_at",{ascending:false}).limit(50)
+      ]);
+      if(profileResult.error){setStatus("commProfileStatus",errorText(profileResult.error),true);return}
+      const profile=Array.isArray(profileResult.data)?profileResult.data[0]:profileResult.data;
+      $("commProfileName").textContent=profile?.display_name||knownName||t("Membre de Ciclik","Miembro de Ciclik");
+      setStatus("commProfileStatus","");
+      const body=$("commProfileBody");
+      body.append(
+        llistaCategories("Què pot aportar","Qué puede aportar",profile?.contribution_types,profile?.contribution_notes,CATEGORIES)
+      );
+      const posts=postsResult.error?[]:(postsResult.data||[]);
+      const heading=document.createElement("h4");
+      heading.textContent=t("Publicacions actives","Publicaciones activas");
+      body.append(heading);
+      if(!posts.length){
+        const empty=document.createElement("p");
+        empty.textContent=t("Aquesta persona no té publicacions actives.","Esta persona no tiene publicaciones activas.");
+        body.append(empty);
+      }else{
+        const list=document.createElement("div");
+        list.className="commList";
+        posts.forEach(post=>list.append(postNode(post,()=>obrirPerfil(authorId,knownName),"profile")));
+        body.append(list);
+      }
+    }catch(error){
+      setStatus("commProfileStatus",errorText(error),true);
+    }
+  }
+
+  function tornarALlista(){
+    state.profile=null;
+    $("commProfile").hidden=true;
+    $("commMain").hidden=false;
+  }
+
+  document.querySelectorAll(".commFilter").forEach(button=>{
+    button.addEventListener("click",()=>{
+      state.kind=button.dataset.commKind;
+      document.querySelectorAll(".commFilter").forEach(other=>other.setAttribute("aria-pressed",String(other===button)));
+      carregar(true);
+    });
+  });
+  $("commCategoryFilter").addEventListener("change",event=>{state.category=event.target.value;carregar(true)});
+  $("commNewButton").addEventListener("click",()=>{
+    $("commForm").hidden=false;
+    $("commNewButton").hidden=true;
+    $("commFormTitle").focus();
+  });
+  $("commFormCancel").addEventListener("click",()=>{$("commForm").reset();tancarFormulari()});
+  $("commForm").addEventListener("submit",publicar);
+  $("commMore").addEventListener("click",()=>carregar(false));
+  $("commProfileBack").addEventListener("click",tornarALlista);
+
+  const COMMUNITY_OPEN=false;
+  const baseMostrarVista=mostrarVistaDashboard;
+  mostrarVistaDashboard=function(view){
+    if(view==="community"&&!COMMUNITY_OPEN){baseMostrarVista("home");return}
+    baseMostrarVista(view);
+    if(view==="community"){
+      tornarALlista();
+      carregar(true);
+    }
+  };
+
+  if(!COMMUNITY_OPEN){
+    const panel=document.getElementById("dashCommunityPanel");
+    panel.hidden=true;
+    panel.inert=true;
+    const row=document.getElementById("dashCommunityRow");
+    row.classList.add("dashRowSoon");
+    row.setAttribute("aria-disabled","true");
+    row.tabIndex=-1;
+    const soon=document.createElement("span");
+    soon.className="dashSoon";
+    soon.dataset.dashCa="Aviat";
+    soon.dataset.dashEs="Pronto";
+    soon.textContent="Aviat";
+    row.querySelector(".dashChevron").replaceWith(soon);
+  }
+
+  ["caBtn","esBtn"].forEach(id=>$(id).addEventListener("click",()=>setTimeout(()=>{
+    applyLabels();
+    if(document.getElementById("moneder").dataset.view!=="community")return;
+    if(state.profile)obrirPerfil(state.profile.id,state.profile.name);
+    else carregar(true);
+  },0)));
+  supabaseClient.auth.onAuthStateChange(event=>{
+    if(event==="SIGNED_OUT"){
+      $("commList").replaceChildren();
+      setStatus("commStatus","");
+      tancarFormulari();
+      tornarALlista();
+    }
+  });
+  applyLabels();
 })();
 
 carregarAvatarMembre(false);
