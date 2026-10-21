@@ -36,7 +36,7 @@ input{max-width:100%;background:white}.toolbar{display:flex;flex-wrap:wrap;gap:1
 const URL_SUPABASE="https://nlrodtqqrkqqzelhtnqd.supabase.co";
 const PUBLIC_KEY="sb_publishable_CN9hlz_Kkl6iMR3lyoZWEA_AzNVWs4M";
 const $=id=>document.getElementById(id);
-let db,offset=0,search="",currentRows=0;
+let db,offset=0,search="",currentRows=0,usersRequest=0,movementsRequest=0;
 const limit=25;
 function status(message,error=false){$("status").textContent=message;$("status").className="notice"+(error?" error":"");}
 function fmtDate(v){if(!v)return "—";const d=new Date(v);return Number.isNaN(d.getTime())?"—":d.toLocaleDateString("ca-ES");}
@@ -53,30 +53,33 @@ async function loadStats(){
  }catch(e){$("stats").textContent="No s'ha pogut carregar el resum: "+e.message;}
 }
 async function loadUsers(){
- $("users").replaceChildren();const loading=document.createElement("tr");cell(loading,"Carregant…").colSpan=5;$("users").append(loading);
+ const request=++usersRequest;
+ $("users").replaceChildren();const loading=document.createElement("tr");cell(loading,"Carregant…").colSpan=5;$("users").append(loading);$("prev").disabled=true;$("next").disabled=true;
  try{const rows=await rpc("ciclik_admin_list_users",{p_search:search||null,p_limit:limit,p_offset:offset});
+ if(request!==usersRequest)return;
  if(!Array.isArray(rows))throw new Error("Format de resposta inesperat");
  currentRows=rows.length;$("users").replaceChildren();
  if(!rows.length){const tr=document.createElement("tr");cell(tr,"No s'han trobat persones").colSpan=5;$("users").append(tr);}
  for(const u of rows){const tr=document.createElement("tr");cell(tr,u.display_name||"—");cell(tr,u.email||"—");cell(tr,fmtDate(u.created_at));cell(tr,u.balance??"—");
  const td=document.createElement("td");const b=document.createElement("button");b.type="button";b.textContent="Moviments";b.addEventListener("click",()=>loadMovements(u.user_id,u.display_name||u.email||"usuari"));td.append(b);tr.append(td);$("users").append(tr);}
  $("page").textContent="Pàgina "+(Math.floor(offset/limit)+1);$("prev").disabled=offset===0;$("next").disabled=rows.length<limit;
- }catch(e){$("users").replaceChildren();const tr=document.createElement("tr");cell(tr,"Error: "+e.message).colSpan=5;$("users").append(tr);}
+ }catch(e){if(request!==usersRequest)return;$("users").replaceChildren();const tr=document.createElement("tr");cell(tr,"Error: "+e.message).colSpan=5;$("users").append(tr);}
 }
 async function loadMovements(id,name){
+ const request=++movementsRequest;
  $("movementsSection").hidden=false;$("selectedName").textContent=name;$("movements").replaceChildren();
  const tr=document.createElement("tr");cell(tr,"Carregant…").colSpan=4;$("movements").append(tr);
- try{const rows=await rpc("ciclik_admin_user_movements",{p_user_id:id,p_limit:200});if(!Array.isArray(rows))throw new Error("Format inesperat");
+ try{const rows=await rpc("ciclik_admin_user_movements",{p_user_id:id,p_limit:200});if(request!==movementsRequest)return;if(!Array.isArray(rows))throw new Error("Format inesperat");
  $("movements").replaceChildren();
  if(!rows.length){const empty=document.createElement("tr");cell(empty,"Sense moviments").colSpan=4;$("movements").append(empty);}
  for(const r of rows){const line=document.createElement("tr");cell(line,fmtDate(r.created_at));cell(line,r.transaction_type);cell(line,r.description);cell(line,r.amount);$("movements").append(line);}
- }catch(e){$("movements").replaceChildren();const err=document.createElement("tr");cell(err,"Error: "+e.message).colSpan=4;$("movements").append(err);}
+ }catch(e){if(request!==movementsRequest)return;$("movements").replaceChildren();const err=document.createElement("tr");cell(err,"Error: "+e.message).colSpan=4;$("movements").append(err);}
 }
 async function init(){
  try{
  if(!window.supabase)throw new Error("No s'ha carregat la biblioteca de connexió.");
  // The main site stores sessions in localStorage or sessionStorage.
- const storage={getItem:k=>localStorage.getItem(k)??sessionStorage.getItem(k),setItem:(k,v)=>{if(localStorage.getItem("ciclikRememberSession")==="true")localStorage.setItem(k,v);else sessionStorage.setItem(k,v);},removeItem:k=>{localStorage.removeItem(k);sessionStorage.removeItem(k);}};
+ const storage={getItem:k=>localStorage.getItem(k)??sessionStorage.getItem(k),setItem:(k,v)=>{if(localStorage.getItem("ciclikRememberSession")==="true"){localStorage.setItem(k,v);sessionStorage.removeItem(k);}else{sessionStorage.setItem(k,v);localStorage.removeItem(k);}},removeItem:k=>{localStorage.removeItem(k);sessionStorage.removeItem(k);}};
  db=window.supabase.createClient(URL_SUPABASE,PUBLIC_KEY,{auth:{storage,persistSession:true}});
  const {data:{session},error}=await db.auth.getSession();if(error)throw error;
  if(!session){status("Cal iniciar sessió al web de Ciclik abans d'accedir a l'administració.",true);return;}
