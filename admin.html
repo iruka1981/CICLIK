@@ -47,7 +47,7 @@ async function loadStats(){
  try{const d=await rpc("ciclik_admin_dashboard");$("stats").replaceChildren();
  const obj=typeof d==="string"?JSON.parse(d):d;
  if(!obj||typeof obj!=="object")throw new Error("Resposta no reconeguda");
- const labels={total_users:"Persones registrades",new_users_this_month:"Altes aquest mes",active_users_30d:"Actives (30 dies)",total_cicliks:"Cicliks totals",upcoming_events:"Propers esdeveniments",pending_requests:"Sol·licituds pendents"};
+ const labels={total_users:"Persones registrades",new_users_month:"Altes aquest mes",active_users_30d:"Actives (30 dies)",cicliks_in_circulation:"Cicliks en circulació",upcoming_events:"Propers esdeveniments",requests_pending:"Sol·licituds pendents",requests_in_progress:"Sol·licituds en curs"};
  for(const [k,v] of Object.entries(obj)){if(v!==null&&typeof v!=="object")addStat(labels[k]||k.replaceAll("_"," "),v);}
  if(!$("stats").children.length)addStat("Resum","Sense dades");
  }catch(e){$("stats").textContent="No s'ha pogut carregar el resum: "+e.message;}
