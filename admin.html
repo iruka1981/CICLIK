@@ -34,11 +34,12 @@ h1{font-size:36px;margin-bottom:4px}h2{font-size:26px;margin:0 0 18px}
 [data-view]{display:none}[data-view].visible{display:block}
 .sidebar button:focus-visible,button:focus-visible{outline:3px solid #a5b37e;outline-offset:2px}
 @media(max-width:760px){.app-shell{display:block}.sidebar{padding:10px;display:block}.brand{display:inline-block;font-size:26px;padding:4px 12px 8px;border:0;margin:0}.sidebar nav{display:flex;overflow-x:auto;gap:5px}.sidebar button{white-space:nowrap;width:auto;padding:12px}.sidebar .side-label,.sidebar>a{display:none}header{padding:14px 20px}main{padding:0 16px}h1{font-size:29px}.card{padding:17px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:12px;min-height:100px}.stat strong{font-size:24px}}
+.login-card{max-width:480px;background:white;border:1px solid var(--line);border-radius:14px;padding:25px;margin-top:20px}.login-card label{display:block;margin:14px 0 6px}.login-card input{width:100%}.login-card button{width:100%;margin-top:18px}.login-card p{line-height:1.5}
 </style></head><body>
 <div class="app-shell"><aside class="sidebar"><div class="brand">Ciclik ↻</div><nav aria-label="Seccions del CRM"><button type="button" class="active" data-target="dashboard">◫ &nbsp; Resum general</button><button type="button" data-target="members">♙ &nbsp; Comunitat i membres</button><button type="button" data-target="transactions">⇄ &nbsp; Moviments</button><button type="button" data-target="operations">▤ &nbsp; Esdeveniments i gestió</button></nav><span class="side-label">Administració</span><a href="./index.html">← Tornar a Ciclik</a></aside><div class="workspace"><header><strong>Centre de gestió</strong><a href="./index.html">Web de Ciclik ↗</a></header>
 <main><h1>Administració Ciclik</h1><p>Gestió de la comunitat i dels Cicliks · Panell privat</p>
 <div id="status" class="notice" role="status">Comprovant la sessió i els permisos…</div>
-<div id="panel" hidden>
+<form id="loginForm" class="login-card" hidden><h2>Accés al CRM</h2><p>Entra amb el mateix correu i contrasenya del teu compte de Ciclik. No cal registrar-se de nou.</p><label for="loginEmail">Correu electrònic</label><input id="loginEmail" type="email" autocomplete="username" required><label for="loginPassword">Contrasenya</label><input id="loginPassword" type="password" autocomplete="current-password" required><button id="loginButton" type="submit">Entrar al CRM</button><p>Només els comptes administradors poden consultar les dades privades.</p></form><div id="panel" hidden>
 <section data-view="dashboard" class="visible"><h2>Resum general</h2><div id="stats" class="grid"></div></section>
 <section class="card" data-view="members"><h2>Comunitat i membres</h2>
 <form id="searchForm" class="toolbar"><input id="search" type="search" placeholder="Nom o correu" aria-label="Cercar persones"><button type="submit">Cercar</button></form>
@@ -96,6 +97,8 @@ async function loadMovements(id,name){
  for(const r of rows){const line=document.createElement("tr");cell(line,fmtDate(r.created_at));cell(line,r.transaction_type);cell(line,r.description);cell(line,r.amount);$("movements").append(line);}
  }catch(e){if(request!==movementsRequest)return;$("movements").replaceChildren();const err=document.createElement("tr");cell(err,"Error: "+e.message).colSpan=4;$("movements").append(err);}
 }
+async function verifyAdmin(){const allowed=await rpc("ciclik_is_admin");if(allowed!==true){$("panel").hidden=true;$("loginForm").hidden=false;status("Aquest compte no té permisos d'administració.",true);return;} $("loginForm").hidden=true;$("panel").hidden=false;showView("dashboard");status("Accés d'administració verificat.");await Promise.all([loadStats(),loadUsers()]);}
+$("loginForm").addEventListener("submit",async e=>{e.preventDefault();$("loginButton").disabled=true;status("Iniciant sessió…");try{const {error}=await db.auth.signInWithPassword({email:$("loginEmail").value.trim(),password:$("loginPassword").value});if(error)throw error;$("loginPassword").value="";await verifyAdmin();}catch(err){status("No s'ha pogut entrar: "+err.message,true);$("loginForm").hidden=false;}finally{$("loginButton").disabled=false;}});
 async function init(){
  try{
  if(!window.supabase)throw new Error("No s'ha carregat la biblioteca de connexió.");
@@ -103,10 +106,8 @@ async function init(){
  const storage={getItem:k=>localStorage.getItem(k)??sessionStorage.getItem(k),setItem:(k,v)=>{if(localStorage.getItem("ciclikRememberSession")==="true"){localStorage.setItem(k,v);sessionStorage.removeItem(k);}else{sessionStorage.setItem(k,v);localStorage.removeItem(k);}},removeItem:k=>{localStorage.removeItem(k);sessionStorage.removeItem(k);}};
  db=window.supabase.createClient(URL_SUPABASE,PUBLIC_KEY,{auth:{storage,persistSession:true}});
  const {data:{session},error}=await db.auth.getSession();if(error)throw error;
- if(!session){status("Cal iniciar sessió al web de Ciclik abans d'accedir a l'administració.",true);return;}
- const allowed=await rpc("ciclik_is_admin");
- if(allowed!==true){status("Accés denegat: aquest compte no té permisos d'administració.",true);return;}
- $("panel").hidden=false;showView("dashboard");status("Accés d'administració verificat.");await Promise.all([loadStats(),loadUsers()]);
+ if(!session){$("loginForm").hidden=false;status("Inicia sessió per accedir al CRM.");return;}
+ await verifyAdmin();
  }catch(e){status("No s'ha pogut verificar l'accés: "+e.message,true);}
 }
 $("searchForm").addEventListener("submit",e=>{e.preventDefault();search=$("search").value.trim();offset=0;loadUsers();});
