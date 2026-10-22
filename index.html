@@ -252,14 +252,16 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .adminPanel{padding:28px;background:rgba(255,250,241,.7);border:1px solid var(--line);border-radius:12px}
 .adminPanel[hidden]{display:none!important}
 .adminPanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:26px}
-.adminPanelHead h2{font-size:38px;line-height:1.1;margin-bottom:9px}
-.adminPanelHead p{margin:0;color:#565945;font-size:15px;line-height:1.5}
+.adminPanelHead h2{font-size:36px;line-height:1.15;margin-bottom:10px;font-weight:400}
+.adminPanelHead p{margin:0;color:#565945;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5}
 .adminPanelBack{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--olive);padding:10px 14px;font-size:11px;font-weight:700;cursor:pointer}
 .adminPanelTiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.adminPanelTile{min-height:128px;display:flex;align-items:flex-end;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--cream);color:var(--olive);font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
-.adminPanelTileButton{font:inherit;text-align:left;cursor:pointer}
-#adminTileConvert{font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
-#adminTileMovements{font-size:14px;font-weight:700;line-height:1.35;letter-spacing:.04em}
+.adminPanelTile{min-height:132px;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;border:1px solid var(--line);border-radius:12px;background:#fffaf1;color:var(--olive);font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:600;line-height:1.45;letter-spacing:.01em;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.adminPanelTile:hover{background:#f0e9dc;border-color:#a6ad8e;box-shadow:0 5px 16px rgba(52,55,36,.08);transform:translateY(-2px)}
+.adminPanelTile:focus-visible{outline:3px solid #8c9b6c;outline-offset:3px}
+.adminPanelTileButton{font:inherit;font-family:Arial,Helvetica,sans-serif;text-align:center;cursor:pointer}
+#adminTileConvert{font-size:15px;font-weight:600;line-height:1.45;letter-spacing:.01em}
+#adminTileMovements{font-size:15px;font-weight:600;line-height:1.45;letter-spacing:.01em}
 .adminMovementSection{margin-top:28px}
 .adminMovementSection h3{font-size:25px;margin-bottom:14px}
 .adminMovementStatus{min-height:20px;margin:14px 0;color:var(--rust);font-size:13px;line-height:1.45}
