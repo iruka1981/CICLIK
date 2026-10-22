@@ -259,9 +259,9 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .adminPanelTile{min-height:132px;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;border:1px solid var(--line);border-radius:12px;background:#fffaf1;color:var(--olive);font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:600;line-height:1.45;letter-spacing:.01em;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
 .adminPanelTile:hover{background:#f0e9dc;border-color:#a6ad8e;box-shadow:0 5px 16px rgba(52,55,36,.08);transform:translateY(-2px)}
 .adminPanelTile:focus-visible{outline:3px solid #8c9b6c;outline-offset:3px}
-.adminPanelTileButton{font:inherit;font-family:Arial,Helvetica,sans-serif;text-align:center;cursor:pointer}
-#adminTileConvert{font-size:15px;font-weight:600;line-height:1.45;letter-spacing:.01em}
-#adminTileMovements{font-size:15px;font-weight:600;line-height:1.45;letter-spacing:.01em}
+.adminPanelTileButton{font-family:"Trebuchet MS",Verdana,sans-serif;font-size:17px;font-weight:500;letter-spacing:0;text-transform:none;text-align:center;cursor:pointer}
+#adminTileConvert{font-family:"Trebuchet MS",Verdana,sans-serif;font-size:17px;font-weight:500;line-height:1.45;letter-spacing:0}
+#adminTileMovements{font-family:"Trebuchet MS",Verdana,sans-serif;font-size:17px;font-weight:500;line-height:1.45;letter-spacing:0}
 .adminMovementSection{margin-top:28px}
 .adminMovementSection h3{font-size:25px;margin-bottom:14px}
 .adminMovementStatus{min-height:20px;margin:14px 0;color:var(--rust);font-size:13px;line-height:1.45}
@@ -1300,10 +1300,10 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
     <button class="adminPanelBack" id="adminPanelBack" type="button" onclick="tancarPanellAdministracio()">TORNA A EL MEU CICLIK</button>
    </div>
    <div class="adminPanelTiles">
-    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="memberIdentifyReturnView='admin';document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">ESCANEJAR / IDENTIFICAR MEMBRE</button>
-    <button class="adminPanelTile adminPanelTileButton" id="adminTileClothes" type="button" onclick="obrirFluxRoba('admin')">ENTRADA / SORTIDA DE ROBA</button>
-    <button class="adminPanelTile adminPanelTileButton" id="adminTileConvert" type="button" onclick="obrirConversioFisica()">CONVERTIR CICLIKS FÍSICS</button>
-    <button class="adminPanelTile adminPanelTileButton" id="adminTileMovements" type="button" onclick="obrirMovimentsAdministracio()">MOVIMENTS</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="memberIdentifyReturnView='admin';document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">Escanejar i identificar membres</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileClothes" type="button" onclick="obrirFluxRoba('admin')">Entrada i sortida de roba</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileConvert" type="button" onclick="obrirConversioFisica()">Convertir Cicliks físics</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileMovements" type="button" onclick="obrirMovimentsAdministracio()">Moviments</button>
    </div>
   </section>
   <section class="adminPanel" id="adminMovementsPanel" aria-labelledby="adminMovementsTitle" hidden>
