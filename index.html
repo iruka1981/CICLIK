@@ -249,7 +249,7 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .staffAccess[hidden],.clothesOperation[hidden]{display:none!important}
 .staffAccess button{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--olive);font-size:11px;font-weight:700;letter-spacing:.06em;cursor:pointer}
 .staffAccess .adminAccessButton{margin-right:8px;background:var(--olive);color:var(--white)}
-.adminPanel{padding:28px;background:rgba(255,250,241,.7);border:1px solid var(--line);border-radius:12px}
+.adminPanel{scroll-margin-top:115px;padding:28px;background:rgba(255,250,241,.7);border:1px solid var(--line);border-radius:12px}
 .adminPanel[hidden]{display:none!important}
 .adminPanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:26px}
 .adminPanelHead h2{font-size:36px;line-height:1.15;margin-bottom:10px;font-weight:400}
@@ -3120,7 +3120,7 @@ async function obrirPanellAdministracio(){
   const panel=document.getElementById("adminPanelSection");
   panel.hidden=false;
   translateAdminPanel(es?"es":"ca");
-  panel.scrollIntoView({behavior:"smooth",block:"start"});
+  requestAnimationFrame(()=>{const header=document.querySelector("header");const offset=(header?.getBoundingClientRect().height||78)+22;const y=window.scrollY+panel.getBoundingClientRect().top-offset;window.scrollTo({top:Math.max(0,y),behavior:"smooth"});});
 }
 
 function tancarPanellAdministracio(){
