@@ -565,6 +565,32 @@ header .wrap.nav{width:100%;max-width:none;margin:0;padding:0 36px;justify-conte
 .proposalFilter{border:1px solid var(--line);border-radius:999px;background:transparent;padding:10px 15px;color:var(--olive);font-size:13px;cursor:pointer}
 .proposalFilter[aria-pressed="true"]{border-color:var(--olive);background:var(--olive);color:var(--white)}
 .proposalsHead{align-items:center}
+
+/* Tallers i mercat: tres fitxes amb el mateix llenguatge visual */
+#tallers .proposalCardV2{grid-template-columns:minmax(0,42%) minmax(0,58%);grid-template-rows:auto auto;background:#f5eddb;border:1px solid #e0d5bd;min-height:340px}
+#tallers .proposalCardV2 .proposalMediaV2{grid-row:1/3;grid-column:1;min-height:340px;border-radius:0;background-position:center;background-size:cover}
+#tallers .proposalCardV2 .proposalMainV2{grid-column:2;grid-row:1;padding:30px 38px 8px;border:0;justify-content:end;min-width:0}
+#tallers .proposalCardV2 .proposalSideV2{grid-column:2;grid-row:2;padding:6px 38px 30px;border:0;justify-content:start;min-width:0;gap:12px}
+#tallers .proposalCardV2 .proposalTag{font-family:Arial,Helvetica,sans-serif;font-weight:400;font-size:15px;letter-spacing:.12em;color:var(--olive);margin-bottom:12px}
+#tallers .proposalCardV2 h3{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-stretch:condensed;text-transform:uppercase;font-weight:800;font-size:clamp(27px,3vw,46px);line-height:1.04;color:var(--olive);overflow-wrap:anywhere;margin-bottom:12px}
+#tallers .proposalCardV2 .proposalSubtitle{font-family:Arial,Helvetica,sans-serif;font-size:clamp(15px,1.55vw,21px);line-height:1.4;color:var(--olive);margin-bottom:14px}
+#tallers .proposalCardV2 .proposalMeta{display:flex;flex-flow:row wrap;gap:8px 15px;font-size:12px}
+#tallers .proposalCardV2 .proposalMeta li{padding-left:12px;position:relative}
+#tallers .proposalCardV2 .proposalMeta li:before{content:'•';position:absolute;left:0}
+#tallers .proposalCardV2 .proposalDesc{font-size:14px;line-height:1.5}
+#tallers .proposalCardV2 .proposalCta{font-family:Arial,Helvetica,sans-serif;background:var(--olive);color:#fffaf1;border-color:var(--olive);padding:12px 24px;font-size:13px;font-weight:700;letter-spacing:.055em}
+#tallers .proposalCardV2 .proposalCtaEnded{cursor:default;opacity:1}
+#tallers .proposalCardV2 .proposalSoldOutLabel{font-size:14px;margin:0 0 12px;order:0}
+@media(max-width:760px){
+ #tallers .proposalCardV2{display:flex;flex-direction:column;min-height:0}
+ #tallers .proposalCardV2 .proposalMediaV2{width:100%;height:auto;min-height:0;aspect-ratio:16/10;background-position:center}
+ #tallers .proposalCardV2 .proposalMainV2{padding:24px 23px 4px}
+ #tallers .proposalCardV2 .proposalSideV2{padding:8px 23px 25px}
+ #tallers .proposalCardV2 h3{font-size:clamp(27px,7.4vw,39px)}
+ #tallers .proposalCardV2 .proposalMeta{flex-flow:column;gap:5px}
+ #tallers .proposalCardV2 .proposalCta{width:100%;max-width:100%}
+}
+
 .proposalList{display:flex;flex-direction:column;gap:20px}
 .proposalCardV2{display:grid;grid-template-columns:37% 1fr 1fr;align-items:stretch;background:rgba(255,250,241,.65);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .proposalMediaV2{width:100%;height:100%;min-height:168px;background-size:cover;background-position:center;border-radius:16px 0 0 16px}
@@ -1664,6 +1690,19 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
      <p class="proposalDesc proposalPrice"      id="proposalCookingPrice">Preu: 12 € + 30 Cicliks</p>
           <p class="proposalDesc" id="proposalCookingCiclikNote">Els Cicliks ajuden a mantenir viva l'economia circular. Si encara no en tens, registra't a la comunitat i rebràs 30 Cicliks de benvinguda per participar en el taller.</p>
     <a class="proposalCta proposalCtaRust proposalMemberCta" id="proposalCookingCta" href="https://entradium.com/events/taller-matinal-cuina-palestina" target="_blank" rel="noopener noreferrer">INSCRIU-TE</a>
+    </div>
+   </article>
+   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops">
+    <div class="proposalMediaV2" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&amp;fit=crop&amp;w=1100&amp;q=85')" role="img" aria-label="Pinzells i productes de maquillatge"></div>
+    <div class="proposalMainV2">
+     <span class="proposalTag">TALLER</span>
+     <h3>Taller d'automaquillatge</h3>
+     <p class="proposalSubtitle">Aprèn a potenciar la teva bellesa natural</p>
+     <ul class="proposalMeta"><li>Consells personalitzats</li><li>Trucs pràctics per al dia a dia</li><li>Data i lloc per confirmar</li></ul>
+    </div>
+    <div class="proposalSideV2">
+     <p class="proposalDesc">Descobreix tècniques senzilles d'automaquillatge per sentir-te còmoda, segura i més tu. Un espai per aprendre, compartir i cuidar-te.</p>
+     <span class="proposalCta proposalCtaOlive proposalCtaEnded" aria-disabled="true">PROPERAMENT</span>
     </div>
    </article>
    <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
