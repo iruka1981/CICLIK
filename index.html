@@ -1675,7 +1675,7 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
   </div>
   <div class="proposalList" id="proposalList">
    <h3 class="proposalMonthHeading">OCTUBRE</h3>
-   <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects">
+   <article class="proposalCardV2 proposalCardMarket" data-proposal-category="objects" data-event-end-date="2026-10-18" data-event-status="ended">
     <div class="proposalMediaV2" style="background-image:url('MERCAT CIRCULAR SEGONA EDICIO.png')" aria-hidden="true"></div>
     <div class="proposalMainV2">
      <span class="proposalTag" id="proposalMarketTag">MERCAT</span>
@@ -1692,7 +1692,7 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
     <span class="proposalCta proposalCtaOlive proposalMemberCta proposalCtaEnded" id="proposalMarketCta" role="link" aria-disabled="true">FINALITZAT</span>
     </div>
    </article>
-   <article class="proposalCardV2 proposalCardWorkshop" data-proposal-category="workshops">
+   <article class="proposalCardV2 proposalCardWorkshop" data-proposal-category="workshops" data-event-end-date="2026-10-25" data-event-status="sold-out">
     <div class="proposalMediaV2 proposalCookingMedia" style="background-image:url('TALLER CUINA PALESTINA.png')" aria-label="Taller de cuina palestina"></div>
     <div class="proposalMainV2">
      <span class="proposalTag" id="proposalCookingTag">TALLER</span>
@@ -1708,11 +1708,11 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
      <p class="proposalDesc" id="proposalCookingDesc">Descobreix sabors, històries i tradicions en un taller de cuina palestina per compartir, aprendre i connectar.</p>
      <p class="proposalDesc proposalPrice"      id="proposalCookingPrice">Preu: 12 € + 30 Cicliks</p>
           <p class="proposalDesc" id="proposalCookingCiclikNote">Els Cicliks ajuden a mantenir viva l'economia circular. Si encara no en tens, registra't a la comunitat i rebràs 30 Cicliks de benvinguda per participar en el taller.</p>
-    <span class="proposalCta proposalCtaOlive proposalCtaEnded" id="proposalCookingCta" aria-disabled="true">PLACES EXHAURIDES</span>
+    <span class="proposalCta proposalCtaOlive proposalCtaEnded" id="proposalCookingCta" aria-disabled="true">FINALITZAT</span>
     </div>
    </article>
    <h3 class="proposalMonthHeading">NOVEMBRE</h3>
-   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops">
+   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops" data-event-status="upcoming">
     <div class="proposalMediaV2" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&amp;fit=crop&amp;w=1100&amp;q=85')" role="img" aria-label="Pinzells i productes de maquillatge"></div>
     <div class="proposalMainV2">
      <span class="proposalTag">TALLER</span>
@@ -2219,7 +2219,7 @@ document.querySelector(".authSignature small").textContent =
   document.getElementById("proposalCookingCiclikNote").textContent = es
     ? "Los Cicliks ayudan a mantener viva la economía circular. Si todavía no tienes, regístrate en la comunidad y recibirás 30 Cicliks de bienvenida para participar en el taller."
     : "Els Cicliks ajuden a mantenir viva l'economia circular. Si encara no en tens, registra't a la comunitat i rebràs 30 Cicliks de benvinguda per participar en el taller.";
-  document.getElementById("proposalCookingCta").textContent = es ? "PLAZAS AGOTADAS" : "PLACES EXHAURIDES";
+  actualitzarEstatsEsdevenimentsCiclik();
   document.getElementById("proposalMarketTag").textContent = es ? "MERCADO" : "MERCAT";
   document.getElementById("proposalMarketTitle").textContent = es ? "Mercado Circular de ropa" : "Mercat Circular de roba";
   document.getElementById("proposalMarketEdition").textContent = es ? "2ª edición" : "2a edició";
@@ -2353,6 +2353,22 @@ function mostrarPerfilMembre(scroll=true){
   if(scroll)requestAnimationFrame(()=>document.getElementById("memberProfileTitle").scrollIntoView({behavior:"smooth",block:"start"}));
 }
 
+function actualitzarEstatsEsdevenimentsCiclik(){
+  const lang=(document.documentElement.lang||"ca").toLowerCase();
+  const es=lang.startsWith("es");
+  const today=new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Madrid",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+  document.querySelectorAll("#tallers [data-event-status]").forEach(card=>{
+    const endDate=card.dataset.eventEndDate;
+    const ended=Boolean(endDate&&today>endDate);
+    const status=ended?"ended":card.dataset.eventStatus;
+    const button=card.querySelector(".proposalCta");
+    if(!button)return;
+    if(status==="ended")button.textContent=es?"FINALIZADO":"FINALITZAT";
+    else if(status==="sold-out")button.textContent=es?"PLAZAS AGOTADAS":"PLACES EXHAURIDES";
+    else if(status==="upcoming")button.textContent=es?"PRÓXIMAMENTE":"PROPERAMENT";
+  });
+}
+document.addEventListener("DOMContentLoaded",actualitzarEstatsEsdevenimentsCiclik);
 function filtrarPropostesCiclik(category){
   const filters=document.querySelectorAll("#tallers [data-proposal-filter]");
   const cards=document.querySelectorAll("#tallers [data-proposal-category]");
