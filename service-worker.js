@@ -1,4 +1,4 @@
-const CACHE = "ciclik-shell-v3";
+const CACHE = "ciclik-shell-v4";
 const SCOPE_URL = self.registration.scope;
 const SHELL_KEY = new URL("./", SCOPE_URL).href;
 const PRECACHE = [
@@ -39,7 +39,26 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Serve from cache immediately and refresh the cached copy in the background.
+// Documents must show current workshops online. Preserve the last page offline.
+async function currentDocument(request) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  try {
+    const response = await fetch(request, {cache: "no-store", signal: controller.signal});
+    if (!response.ok) throw new Error("Page unavailable");
+    const cache = await caches.open(CACHE);
+    if (!response.redirected) await cache.put(SHELL_KEY, response.clone());
+    return response;
+  } catch (error) {
+    const cached = await caches.match(SHELL_KEY);
+    if (cached) return cached;
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+// Static assets can use the saved copy while refreshing in the background.
 function staleWhileRevalidate(event, cacheKey, networkRequest) {
   const update = caches.open(CACHE).then((cache) =>
     fetch(networkRequest).then((res) => {
@@ -68,7 +87,7 @@ self.addEventListener("fetch", (event) => {
 
   if (req.mode === "navigate" && url.href.startsWith(SCOPE_URL)) {
     event.respondWith(
-      staleWhileRevalidate(event, SHELL_KEY, req).catch(() => caches.match(SHELL_KEY))
+      currentDocument(req)
     );
     return;
   }
