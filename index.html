@@ -1654,7 +1654,7 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
 <section id="intercanviaInfo" class="guanyaInfo">
   <div class="wrap">
     <h2 data-ca="Intercanvia" data-es="Intercambia">Intercanvia</h2>
-    <h3 data-ca="Allò que circula ens connecta." data-es="Lo que circula, conecta.">Allò que circula ens connecta.</h3>
+    <h3 data-ca="Allò que circula ens connecta." data-es="Lo que circula nos conecta.">Allò que circula ens connecta.</h3>
     <p data-ca="Ciclik no consisteix a comprar i vendre. Les persones aporten allò que té valor per a la comunitat —roba, temps, coneixements, habilitats— i els Cicliks fan que aquest valor continuï circulant." data-es="Ciclik no consiste en comprar y vender. Las personas aportan lo que tiene valor para la comunidad —ropa, tiempo, conocimientos, habilidades— y los Cicliks hacen que ese valor siga circulando.">Ciclik no consisteix a comprar i vendre. Les persones aporten allò que té valor per a la comunitat —roba, temps, coneixements, habilitats— i els Cicliks fan que aquest valor continuï circulant.</p>
     <p data-ca="Els Cicliks obtinguts es poden utilitzar per participar en altres intercanvis, propostes, activitats i experiències de la comunitat." data-es="Los Cicliks obtenidos pueden utilizarse para participar en otros intercambios, propuestas, actividades y experiencias de la comunidad.">Els Cicliks obtinguts es poden utilitzar per participar en altres intercanvis, propostes, activitats i experiències de la comunitat.</p>
     <button type="button" data-ca="VEURE ON INTERCANVIAR" data-es="VER DÓNDE INTERCAMBIAR" onclick="const c=document.querySelector('#tallers .proposalCardMarket');(c&&!c.hidden?c:document.getElementById('tallers')).scrollIntoView({behavior:'smooth',block:'start'})">VEURE ON INTERCANVIAR</button>
@@ -2050,6 +2050,32 @@ document.getElementById("esBtn").onclick=()=>setLanguage("es");
 setLanguage(localStorage.getItem("ciclikLang")||"ca");
 </script>  
   <script>
+function translatePublicCiclik(lang){
+  const es=lang==="es";
+  const makeup=document.querySelector(".proposalCardMakeup");
+  if(makeup){
+    const labels=es
+      ? ["Taller de automaquillaje","con Eva Mellado · esteticista y masajista","Consejos personalizados","Trucos prácticos para el día a día","Fecha y lugar por confirmar","Aprende técnicas sencillas de automaquillaje con Eva Mellado, profesional de la estética y la cosmética bio, para potenciar tu belleza natural. Un espacio para aprender, compartir y cuidarte."]
+      : ["Taller d'automaquillatge","amb Eva Mellado · esteticista i massatgista","Consells personalitzats","Trucs pràctics per al dia a dia","Data i lloc per confirmar","Aprèn tècniques senzilles d'automaquillatge amb Eva Mellado, professional de l'estètica i la cosmètica bio, per potenciar la teva bellesa natural. Un espai per aprendre, compartir i cuidar-te."];
+    makeup.querySelector("h3").textContent=labels[0];
+    makeup.querySelector(".proposalSubtitle").textContent=labels[1];
+    makeup.querySelectorAll(".proposalMeta li").forEach((el,i)=>el.textContent=labels[i+2]);
+    makeup.querySelector(".proposalDesc").textContent=labels[5];
+    makeup.querySelector("[role='img']").setAttribute("aria-label",es?"Brochas y productos de maquillaje":"Pinzells i productes de maquillatge");
+  }
+  const month=document.querySelectorAll(".proposalMonthHeading")[1];
+  if(month)month.textContent=es?"NOVIEMBRE":"NOVEMBRE";
+  document.querySelector(".proposalCookingMedia")?.setAttribute("aria-label",es?"Taller de cocina palestina":"Taller de cuina palestina");
+  document.querySelector(".heroDots")?.setAttribute("aria-label",es?"Selecciona una imagen":"Selecciona una imatge");
+  document.querySelector(".heroArrowPrev")?.setAttribute("aria-label",es?"Imagen anterior":"Imatge anterior");
+  document.querySelector(".heroArrowNext")?.setAttribute("aria-label",es?"Imagen siguiente":"Imatge següent");
+  const auth=document.getElementById("authButton");
+  if(auth)auth.textContent=auth.getAttribute("href")==="#"?(es?"CERRAR SESIÓN":"TANCA SESSIÓ"):(es?"INICIAR SESIÓN":"INICIA SESSIÓ");
+  if(typeof translateInstallCiclik==="function")translateInstallCiclik(lang);
+  const update=document.getElementById("ciclikUpdateButton");
+  if(update)update.textContent=es?"Actualizar Ciclik":"Actualitza Ciclik";
+}
+
 const fixLang = (lang) => {
   const es = lang === "es";
 
@@ -2271,6 +2297,7 @@ document.querySelector(".authSignature small").textContent =
   document.getElementById("personalCommunitySoon").textContent = es ? "PRÓXIMAMENTE" : "PROPERAMENT";
   document.getElementById("personalNewsTitle").textContent = es ? "Novedades en Ciclik" : "Novetats a Ciclik";
   document.getElementById("personalNewsSoon").textContent = es ? "PRÓXIMAMENTE" : "PROPERAMENT";
+  translatePublicCiclik(lang);
   if (typeof translateClothesOperation === "function") translateClothesOperation();
 };
 
@@ -2288,7 +2315,22 @@ setLanguage = function(lang){
 fixLang(localStorage.getItem("ciclikLang") || "ca");
 </script>
 <script>
-if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("service-worker.js").catch(()=>{});});}
+if("serviceWorker" in navigator){
+  const alreadyControlled=Boolean(navigator.serviceWorker.controller);
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("service-worker.js",{updateViaCache:"none"})
+      .then(registration=>registration.update()).catch(()=>{});
+  });
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{
+    if(!alreadyControlled||document.getElementById("ciclikUpdateButton"))return;
+    const button=document.createElement("button");
+    button.id="ciclikUpdateButton";button.type="button";
+    button.textContent=document.documentElement.lang==="es"?"Actualizar Ciclik":"Actualitza Ciclik";
+    button.style.cssText="position:fixed;bottom:20px;left:20px;z-index:9999;padding:14px 20px;border:2px solid #f4eee2;border-radius:24px;background:#4f5633;color:white;font:700 14px Arial;cursor:pointer;box-shadow:0 2px 12px #0004";
+    button.addEventListener("click",()=>location.reload());
+    document.body.appendChild(button);
+  });
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -4255,43 +4297,26 @@ const isStandalone =
   window.matchMedia("(display-mode: standalone)").matches ||
   window.navigator.standalone === true;
 
+function translateInstallCiclik(lang=document.documentElement.lang){
+  const es=lang==="es";
+  document.querySelector(".installCiclikEyebrow").textContent=es?"CICLIK EN TU MÓVIL":"CICLIK AL TEU MÒBIL";
+  installTitle.textContent=isIOS?(es?"Llévate Ciclik en tu iPhone":"Emporta't Ciclik al teu iPhone"):(es?"Llévate Ciclik contigo":"Emporta't Ciclik amb tu");
+  installText.textContent=es?"Añade Ciclik a la pantalla de inicio y accede directamente como una app.":"Afegeix Ciclik a la pantalla d'inici i entra-hi directament com una app.";
+  installBtn.textContent=isIOS?(es?"Cómo instalar Ciclik":"Com instal·lar Ciclik"):(es?"Instalar Ciclik":"Instal·la Ciclik");
+  installHelp.textContent=isIOS?(es?"En Safari: pulsa Compartir y después «Añadir a la pantalla de inicio».":"A Safari: prem Compartir i després «Afegir a la pantalla d'inici»."):(es?"Si no aparece la instalación, abre el menú del navegador y selecciona «Instalar aplicación» o «Añadir a la pantalla de inicio».":"Si no apareix la instal·lació, obre el menú del navegador i selecciona «Instal·lar aplicació» o «Afegir a la pantalla d'inici».");
+}
+translateInstallCiclik();
 if (isStandalone) {
-  installSection.style.display = "none";
-} else if (isIOS) {
-  installTitle.textContent = "Emporta't Ciclik al teu iPhone";
-  installText.textContent = "Afegeix Ciclik a la pantalla d'inici i entra-hi com una app.";
-  installBtn.textContent = "Com instal·lar Ciclik";
-  installHelp.textContent = "A Safari: prem Compartir i després «Afegir a la pantalla d'inici».";
-
-  installBtn.addEventListener("click", () => {
-    installHelp.style.display = "block";
-  });
+  installSection.style.display="none";
 } else {
-  installTitle.textContent = "Emporta't Ciclik amb tu";
-  installText.textContent = "Instal·la Ciclik al teu mòbil i entra-hi directament com una app.";
-
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    ciclikInstallPrompt = event;
-    installBtn.disabled = false;
+  window.addEventListener("beforeinstallprompt",event=>{
+    event.preventDefault();ciclikInstallPrompt=event;installBtn.disabled=false;
   });
-
-  installBtn.addEventListener("click", async () => {
-    if (!ciclikInstallPrompt) {
-      installHelp.textContent =
-        "Si no apareix la instal·lació, obre el menú del navegador i selecciona «Instal·lar aplicació» o «Afegir a la pantalla d'inici».";
-      installHelp.style.display = "block";
-      return;
-    }
-
-    ciclikInstallPrompt.prompt();
-    await ciclikInstallPrompt.userChoice;
-    ciclikInstallPrompt = null;
+  installBtn.addEventListener("click",async()=>{
+    if(isIOS||!ciclikInstallPrompt){translateInstallCiclik();installHelp.style.display="block";return;}
+    ciclikInstallPrompt.prompt();await ciclikInstallPrompt.userChoice;ciclikInstallPrompt=null;
   });
-
-  window.addEventListener("appinstalled", () => {
-    installSection.style.display = "none";
-  });
+  window.addEventListener("appinstalled",()=>{installSection.style.display="none"});
 }
 </script>
 <script>
