@@ -1712,7 +1712,7 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
     </div>
    </article>
    <h3 class="proposalMonthHeading">NOVEMBRE</h3>
-   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops" data-event-status="upcoming">
+   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops" data-event-status="open">
     <div class="proposalMediaV2" style="background-image:url('TALLER%20AUTOMAQUILLATGE.png')" role="img" aria-label="Pinzells i productes de maquillatge"></div>
     <div class="proposalMainV2">
      <span class="proposalTag">TALLER</span>
@@ -1722,7 +1722,7 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
     </div>
     <div class="proposalSideV2">
      <p class="proposalDesc">Aprèn tècniques senzilles d'automaquillatge amb Eva Mellado, professional de l'estètica i la cosmètica bio, per potenciar la teva bellesa natural. Un espai per aprendre, compartir i cuidar-te.</p>
-     <span class="proposalCta proposalCtaOlive proposalCtaEnded" aria-disabled="true">PROPERAMENT</span>
+     <a class="proposalCta proposalCtaOlive" href="https://entradium.com/events/taller-d-automaqiillatge" target="_blank" rel="noopener noreferrer">INSCRIU-TE</a>
     </div>
    </article>
   </div>
@@ -2366,6 +2366,7 @@ function actualitzarEstatsEsdevenimentsCiclik(){
     if(status==="ended")button.textContent=es?"FINALIZADO":"FINALITZAT";
     else if(status==="sold-out")button.textContent=es?"PLAZAS AGOTADAS":"PLACES EXHAURIDES";
     else if(status==="upcoming")button.textContent=es?"PRÓXIMAMENTE":"PROPERAMENT";
+    else if(status==="open")button.textContent=es?"INSCRÍBETE":"INSCRIU-TE";
   });
 }
 document.addEventListener("DOMContentLoaded",actualitzarEstatsEsdevenimentsCiclik);
