@@ -1385,6 +1385,22 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
      </form>
     <video id="adminMemberScannerVideo" class="adminIdentifyScannerVideo" playsinline muted hidden></video>
     <p id="adminIdentifyStatus" class="adminIdentifyStatus" role="status" aria-live="polite"></p>
+    <div id="adminWorkshopActions" hidden>
+     <button class="memberIdentifyPrimary" type="button" onclick="obrirOperacioTaller('charge')"><span class="lgCa">Cobrar taller</span><span class="lgEs">Cobrar taller</span></button>
+     <button class="memberIdentifyPrimary" id="adminWorkshopCredit" type="button" onclick="obrirOperacioTaller('credit')"><span class="lgCa">Abonar Cicliks</span><span class="lgEs">Abonar Cicliks</span></button>
+    </div>
+    <dialog id="adminWorkshopDialog" aria-labelledby="adminWorkshopTitle">
+     <form id="adminWorkshopForm" onsubmit="event.preventDefault();desarOperacioTaller()">
+      <h3 id="adminWorkshopTitle"></h3>
+      <p id="adminWorkshopMember"></p>
+      <label>Taller <input name="activity" maxlength="160" required></label>
+      <label><span class="lgCa">Data</span><span class="lgEs">Fecha</span> <input name="sessionDate" type="date" required></label>
+      <label>Cicliks <input name="amount" type="number" min="1" max="2147483647" step="1" required></label>
+      <p id="adminWorkshopStatus" role="status"></p>
+      <button class="memberIdentifyPrimary" type="submit"><span class="lgCa">Confirmar</span><span class="lgEs">Confirmar</span></button>
+      <button type="button" onclick="this.closest('dialog').close()"><span class="lgCa">Tancar</span><span class="lgEs">Cerrar</span></button>
+     </form>
+    </dialog>
     <button class="clothesIdentifyMember" id="adminIdentifyContinue" type="button" onclick="continuarIdentificacioAdministracio()" hidden>CONTINUAR</button>
   <button class="adminPanelBack" id="adminIdentifyBack" type="button" onclick="tancarIdentificacioMembre()">TORNAR A ADMINISTRACIÓ</button>
   </section>
@@ -2821,6 +2837,8 @@ async function mostrarFormularioRoba(){
 
 function tancarIdentificacioMembre(){
   aturarEscanerQrMembre();
+  document.getElementById("adminWorkshopActions").hidden=true;
+  document.getElementById("adminWorkshopDialog").close();
   document.getElementById("adminIdentifyPlaceholder").hidden=true;
   if(memberIdentifyReturnView==="physicalConversion"){
     physicalConversionOperatorId=null;
@@ -3402,6 +3420,7 @@ async function resoldreMembreEscanejat(qrText){
   const continueButton=document.getElementById("adminIdentifyContinue");
   const operatorId=memberIdentifyReturnView==="physicalConversion"?physicalConversionOperatorId:clothesOperationUser?.id;
   continueButton.hidden=true;
+  document.getElementById("adminWorkshopActions").hidden=true;
   if(memberIdentifyReturnView==="physicalConversion")physicalConversionMemberId=null;
   else identifiedMemberUserId=null;
   const qrCode=extreureCodiQrMembre(qrText);
@@ -3436,11 +3455,75 @@ async function resoldreMembreEscanejat(qrText){
       return;
     }
     continueButton.hidden=!(memberUserId&&memberIdentifyReturnView==="clothes");
+    if(memberUserId&&memberIdentifyReturnView==="admin"&&!document.getElementById("adminIdentifyPlaceholder").hidden){
+      document.getElementById("adminWorkshopCredit").hidden=ciclikStaffRole!=="admin";
+      document.getElementById("adminWorkshopActions").hidden=false;
+    }
   }catch(error){
     status.textContent=es?"No se pudo validar el código. Inténtalo de nuevo.":"No s'ha pogut validar el codi. Torna-ho a provar.";
   }finally{
     memberQrCameraBusy=false;
   }
+}
+
+let workshopOperation;
+
+async function obrirOperacioTaller(operation){
+  const memberId=identifiedMemberUserId;
+  if(!memberId||memberIdentifyReturnView!=="admin")return;
+  const es=document.documentElement.lang==="es";
+  const {data,error}=await supabaseClient.rpc("ciclik_workshop_member",{p_user_id:memberId});
+  if(identifiedMemberUserId!==memberId||document.getElementById("adminIdentifyPlaceholder").hidden)return;
+  const member=data?.[0];
+  if(error||!member){
+    document.getElementById("adminIdentifyStatus").textContent=es?"No se pudo consultar el saldo del miembro.":"No s'ha pogut consultar el saldo del membre.";
+    return;
+  }
+  const form=document.getElementById("adminWorkshopForm");
+  form.reset();
+  form.querySelector('[type="submit"]').disabled=false;
+  workshopOperation={operation,memberId,name:member.display_name};
+  document.getElementById("adminWorkshopTitle").textContent=operation==="credit"?"Abonar Cicliks":"Cobrar taller";
+  document.getElementById("adminWorkshopMember").textContent=member.display_name+" · "+member.balance+" Cicliks";
+  document.getElementById("adminWorkshopStatus").textContent="";
+  const dialog=document.getElementById("adminWorkshopDialog");
+  if(!dialog.open)dialog.showModal();
+}
+
+async function desarOperacioTaller(){
+  const form=document.getElementById("adminWorkshopForm");
+  const button=form.querySelector('[type="submit"]');
+  const status=document.getElementById("adminWorkshopStatus");
+  const current=workshopOperation;
+  if(button.disabled||!current||current.memberId!==identifiedMemberUserId)return;
+  const fields=new FormData(form);
+  const activity=String(fields.get("activity")).trim();
+  const amount=Number(fields.get("amount"));
+  const date=String(fields.get("sessionDate"));
+  const es=document.documentElement.lang==="es";
+  if(!activity)return;
+  const key=JSON.stringify([activity,date,amount]);
+  if(current.key!==key){
+    current.key=key;
+    current.requestId=crypto.randomUUID();
+  }
+  button.disabled=true;
+  const {data,error}=await supabaseClient.rpc("ciclik_record_workshop",{
+    p_user_id:current.memberId,p_activity:activity,p_session_date:date,p_amount:amount,
+    p_request_id:current.requestId,p_operation:current.operation
+  });
+  if(workshopOperation!==current)return;
+  if(error){
+    button.disabled=false;
+    status.textContent=error.message==="ciclik_insufficient_balance"
+      ?(es?"Saldo insuficiente.":"Saldo insuficient.")
+      :error.message==="ciclik_workshop_already_paid"
+        ?(es?"Esta operación ya está registrada.":"Aquesta operació ja està registrada.")
+        :(es?"No se pudo guardar el movimiento.":"No s'ha pogut desar el moviment.");
+    return;
+  }
+  status.textContent=es?"Movimiento registrado.":"Moviment registrat.";
+  document.getElementById("adminWorkshopMember").textContent=current.name+" · "+data.new_balance+" Cicliks";
 }
 
 async function iniciarEscanerQrMembre(){
@@ -3703,6 +3786,8 @@ async function confirmClothesEntry(){
   }
 }
 
+let pendingAdminShortcut=new URLSearchParams(location.search).get("admin")==="1";
+
 async function cargarUsuarioReal() {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
@@ -3732,6 +3817,10 @@ if (!user) {
   document.getElementById("personalHub").hidden=false;
   document.querySelector("#moneder .walletGrid").hidden=false;
   restaurarAcceso();
+  if(pendingAdminShortcut){
+    mostrarLogin();
+    document.getElementById("comunitat").scrollIntoView({block:"start"});
+  }
   return;
 }
 
@@ -3757,6 +3846,11 @@ if (loginBtn) {
   await carregarQrPersonal(user.id);
   await carregarActivitatRecent(user.id);
   await actualitzarFluxPerfil(user);
+  if(pendingAdminShortcut){
+    pendingAdminShortcut=false;
+    if(clothesOperationUser)await obrirPanellAdministracio();
+    else alert(document.documentElement.lang==="es"?"Esta cuenta no tiene acceso a Administración.":"Aquest compte no té accés a Administració.");
+  }
 
   localStorage.removeItem("ciclikDemo");
 }
