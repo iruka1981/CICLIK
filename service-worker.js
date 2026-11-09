@@ -1,4 +1,4 @@
-const CACHE = "ciclik-shell-v4";
+const CACHE = "ciclik-shell-v5";
 const SCOPE_URL = self.registration.scope;
 const SHELL_KEY = new URL("./", SCOPE_URL).href;
 const PRECACHE = [

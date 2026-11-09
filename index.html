@@ -1712,17 +1712,18 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
     </div>
    </article>
    <h3 class="proposalMonthHeading">NOVEMBRE</h3>
-   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops" data-event-status="upcoming">
+   <article class="proposalCardV2 proposalCardMakeup" data-proposal-category="workshops" data-event-status="open" data-event-end-date="2026-11-21">
     <div class="proposalMediaV2" style="background-image:url('TALLER%20AUTOMAQUILLATGE.png')" role="img" aria-label="Pinzells i productes de maquillatge"></div>
     <div class="proposalMainV2">
      <span class="proposalTag">TALLER</span>
      <h3>Taller d'automaquillatge</h3>
      <p class="proposalSubtitle">amb Eva Mellado · esteticista i massatgista</p>
-     <ul class="proposalMeta"><li>Consells personalitzats</li><li>Trucs pràctics per al dia a dia</li><li>Data i lloc per confirmar</li></ul>
+     <ul class="proposalMeta"><li>Consells personalitzats</li><li>Trucs pràctics per al dia a dia</li><li>Dissabte 21 de novembre de 2026 · de 10 a 13 h · Terrassa</li></ul>
     </div>
     <div class="proposalSideV2">
      <p class="proposalDesc">Aprèn tècniques senzilles d'automaquillatge amb Eva Mellado, professional de l'estètica i la cosmètica bio, per potenciar la teva bellesa natural. Un espai per aprendre, compartir i cuidar-te.</p>
-     <span class="proposalCta proposalCtaOlive proposalCtaEnded" aria-disabled="true">PROPERAMENT</span>
+     <p class="proposalDesc proposalPrice">Preu: 5 € + 30 Cicliks</p>
+     <a class="proposalCta proposalCtaOlive" href="https://www.tomaticket.com/es-es/entradas-taller-dautomaqiillatge-en-barcelona">COMPRA L’ENTRADA</a>
     </div>
    </article>
   </div>
@@ -2055,12 +2056,13 @@ function translatePublicCiclik(lang){
   const makeup=document.querySelector(".proposalCardMakeup");
   if(makeup){
     const labels=es
-      ? ["Taller de automaquillaje","con Eva Mellado · esteticista y masajista","Consejos personalizados","Trucos prácticos para el día a día","Fecha y lugar por confirmar","Aprende técnicas sencillas de automaquillaje con Eva Mellado, profesional de la estética y la cosmética bio, para potenciar tu belleza natural. Un espacio para aprender, compartir y cuidarte."]
-      : ["Taller d'automaquillatge","amb Eva Mellado · esteticista i massatgista","Consells personalitzats","Trucs pràctics per al dia a dia","Data i lloc per confirmar","Aprèn tècniques senzilles d'automaquillatge amb Eva Mellado, professional de l'estètica i la cosmètica bio, per potenciar la teva bellesa natural. Un espai per aprendre, compartir i cuidar-te."];
+      ? ["Taller de automaquillaje","con Eva Mellado · esteticista y masajista","Consejos personalizados","Trucos prácticos para el día a día","Sábado 21 de noviembre de 2026 · de 10 a 13 h · Terrassa","Aprende técnicas sencillas de automaquillaje con Eva Mellado, profesional de la estética y la cosmética bio, para potenciar tu belleza natural. Un espacio para aprender, compartir y cuidarte."]
+      : ["Taller d'automaquillatge","amb Eva Mellado · esteticista i massatgista","Consells personalitzats","Trucs pràctics per al dia a dia","Dissabte 21 de novembre de 2026 · de 10 a 13 h · Terrassa","Aprèn tècniques senzilles d'automaquillatge amb Eva Mellado, professional de l'estètica i la cosmètica bio, per potenciar la teva bellesa natural. Un espai per aprendre, compartir i cuidar-te."];
     makeup.querySelector("h3").textContent=labels[0];
     makeup.querySelector(".proposalSubtitle").textContent=labels[1];
     makeup.querySelectorAll(".proposalMeta li").forEach((el,i)=>el.textContent=labels[i+2]);
     makeup.querySelector(".proposalDesc").textContent=labels[5];
+    makeup.querySelector(".proposalPrice").textContent=es?"Precio: 5 € + 30 Cicliks":"Preu: 5 € + 30 Cicliks";
     makeup.querySelector("[role='img']").setAttribute("aria-label",es?"Brochas y productos de maquillaje":"Pinzells i productes de maquillatge");
   }
   const month=document.querySelectorAll(".proposalMonthHeading")[1];
@@ -2405,7 +2407,14 @@ function actualitzarEstatsEsdevenimentsCiclik(){
     const status=ended?"ended":card.dataset.eventStatus;
     const button=card.querySelector(".proposalCta");
     if(!button)return;
-    if(status==="ended")button.textContent=es?"FINALIZADO":"FINALITZAT";
+    if(status==="ended"){
+      button.textContent=es?"FINALIZADO":"FINALITZAT";
+      if(card.classList.contains("proposalCardMakeup")){
+        button.removeAttribute("href");
+        button.setAttribute("aria-disabled","true");
+        button.classList.add("proposalCtaEnded");
+      }
+    }else if(status==="open"&&card.classList.contains("proposalCardMakeup"))button.textContent=es?"COMPRAR ENTRADA":"COMPRA L’ENTRADA";
     else if(status==="sold-out")button.textContent=es?"PLAZAS AGOTADAS":"PLACES EXHAURIDES";
     else if(status==="upcoming")button.textContent=es?"PRÓXIMAMENTE":"PROPERAMENT";
   });
