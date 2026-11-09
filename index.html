@@ -5,7 +5,13 @@
 <meta name="google-site-verification" content="dvkYC0-azj94ihF58QvEiKS3duopzIdajLEa7c-8fS0" /> 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f4eee2">
-<link rel="manifest" href="manifest.webmanifest">
+<script>
+const ciclikManifest=document.createElement("link");
+ciclikManifest.rel="manifest";
+ciclikManifest.href=new URLSearchParams(location.search).get("admin")==="1"
+  ?"manifest-admin.webmanifest":"manifest.webmanifest";
+document.head.append(ciclikManifest);
+</script>
 <link rel="icon" type="image/png" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
