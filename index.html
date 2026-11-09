@@ -1350,7 +1350,9 @@ html[lang="es"] .lgCa,html:not([lang="es"]) .lgEs{display:none}
     <button class="adminPanelBack" id="adminPanelBack" type="button" onclick="tancarPanellAdministracio()">TORNA A EL MEU CICLIK</button>
    </div>
    <div class="adminPanelTiles">
-    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="memberIdentifyReturnView='admin';document.getElementById('adminPanelSection').hidden=true;document.getElementById('adminIdentifyPlaceholder').hidden=false">Escanejar i identificar membres</button>
+    <button class="adminPanelTile adminPanelTileButton" type="button" onclick="obrirIdentificacioAdministracio('charge')">Cobrar taller</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileWorkshopCredit" type="button" onclick="obrirIdentificacioAdministracio('credit')" hidden>Abonar Cicliks</button>
+    <button class="adminPanelTile adminPanelTileButton" id="adminTileIdentify" type="button" onclick="obrirIdentificacioAdministracio()">Escanejar i identificar membres</button>
     <button class="adminPanelTile adminPanelTileButton" id="adminTileClothes" type="button" onclick="obrirFluxRoba('admin')">Entrada i sortida de roba</button>
     <button class="adminPanelTile adminPanelTileButton" id="adminTileConvert" type="button" onclick="obrirConversioFisica()">Convertir Cicliks físics</button>
     <button class="adminPanelTile adminPanelTileButton" id="adminTileMovements" type="button" onclick="obrirMovimentsAdministracio()">Moviments</button>
@@ -2843,6 +2845,7 @@ async function mostrarFormularioRoba(){
 
 function tancarIdentificacioMembre(){
   aturarEscanerQrMembre();
+  pendingWorkshopAction=null;
   document.getElementById("adminWorkshopActions").hidden=true;
   document.getElementById("adminWorkshopDialog").close();
   document.getElementById("adminIdentifyPlaceholder").hidden=true;
@@ -3204,6 +3207,7 @@ async function obrirPanellAdministracio(){
   document.getElementById("personalHub").hidden=true;
   document.querySelector("#moneder .walletGrid").hidden=true;
   const panel=document.getElementById("adminPanelSection");
+  document.getElementById("adminTileWorkshopCredit").hidden=data.role!=="admin";
   panel.hidden=false;
   translateAdminPanel(es?"es":"ca");
   requestAnimationFrame(()=>{const header=document.querySelector("header");const offset=(header?.getBoundingClientRect().height||78)+22;const y=window.scrollY+panel.getBoundingClientRect().top-offset;window.scrollTo({top:Math.max(0,y),behavior:"smooth"});});
@@ -3415,7 +3419,10 @@ function extreureCodiQrMembre(qrText){
 function toggleManualQrEntry(){
   const form=document.getElementById("adminManualQrEntry");
   form.hidden=!form.hidden;
-  if(!form.hidden)document.getElementById("adminManualQrCode").focus();
+  if(!form.hidden){
+    aturarEscanerQrMembre();
+    document.getElementById("adminManualQrCode").focus();
+  }
 }
 
 async function resoldreMembreEscanejat(qrText){
@@ -3464,6 +3471,7 @@ async function resoldreMembreEscanejat(qrText){
     if(memberUserId&&memberIdentifyReturnView==="admin"&&!document.getElementById("adminIdentifyPlaceholder").hidden){
       document.getElementById("adminWorkshopCredit").hidden=ciclikStaffRole!=="admin";
       document.getElementById("adminWorkshopActions").hidden=false;
+      if(pendingWorkshopAction)await obrirOperacioTaller(pendingWorkshopAction);
     }
   }catch(error){
     status.textContent=es?"No se pudo validar el código. Inténtalo de nuevo.":"No s'ha pogut validar el codi. Torna-ho a provar.";
@@ -3473,6 +3481,24 @@ async function resoldreMembreEscanejat(qrText){
 }
 
 let workshopOperation;
+let pendingWorkshopAction=null;
+
+function obrirIdentificacioAdministracio(action=null){
+  const es=document.documentElement.lang==="es";
+  pendingWorkshopAction=action;
+  identifiedMemberUserId=null;
+  memberIdentifyReturnView="admin";
+  document.getElementById("adminWorkshopActions").hidden=true;
+  document.getElementById("adminIdentifyContinue").hidden=true;
+  document.getElementById("adminIdentifyStatus").textContent=action
+    ?(es?"Identifica al miembro para continuar.":"Identifica el membre per continuar.")
+    :"";
+  document.getElementById("adminPanelSection").hidden=true;
+  document.getElementById("adminIdentifyPlaceholder").hidden=false;
+  document.getElementById("adminManualQrEntry").hidden=true;
+  document.getElementById("adminManualQrCode").value="";
+  if(action)iniciarEscanerQrMembre();
+}
 
 async function obrirOperacioTaller(operation){
   const memberId=identifiedMemberUserId;
@@ -3546,7 +3572,12 @@ async function iniciarEscanerQrMembre(){
   aturarEscanerQrMembre();
   status.textContent=es?"Apunta la cámara al QR Ciclik del miembro.":"Apunta la càmera al QR Ciclik del membre.";
   try{
-    memberQrCameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});
+    const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});
+    if(document.getElementById("adminIdentifyPlaceholder").hidden||!document.getElementById("adminManualQrEntry").hidden){
+      stream.getTracks().forEach(track=>track.stop());
+      return;
+    }
+    memberQrCameraStream=stream;
     const video=document.getElementById("adminMemberScannerVideo");
     video.srcObject=memberQrCameraStream;
     video.hidden=false;
